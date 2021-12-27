@@ -31,6 +31,10 @@ kmap('n', '<C-A-j>', ':resize -2<CR>', opts)
 kmap('n', '<C-A-l>', ':vertical resize -2<CR>', opts)
 kmap('n', '<C-A-h>', ':vertical resize +2<CR>', opts)
 
+-- Navigate buffers
+kmap('n', '<S-l>', ':bnext<CR>', opts)
+kmap('n', '<S-h>', ':bprevious<CR>', opts)
+
 -- Visual --
 -- Stay in indent mode
 kmap('v', '<', '<gv', opts)
@@ -43,14 +47,17 @@ kmap('v', 'p', '"_dP', opts)
 
 -- Visual Block --
 -- Move text up and down
-kmap("x", "J", ":move '>+1<CR>gv-gv", opts)
-kmap("x", "K", ":move '<-2<CR>gv-gv", opts)
-kmap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-kmap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+kmap('x', 'J', ":move '>+1<CR>gv-gv", opts)
+kmap('x', 'K', ":move '<-2<CR>gv-gv", opts)
+kmap('x', '<A-j>', ":move '>+1<CR>gv-gv", opts)
+kmap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
+
+-- No Highlighting --
+kmap('n', '<leader>h', ':noh<CR>', opts)
 
 -- Terminal --
 -- Better terminal navigation
-kmap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
-kmap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-kmap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
-kmap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+kmap('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
+kmap('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
+kmap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
+kmap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
