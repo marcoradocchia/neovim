@@ -40,3 +40,17 @@ kmap('v', '>', '>gv', opts)
 kmap('v', '<A-j>', ':m .+1<CR>==', opts)
 kmap('v', '<A-k>', ':m .-2<CR>==', opts)
 kmap('v', 'p', '"_dP', opts)
+
+-- Visual Block --
+-- Move text up and down
+kmap("x", "J", ":move '>+1<CR>gv-gv", opts)
+kmap("x", "K", ":move '<-2<CR>gv-gv", opts)
+kmap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
+kmap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+
+-- Terminal --
+-- Better terminal navigation
+kmap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+kmap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+kmap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+kmap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
