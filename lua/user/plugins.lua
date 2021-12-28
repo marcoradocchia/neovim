@@ -48,6 +48,8 @@ return packer.startup(function(use)
   --   ft = { 'tex', 'python' }, <- for filetypes
   --   require { {plugin1}, {plugin2} } <- for depnedecy plugins
   -- }
+  -- Colorschemes
+  use 'sainnhe/gruvbox-material'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
