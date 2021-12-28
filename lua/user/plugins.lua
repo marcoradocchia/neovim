@@ -82,8 +82,12 @@ return packer.startup(function(use)
   }
 
   use { -- TreeSitter
-    'nvim-treesitter/nvim-treesitter',
+    { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
     'p00f/nvim-ts-rainbow',
+  }
+
+  use { -- status and buffer lines
+    'nvim-lualine/lualine.nvim'
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
