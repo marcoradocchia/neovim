@@ -40,8 +40,13 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
+  -- Plugins here
   use 'wbthomason/packer.nvim' -- Have packer manage itself
+
+  use {
+    'nvim-lua/popup.nvim', -- An implementation of the Popup API from vim in Neovim
+    'nvim-lua/plenary.nvim', -- Useful lua functions used ny lots of plugins
+  }
   -- Lazy loading example
   -- use {
   --   'user/repo',
@@ -53,23 +58,32 @@ return packer.startup(function(use)
   use 'sainnhe/gruvbox-material'
 
   use { -- Cmp plugins
-    "hrsh7th/nvim-cmp", -- the completion plugin
-    "hrsh7th/cmp-buffer", -- buffer completions
-    "hrsh7th/cmp-path", -- path completions
-    "hrsh7th/cmp-cmdline", -- cmdline completions
-    "hrsh7th/cmp-nvim-lsp", -- lsp completions
-    "hrsh7th/cmp-nvim-lua", -- ?
-    "saadparwaiz1/cmp_luasnip", -- snippet completions
+    'hrsh7th/nvim-cmp', -- the completion plugin
+    'hrsh7th/cmp-buffer', -- buffer completions
+    'hrsh7th/cmp-path', -- path completions
+    'hrsh7th/cmp-cmdline', -- cmdline completions
+    'hrsh7th/cmp-nvim-lsp', -- lsp completions
+    'hrsh7th/cmp-nvim-lua', -- ?
+    'saadparwaiz1/cmp_luasnip', -- snippet completions
   }
 
   use { -- Snippets
-    "L3MON4D3/LuaSnip", -- snippet engine
-    "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+    'L3MON4D3/LuaSnip', -- snippet engine
+    'rafamadriz/friendly-snippets', -- a bunch of snippets to use
   }
 
   use { -- LSP
-    "neovim/nvim-lspconfig", -- enable LSP
-    "williamboman/nvim-lsp-installer", -- simple to use language server installer
+    'neovim/nvim-lspconfig', -- enable LSP
+    'williamboman/nvim-lsp-installer', -- simple to use language server installer
+  }
+
+  use { -- Telescope
+    'nvim-telescope/telescope.nvim',
+  }
+
+  use { -- TreeSitter
+    'nvim-treesitter/nvim-treesitter',
+    'p00f/nvim-ts-rainbow',
   }
 
   -- Automatically set up your configuration after cloning packer.nvim

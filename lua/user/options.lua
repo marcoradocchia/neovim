@@ -1,7 +1,7 @@
 -- :help options
 local options = {
   title = true,                -- sets window title
-  backup = false,              -- creates a backup file 
+  backup = false,              -- creates a backup file
   clipboard = 'unnamedplus',   -- access the system clipboard
   cmdheight = 1,               -- controls the space in the command line
   completeopt = {              -- mostly just for cmp
