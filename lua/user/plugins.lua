@@ -52,16 +52,25 @@ return packer.startup(function(use)
   -- Colorschemes
   use 'sainnhe/gruvbox-material'
 
-  -- cmp plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use { -- Cmp plugins
+    "hrsh7th/nvim-cmp", -- the completion plugin
+    "hrsh7th/cmp-buffer", -- buffer completions
+    "hrsh7th/cmp-path", -- path completions
+    "hrsh7th/cmp-cmdline", -- cmdline completions
+    "hrsh7th/cmp-nvim-lsp", -- lsp completions
+    "hrsh7th/cmp-nvim-lua", -- ?
+    "saadparwaiz1/cmp_luasnip", -- snippet completions
+  }
 
-  -- snippets
-  use "L3MON4D3/LuaSnip" -- snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  use { -- Snippets
+    "L3MON4D3/LuaSnip", -- snippet engine
+    "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+  }
+
+  use { -- LSP
+    "neovim/nvim-lspconfig", -- enable LSP
+    "williamboman/nvim-lsp-installer", -- simple to use language server installer
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
