@@ -10,7 +10,6 @@ local servers = {
   'fortls',
   'html',
   'jsonls',
-  'ltex',
   'pyright',
   'sumneko_lua',
   'texlab',
@@ -59,11 +58,6 @@ lsp_installer.on_server_ready(function(server)
   if server.name == 'jsonls' then
     local jsonls_opts = require('user.lsp.settings.jsonls')
     opts = vim.tbl_deep_extend('force', jsonls_opts, opts)
-  end
-
-  if server.name == 'ltex' then
-    local ltex_opts = require('user.lsp.settings.ltex')
-    opts = vim.tbl_deep_extend('force', ltex_opts, opts)
   end
 
   if server.name == 'pyright' then
