@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 local gruvbox_material_dark = { -- colorscheme
-  bg       = '#282828',
+  bg       = '#1d2021',
   fg       = '#d4be98',
   yellow   = '#d8a657',
   cyan     = '#89b482',
