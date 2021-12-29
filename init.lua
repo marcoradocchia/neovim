@@ -14,6 +14,7 @@ require 'user.telescope'
 require 'user.treesitter'
 require 'user.lualine'
 require 'user.indentblankline'
+require 'user.comment'
 -- The following this is a dir,
 -- but contains `init.lua` which is what is sourced
 require 'user.lsp'

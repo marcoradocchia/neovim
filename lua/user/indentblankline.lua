@@ -3,7 +3,8 @@ if not snip_status_ok then
   return
 end
 
-vim.cmd [[highlight IndentBlanklineContextStart guisp=#ea6962 gui=bold ]]
+vim.cmd [[ highlight IndentBlanklineContextStart guisp=#ea6962 gui=bold ]]
+vim.cmd [[ highlight IndentBlanklineContextChar guifg=#ea6962 guisp=#ea6962 gui=bold ]]
 
 indentblankline.setup {
   use_treesitter = true,
@@ -24,6 +25,6 @@ indentblankline.setup {
     'try',
     'case',
   },
-  filetype_exclude = { 'help', 'man', 'txt' },
+  filetype_exclude = { 'help', 'man', 'txt', 'packer' },
   buftype_exclude = { 'terminal' },
 }

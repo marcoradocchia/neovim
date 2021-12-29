@@ -54,10 +54,10 @@ return packer.startup(function(use)
   --   require { {plugin1}, {plugin2} } <- for depnedecy plugins
   -- }
 
-  -- Colorschemes
+  -- colorschemes
   use 'sainnhe/gruvbox-material'
 
-  use { -- Cmp plugins
+  use { -- cmp plugins
     'hrsh7th/nvim-cmp', -- the completion plugin
     'hrsh7th/cmp-buffer', -- buffer completions
     'hrsh7th/cmp-path', -- path completions
@@ -67,7 +67,7 @@ return packer.startup(function(use)
     'saadparwaiz1/cmp_luasnip', -- snippet completions
   }
 
-  use { -- Snippets
+  use { -- snippets
     'L3MON4D3/LuaSnip', -- snippet engine
     'rafamadriz/friendly-snippets', -- a bunch of snippets to use
   }
@@ -77,11 +77,11 @@ return packer.startup(function(use)
     'williamboman/nvim-lsp-installer', -- simple to use language server installer
   }
 
-  use { -- Telescope
+  use { -- telescope
     'nvim-telescope/telescope.nvim',
   }
 
-  use { -- TreeSitter
+  use { -- treeSitter
     { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
     'p00f/nvim-ts-rainbow',
   }
@@ -91,7 +91,12 @@ return packer.startup(function(use)
   }
 
   use { -- indentation
-    "lukas-reineke/indent-blankline.nvim"
+    'lukas-reineke/indent-blankline.nvim'
+  }
+
+  use { -- commenting
+    'numToStr/Comment.nvim',
+    'JoosepAlviste/nvim-ts-context-commentstring'
   }
 
   -- Automatically set up your configuration after cloning packer.nvim

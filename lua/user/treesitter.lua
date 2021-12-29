@@ -33,5 +33,5 @@ configs.setup {
       '#7daea3',
       '#d3869b'
     }
-  }
+  },
 }
