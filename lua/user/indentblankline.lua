@@ -24,6 +24,7 @@ indentblankline.setup {
     'with',
     'try',
     'case',
+    'dictionary',
   },
   filetype_exclude = { 'help', 'man', 'txt', 'packer' },
   buftype_exclude = { 'terminal' },

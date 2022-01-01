@@ -61,6 +61,12 @@ kmap('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
 kmap('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
 kmap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
 kmap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
---
--- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-kmap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_ivy())<cr>", opts)
+
+-- Telescope --
+-- kmap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
+kmap('n', '<leader>f', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_ivy())<CR>", opts)
+
+-- LSP --
+-- go to next lsp diagnostic
+kmap('n', '<leader>p', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+kmap('n', '<leader>n', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)

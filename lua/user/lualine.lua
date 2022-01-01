@@ -146,7 +146,7 @@ ins_left {
     error = { fg = colors.red },
     warn = { fg = colors.yellow },
     info = { fg = colors.blue },
-    hint = { fg = colors.green },
+    hint = { fg = colors.cyan },
   },
 }
 
