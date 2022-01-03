@@ -26,6 +26,6 @@ indentblankline.setup {
     'case',
     'dictionary',
   },
-  filetype_exclude = { 'help', 'man', 'txt', 'packer' },
+  filetype_exclude = { 'help', 'man', 'txt', 'packer', 'NvimTree' },
   buftype_exclude = { 'terminal' },
 }

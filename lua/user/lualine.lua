@@ -201,19 +201,6 @@ ins_right {
 }
 
 ins_right {
-  -- cool function for progress
-  function()
-    local current_line = vim.fn.line(".")
-    local total_lines = vim.fn.line("$")
-    local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-    local line_ratio = current_line / total_lines
-    local index = math.ceil(line_ratio * #chars)
-    return chars[index]
-  end,
-  color = { fg = colors.yellow, gui = 'bold' }
-}
-
-ins_right {
   function()
     return '▊'
   end,
