@@ -34,4 +34,7 @@ configs.setup {
       '#d3869b'
     }
   },
+  autopairs = {
+    enable = true,
+  },
 }
