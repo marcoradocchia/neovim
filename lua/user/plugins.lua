@@ -100,9 +100,12 @@ return packer.startup(function(use)
   }
 
   use { -- parenthesis and more
-    "windwp/nvim-autopairs" -- integrates with both cmp and treesitter
+    'windwp/nvim-autopairs' -- integrates with both cmp and treesitter
   }
 
+  use { -- git
+    'lewis6991/gitsigns.nvim'
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
