@@ -108,9 +108,14 @@ return packer.startup(function(use)
   }
 
   use { -- file tree
-    'kyazdani42/nvim-web-devicons', -- icons
     'kyazdani42/nvim-tree.lua', -- actual file tree
   }
+
+  use { -- bufferline
+    'akinsho/bufferline.nvim',
+    'moll/vim-bbye',
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
