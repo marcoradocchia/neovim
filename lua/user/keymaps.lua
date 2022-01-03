@@ -63,8 +63,9 @@ kmap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
 kmap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
 
 -- Telescope --
--- kmap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-kmap('n', '<leader>f', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_ivy())<CR>", opts)
+kmap('n', '<leader>f', "<cmd>lua require'telescope.builtin'.find_files()<CR>", opts)
+kmap('n', 'g/', "<cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find()<CR>", opts)
+kmap('n', '<leader>t', "<cmd>lua require'telescope.builtin'.live_grep()<CR>", opts)
 
 -- GitSigns --
 -- kmap('n', '<leader>gn', "")

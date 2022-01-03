@@ -81,7 +81,7 @@ return packer.startup(function(use)
     'nvim-telescope/telescope.nvim',
   }
 
-  use { -- treeSitter
+  use { -- treesitter
     { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
     'p00f/nvim-ts-rainbow',
   }
@@ -106,6 +106,10 @@ return packer.startup(function(use)
   use { -- git
     'lewis6991/gitsigns.nvim'
   }
+
+  -- use {
+  --   ''
+  -- }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
