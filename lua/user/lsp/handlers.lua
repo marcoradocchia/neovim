@@ -61,7 +61,6 @@ local function lsp_highlight_document(client)
   end
 end
 
-
 local function lsp_keymaps(bufnr)
   local bufkmap = vim.api.nvim_buf_set_keymap
   local opts = { noremap = true, silent = true }

@@ -49,8 +49,6 @@ kmap('v', 'p', '"_dP', opts)
 -- Move text up and down
 kmap('x', 'J', ":move '>+1<CR>gv-gv", opts)
 kmap('x', 'K', ":move '<-2<CR>gv-gv", opts)
-kmap('x', '<A-j>', ":move '>+1<CR>gv-gv", opts)
-kmap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
 
 -- No Highlighting --
 kmap('n', '<leader>h', ':noh<CR>', opts)
@@ -68,5 +66,8 @@ kmap('n', 'g/', "<cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find()
 kmap('n', '<leader>t', "<cmd>lua require'telescope.builtin'.live_grep()<CR>", opts)
 
 -- GitSigns --
--- kmap('n', '<leader>gn', "")
--- sd
+-- TODO
+
+-- NvimTree --
+kmap('n', '<C-n>', ":NvimTreeToggle<CR>", opts)
+-- kmap('n', '', "", opts)

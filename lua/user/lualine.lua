@@ -1,22 +1,9 @@
-local status_ok, lualine = pcall(require, "lualine")
+local colors = COLORS
+
+local status_ok, lualine = pcall(require, 'lualine')
 if not status_ok then
   return
 end
-
-local gruvbox_material_dark = { -- colorscheme
-  bg       = '#1d2021',
-  fg       = '#d4be98',
-  yellow   = '#d8a657',
-  cyan     = '#89b482',
-  green    = '#a9b665',
-  orange   = '#e78a4e',
-  violet   = '#d3869b',
-  magenta  = '#ea6962',
-  blue     = '#7daea3',
-  red      = '#ea6962',
-}
-
-local colors = gruvbox_material_dark
 
 local conditions = {
   buffer_not_empty = function()
@@ -45,6 +32,7 @@ local config = {
       normal = { c = { fg = colors.fg, bg = colors.bg } },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
     },
+    disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
   },
   sections = {
     -- these are to remove the defaults
@@ -101,8 +89,8 @@ ins_left {
       S = colors.orange,
       [''] = colors.orange,
       ic = colors.yellow,
-      R = colors.violet,
-      Rv = colors.violet,
+      R = colors.magenta,
+      Rv = colors.magenta,
       cv = colors.red,
       ce = colors.red,
       r = colors.cyan,
@@ -128,7 +116,7 @@ ins_left {
 ins_left {
   'filename',
   cond = conditions.buffer_not_empty,
-  color = { fg = colors.magenta, gui = 'bold' },
+  color = { fg = colors.red, gui = 'bold' },
 }
 
 ins_left { 'location' }
@@ -197,7 +185,7 @@ ins_right {
 ins_right {
   'branch',
   icon = '',
-  color = { fg = colors.violet, gui = 'bold' },
+  color = { fg = colors.magenta, gui = 'bold' },
 }
 
 ins_right {
@@ -210,6 +198,19 @@ ins_right {
     removed = { fg = colors.red },
   },
   cond = conditions.hide_in_width,
+}
+
+ins_right {
+  -- cool function for progress
+  function()
+    local current_line = vim.fn.line(".")
+    local total_lines = vim.fn.line("$")
+    local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
+    local line_ratio = current_line / total_lines
+    local index = math.ceil(line_ratio * #chars)
+    return chars[index]
+  end,
+  color = { fg = colors.yellow, gui = 'bold' }
 }
 
 ins_right {
