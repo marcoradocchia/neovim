@@ -51,7 +51,7 @@ kmap('x', 'J', ":move '>+1<CR>gv-gv", opts)
 kmap('x', 'K', ":move '<-2<CR>gv-gv", opts)
 
 -- No Highlighting --
-kmap('n', '<leader>h', ':noh<CR>', opts)
+kmap('n', '<C-h>', ':noh<CR>', opts)
 
 -- Terminal --
 -- Better terminal navigation
