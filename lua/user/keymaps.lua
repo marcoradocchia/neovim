@@ -70,4 +70,4 @@ kmap('n', '<leader>t', "<cmd>lua require'telescope.builtin'.live_grep()<CR>", op
 
 -- NvimTree --
 kmap('n', '<C-n>', ":NvimTreeToggle<CR>", opts)
--- kmap('n', '', "", opts)
+kmap('n', '<leader>n', ":NvimTreeFocus<CR>", opts)
