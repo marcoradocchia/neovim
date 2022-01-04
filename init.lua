@@ -6,7 +6,6 @@
 -- ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝
 
 COLORS = require'user.colors.gruvbox_material'
-
 require 'user.options'
 require 'user.keymaps'
 require 'user.autocommands'

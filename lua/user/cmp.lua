@@ -8,7 +8,16 @@ if not snip_status_ok then
   return
 end
 
+-- snippets configuration
+luasnip.config.set_config({
+  history = true,
+  enable_autosnippets = true,
+})
+
+-- snippet collection
 require('luasnip/loaders/from_vscode').lazy_load()
+-- adding personal snippets
+require 'user.snippets.latex'(luasnip)
 
 local check_backspace = function()
   local col = vim.fn.col '.' - 1
@@ -35,7 +44,7 @@ local kind_icons = {
   Color = '',
   File = '',
   Reference = '',
-  Folder = '',
+  Folder = '',
   EnumMember = '',
   Constant = '',
   Struct = '',
