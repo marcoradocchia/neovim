@@ -739,8 +739,12 @@ return function (luasnip)
         }
       ),
       -- greek and math symbols
+      s("`'", t("\\mprime")),
+      s("`2'", t("\\mdprime")),
+      s("`3'", t("\\mtprime")),
       s("`a", t("\\alpha")),
       s("`b", t("\\beta")),
+      s("`C", t("\\mathbb{C}")),
       s("`d", t("\\delta")),
       s("`D", t("\\Delta")),
       s("`e", t("\\eps")),
@@ -759,6 +763,7 @@ return function (luasnip)
       s("`p", t("\\psi")),
       s("`P", t("\\pi")),
       s("`r", t("\\rho")),
+      s("`R", t("\\mathbb{R}")),
       s("`t", t("\\theta")),
       s("`T", t("\\Theta")),
       s("`v", t("\\nu")),

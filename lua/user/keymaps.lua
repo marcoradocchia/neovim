@@ -69,5 +69,16 @@ kmap('n', '<leader>t', "<cmd>lua require'telescope.builtin'.live_grep()<CR>", op
 -- TODO
 
 -- NvimTree --
-kmap('n', '<C-n>', ":NvimTreeToggle<CR>", opts)
-kmap('n', '<leader>n', ":NvimTreeFocus<CR>", opts)
+kmap('n', '<C-n>', ':NvimTreeToggle<CR>', opts)
+kmap('n', '<leader>n', ':NvimTreeFocus<CR>', opts)
+
+-- local function c_map ()
+--   print(vim.bo.filetype)
+--   if vim.bo.filetype == 'tex' then
+--     return ':!lualatex --output-dir pdf main.tex<CR>'
+--   else
+--     return ''
+--   end
+-- end
+-- Compile latex in tex buffer --
+kmap('n', '<leader>c', ':!lualatex --output-dir pdf main.tex<CR>', opts)

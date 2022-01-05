@@ -3,6 +3,9 @@ if not status_ok then
   return
 end
 
+local colors = COLORS
+vim.cmd(string.format('highlight GitSignsChange guifg=%s', colors.orange))
+
 gitsigns.setup {
   signs = {
     add = {
@@ -12,6 +15,12 @@ gitsigns.setup {
       linehl = 'GitSignsAddLn'
     },
     change = {
+      hl = 'GitSignsChange',
+      text = '~',
+      numhl = 'GitSignsChangeNr',
+      linehl = 'GitSignsChangeLn'
+    },
+    changedelete = {
       hl = 'GitSignsChange',
       text = '~',
       numhl = 'GitSignsChangeNr',
@@ -28,12 +37,6 @@ gitsigns.setup {
       text = '‾',
       numhl = 'GitSignsDeleteNr',
       linehl = 'GitSignsDeleteLn'
-    },
-    changedelete = {
-      hl = 'GitSignsChange',
-      text = '~',
-      numhl = 'GitSignsChangeNr',
-      linehl = 'GitSignsChangeLn'
     },
   },
   signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`

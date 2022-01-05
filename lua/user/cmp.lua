@@ -15,7 +15,7 @@ luasnip.config.set_config({
 })
 
 -- snippet collection
-require('luasnip/loaders/from_vscode').lazy_load()
+require('luasnip.loaders.from_vscode').lazy_load()
 -- adding personal snippets
 require 'user.snippets.latex'(luasnip)
 
