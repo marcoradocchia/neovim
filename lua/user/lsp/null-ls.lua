@@ -24,6 +24,7 @@ null_ls.setup({
 		}),
 		formatting.stylua,
 		formatting.latexindent,
+		formatting.clang_format,
 		diagnostics.flake8,
 	},
 })

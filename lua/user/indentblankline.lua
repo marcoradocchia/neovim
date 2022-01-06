@@ -26,6 +26,14 @@ indentblankline.setup({
 		"case",
 		"dictionary",
 	},
-	filetype_exclude = { "help", "man", "txt", "packer", "NvimTree" },
+	filetype_exclude = {
+		"help",
+		"man",
+		"txt",
+		"packer",
+		"NvimTree",
+    "lspinfo",
+    "null-ls-info",
+	},
 	buftype_exclude = { "terminal" },
 })
