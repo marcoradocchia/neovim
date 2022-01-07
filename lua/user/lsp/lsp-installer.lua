@@ -35,6 +35,7 @@ lsp_installer.on_server_ready(function(server)
 		capabilities = require("user.lsp.handlers").capabilities,
 	}
 
+  -- keep separate ifs for multiple language servers running
 	if server.name == "bashls" then
 		local bashls_opts = require("user.lsp.settings.bashls")
 		opts = vim.tbl_deep_extend("force", bashls_opts, opts)
@@ -42,6 +43,8 @@ lsp_installer.on_server_ready(function(server)
 
 	if server.name == "clangd" then
 		local clangd_opts = require("user.lsp.settings.clangd")
+    -- fixing https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
+    opts.capabilities.offsetEncoding = { "utf-16" }
 		opts = vim.tbl_deep_extend("force", clangd_opts, opts)
 	end
 

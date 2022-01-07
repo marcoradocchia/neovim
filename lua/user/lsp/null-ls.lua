@@ -24,7 +24,11 @@ null_ls.setup({
 		}),
 		formatting.stylua,
 		formatting.latexindent,
-		formatting.clang_format,
+		formatting.clang_format.with({
+			extra_args = {
+				"--style=Mozilla",
+			},
+		}),
 		diagnostics.flake8,
 	},
 })
