@@ -755,6 +755,7 @@ return function(luasnip)
 			s("`v", t("\\nu")),
 			s("`x", t("\\chi")),
 			s("`X", t("\\xi")),
+			s("`~", t("\\tilde")),
 			s("darr", t("\\downarrow")),
 			s("uarr", t("\\uparrow")),
 		},

@@ -32,8 +32,12 @@ local config = {
 			normal = { c = { fg = colors.fg, bg = colors.bg } },
 			inactive = { c = { fg = colors.fg, bg = colors.bg } },
 		},
-		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
+		disabled_filetypes = { "alpha", "dashboard", "Outline" },
 	},
+  extensions = {
+    "nvim-tree",
+    "toggleterm"
+  },
 	sections = {
 		-- these are to remove the defaults
 		lualine_a = {},
