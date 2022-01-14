@@ -750,6 +750,8 @@ return function(luasnip)
 			s("`P", t("\\pi")),
 			s("`r", t("\\rho")),
 			s("`R", t("\\mathbb{R}")),
+			s("`s", t("\\sigma")),
+			s("`S", t("\\Sigma")),
 			s("`t", t("\\theta")),
 			s("`T", t("\\Theta")),
 			s("`v", t("\\nu")),

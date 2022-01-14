@@ -72,6 +72,9 @@ kmap("n", "<leader>t", "<cmd>lua require'telescope.builtin'.live_grep()<CR>", op
 kmap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 kmap("n", "<leader>n", ":NvimTreeFocus<CR>", opts)
 
+-- Buffers --
+kmap("n", "<C-c>", ":Bdelete<CR>", opts)
+
 -- null-ls --
 kmap("n", "<leader>F", "<cmd> lua vim.lsp.buf.formatting_sync()<CR>", opts) -- formatting
 
