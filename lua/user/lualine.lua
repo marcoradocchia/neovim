@@ -118,7 +118,6 @@ ins_left({
 
 ins_left({
 	"filetype",
-	icons_enabled = true,
 })
 
 ins_left({ "location" })
