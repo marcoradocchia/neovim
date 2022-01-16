@@ -14,7 +14,7 @@ configs.setup({
 	},
 	indent = {
 		enable = true,
-		disable = { "yaml" },
+		disable = { "python", "yaml" },
 	},
 	context_commentstring = {
 		enable = true,
@@ -32,6 +32,8 @@ configs.setup({
 			"#d8a657",
 			"#7daea3",
 			"#d3869b",
+      "#89b482",
+      "#e78a4e",
 		},
 	},
 	autopairs = {

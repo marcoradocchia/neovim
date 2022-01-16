@@ -63,7 +63,7 @@ return packer.startup(function(use)
 		"hrsh7th/cmp-path", -- path completions
 		"hrsh7th/cmp-cmdline", -- cmdline completions
 		"hrsh7th/cmp-nvim-lsp", -- lsp completions
-		"hrsh7th/cmp-nvim-lua", -- ?
+		"hrsh7th/cmp-nvim-lua",
 		"saadparwaiz1/cmp_luasnip", -- snippet completions
 	})
 
@@ -110,6 +110,7 @@ return packer.startup(function(use)
 
 	use({ -- file tree
 		"kyazdani42/nvim-tree.lua", -- actual file tree
+    "kyazdani42/nvim-web-devicons" -- icons
 	})
 
 	use({ -- bufferline

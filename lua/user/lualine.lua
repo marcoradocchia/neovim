@@ -19,6 +19,34 @@ local conditions = {
 	end,
 }
 
+local color_delim = function()
+	-- auto change color according to neovims mode
+	local mode_color = {
+		n = colors.red,
+		i = colors.green,
+		v = colors.blue,
+		[""] = colors.blue,
+		V = colors.blue,
+		c = colors.magenta,
+		no = colors.red,
+		s = colors.orange,
+		S = colors.orange,
+		[""] = colors.orange,
+		ic = colors.yellow,
+		R = colors.magenta,
+		Rv = colors.magenta,
+		cv = colors.red,
+		ce = colors.red,
+		r = colors.cyan,
+		rm = colors.cyan,
+		["r?"] = colors.cyan,
+		["!"] = colors.red,
+		t = colors.red,
+	}
+	vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
+	return "▊"
+end
+
 -- Config
 local config = {
 	options = {
@@ -34,10 +62,10 @@ local config = {
 		},
 		disabled_filetypes = { "alpha", "dashboard", "Outline" },
 	},
-  extensions = {
-    "nvim-tree",
-    "toggleterm"
-  },
+	extensions = {
+		"nvim-tree",
+		"toggleterm",
+	},
 	sections = {
 		-- these are to remove the defaults
 		lualine_a = {},
@@ -70,44 +98,9 @@ local function ins_right(component)
 end
 
 ins_left({
-	function()
-		return "▊"
-	end,
-	color = { fg = colors.fg }, -- Sets highlighting of component
+	color_delim,
+	color = "LualineMode", -- Sets highlighting of component
 	padding = { left = 0, right = 1 }, -- We don't need space before this
-})
-
-ins_left({
-	-- mode component
-	function()
-		-- auto change color according to neovims mode
-		local mode_color = {
-			n = colors.red,
-			i = colors.green,
-			v = colors.blue,
-			[""] = colors.blue,
-			V = colors.blue,
-			c = colors.magenta,
-			no = colors.red,
-			s = colors.orange,
-			S = colors.orange,
-			[""] = colors.orange,
-			ic = colors.yellow,
-			R = colors.magenta,
-			Rv = colors.magenta,
-			cv = colors.red,
-			ce = colors.red,
-			r = colors.cyan,
-			rm = colors.cyan,
-			["r?"] = colors.cyan,
-			["!"] = colors.red,
-			t = colors.red,
-		}
-		vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
-		return ""
-	end,
-	color = "LualineMode",
-	padding = { right = 1 },
 })
 
 ins_left({
@@ -121,6 +114,11 @@ ins_left({
 	"filename",
 	cond = conditions.buffer_not_empty,
 	color = { fg = colors.red, gui = "bold" },
+})
+
+ins_left({
+	"filetype",
+	icons_enabled = true,
 })
 
 ins_left({ "location" })
@@ -161,7 +159,7 @@ ins_left({
 		end
 		for _, client in ipairs(clients) do
 			local filetypes = client.config.filetypes
-      -- ignores null-ls
+			-- ignores null-ls
 			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 and client.name ~= "null-ls" then
 				return client.name
 			end
@@ -206,10 +204,8 @@ ins_right({
 })
 
 ins_right({
-	function()
-		return "▊"
-	end,
-	color = { fg = colors.fg },
+	color_delim,
+	color = "LualineMode",
 	padding = { left = 1 },
 })
 
