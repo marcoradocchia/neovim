@@ -596,6 +596,16 @@ return function(luasnip)
 				t("}"),
 				i(0),
 			}),
+			-- sc text
+			s({
+				trig = "sct",
+				name = "sc text",
+			}, {
+				t("\\textsc{"),
+				i(1),
+				t("}"),
+				i(0),
+			}),
 			-- quotation marks
 			s({
 				trig = "``",
