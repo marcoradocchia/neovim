@@ -37,6 +37,7 @@ indentblankline.setup({
     "operation_type",
     "jsx_self_closing_element",
     "jsx_element",
+    "constructor",
 	},
 	filetype_exclude = {
 		"help",
