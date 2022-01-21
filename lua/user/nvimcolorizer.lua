@@ -1,1 +1,4 @@
-require("colorizer").setup({ "*" })
+require("colorizer").setup({
+	"*",
+	"!packer",
+}, { names = false })
