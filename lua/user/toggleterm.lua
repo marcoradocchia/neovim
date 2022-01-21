@@ -6,9 +6,9 @@ end
 toggleterm.setup({
 	size = function(term)
     if term.direction == "horizontal" then
-      return 15
+      return math.floor(vim.o.lines * 0.2)
     elseif term.direction then
-      return vim.o.columns * 0.4
+      return math.floor(vim.o.columns * 0.4)
     elseif term.float then
       return 20
     end

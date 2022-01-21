@@ -2,6 +2,14 @@ local M = {}
 
 -- TODO: backfill this to template
 M.setup = function()
+  local colors = COLORS
+
+  -- setup diagnostics highlight
+  vim.cmd(string.format("highlight DiagnosticError guifg=%s", colors.red))
+  vim.cmd(string.format("highlight DiagnosticWarn guifg=%s", colors.yellow))
+  vim.cmd(string.format("highlight DiagnosticHint guifg=%s", colors.cyan))
+  vim.cmd(string.format("highlight DiagnosticInfo guifg=%s", colors.blue))
+
 	local signs = {
 		{ name = "DiagnosticSignError", text = "" },
 		{ name = "DiagnosticSignWarn", text = "" },

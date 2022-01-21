@@ -21,8 +21,8 @@ bufferline.setup({
 		modified_icon = "●",
 		close_icon = "",
 		-- close_icon = '',
-		left_trunc_marker = "",
-		right_trunc_marker = "",
+		left_trunc_marker = "",
+		right_trunc_marker = "",
 		--- name_formatter can be used to change the buffer's label in the bufferline.
 		--- Please note some names can/will break the
 		--- bufferline so use this at your discretion knowing that it has
@@ -57,7 +57,7 @@ bufferline.setup({
 		--     return true
 		--   end
 		-- end,
-		offsets = {},
+		offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
 		show_buffer_icons = false,
 		show_buffer_close_icons = false,
 		show_close_icon = false,
@@ -65,10 +65,10 @@ bufferline.setup({
 		persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
 		-- can also be a table containing 2 custom separators
 		-- [focused and unfocused]. eg: { '|', '|' }
-		separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
+		separator_style = "thick", -- | "thick" | "thin" | { 'any', 'any' },
 		enforce_regular_tabs = true,
-		always_show_bufferline = false,
-		-- sort_by = 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
+		always_show_bufferline = true,
+		sort_by = "directory", -- | 'extension' | 'relative_directory' | 'id' | 'tabs' | function(buffer_a, buffer_b)
 		--   -- add custom logic
 		--   return buffer_a.modified > buffer_b.modified
 		-- end
@@ -86,7 +86,7 @@ bufferline.setup({
 		--   guifg = {attribute='fg',highlight='#ff0000'},
 		--   guibg = {attribute='bg',highlight='#0000ff'},
 		--   gui = 'none'
-		--   },
+		-- },
 		buffer_visible = {
 			guifg = { attribute = "fg", highlight = "TabLine" },
 			guibg = { attribute = "bg", highlight = "TabLine" },
@@ -103,7 +103,6 @@ bufferline.setup({
 		--   guifg = {attribute='fg',highlight='TabLineSel'},
 		--   guibg ={attribute='bg',highlight='TabLineSel'}
 		--   },
-
 		tab_selected = {
 			guifg = { attribute = "fg", highlight = "Normal" },
 			guibg = { attribute = "bg", highlight = "Normal" },
@@ -117,7 +116,6 @@ bufferline.setup({
 			guifg = { attribute = "fg", highlight = "TabLineSel" },
 			guibg = { attribute = "bg", highlight = "Normal" },
 		},
-
 		duplicate_selected = {
 			guifg = { attribute = "fg", highlight = "TabLineSel" },
 			guibg = { attribute = "bg", highlight = "TabLineSel" },
@@ -133,7 +131,6 @@ bufferline.setup({
 			guibg = { attribute = "bg", highlight = "TabLine" },
 			gui = "italic",
 		},
-
 		modified = {
 			guifg = { attribute = "fg", highlight = "TabLine" },
 			guibg = { attribute = "bg", highlight = "TabLine" },
@@ -146,7 +143,6 @@ bufferline.setup({
 			guifg = { attribute = "fg", highlight = "TabLine" },
 			guibg = { attribute = "bg", highlight = "TabLine" },
 		},
-
 		separator = {
 			guifg = { attribute = "bg", highlight = "TabLine" },
 			guibg = { attribute = "bg", highlight = "TabLine" },
