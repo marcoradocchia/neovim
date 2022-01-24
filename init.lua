@@ -23,6 +23,7 @@ require("user.nvimtree")
 require("user.bufferline")
 require("user.toggleterm")
 require("user.nvimcolorizer")
+require("user.alpha")
 -- The following this is a dir,
 -- but contains `init.lua` which is what is sourced
 require("user.lsp")

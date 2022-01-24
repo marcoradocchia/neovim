@@ -55,7 +55,7 @@ local config = {
 		section_separators = "",
 		theme = {
 			-- We are going to use lualine_c an lualine_x as left and
-			-- right section. Both are highlighted by c theme .  So we
+			-- right section. Both are highlighted by c theme. So we
 			-- are just setting default looks o statusline
 			normal = { c = { fg = colors.fg, bg = colors.bg } },
 			inactive = { c = { fg = colors.fg, bg = colors.bg } },
@@ -82,6 +82,7 @@ local config = {
 		lualine_v = {},
 		lualine_y = {},
 		lualine_z = {},
+		-- These will be filled later
 		lualine_c = {},
 		lualine_x = {},
 	},
@@ -206,6 +207,35 @@ ins_right({
 	color_delim,
 	color = "LualineMode",
 	padding = { left = 1 },
+})
+
+-- Inserts a component in lualine_c at left section
+local function ins_inactive_left(component)
+	table.insert(config.inactive_sections.lualine_c, component)
+end
+
+ins_inactive_left({
+	-- filesize component
+	"filesize",
+	cond = conditions.buffer_not_empty,
+	color = { fg = colors.cyan },
+})
+
+ins_inactive_left({
+	"filename",
+	cond = conditions.buffer_not_empty,
+	color = { fg = colors.red, gui = "bold" },
+})
+
+ins_inactive_left({
+	"filetype",
+})
+
+ins_inactive_left({ "location" })
+
+ins_inactive_left({
+	"progress",
+	color = { fg = colors.fg, gui = "bold" },
 })
 
 lualine.setup(config)

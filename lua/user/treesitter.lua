@@ -14,7 +14,7 @@ configs.setup({
 	},
 	indent = {
 		enable = true,
-		disable = { "python", "java", "yaml" },
+		disable = { "lua", "python", "java", "yaml" },
 	},
 	context_commentstring = {
 		enable = true,

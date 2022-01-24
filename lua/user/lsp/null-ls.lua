@@ -31,6 +31,10 @@ null_ls.setup({
 				"--style=Mozilla",
 			},
 		}),
-		diagnostics.flake8,
+		diagnostics.flake8.with({
+      extra_args = {
+        "--ignore=E402"
+      }
+    }),
 	},
 })

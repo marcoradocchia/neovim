@@ -3,11 +3,13 @@ if not snip_status_ok then
 	return
 end
 
-vim.cmd([[ highlight IndentBlanklineContextStart guisp=#ea6962 gui=bold ]])
-vim.cmd([[ highlight IndentBlanklineContextChar guifg=#ea6962 guisp=#ea6962 gui=bold ]])
+local colors = COLORS
+
+vim.cmd(string.format("highlight IndentBlanklineContextStart guisp=%s gui=bold", colors.red))
+vim.cmd(string.format("highlight IndentBlanklineContextChar guifg=%s guisp=%s gui=bold", colors.red, colors.red ))
 
 indentblankline.setup({
-	use_treesitter = true,
+	-- use_treesitter = true, -- WARNING: causing variety of issues
 	show_current_context = true,
 	show_current_context_start = true,
 	context_patterns = {
@@ -48,6 +50,7 @@ indentblankline.setup({
 		"lspinfo",
 		"null-ls-info",
 		"dashboard",
+    "alpha"
 	},
 	buftype_exclude = { "terminal" },
 })

@@ -2,16 +2,11 @@
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 local colors = COLORS
 
-vim.cmd(string.format("highlight NvimTreeFolderName guifg=%s gui=bold", colors.blue))
-vim.cmd(string.format("highlight NvimTreeRootFolder guifg=%s gui=bold", colors.magenta))
-vim.cmd("highlight link NvimTreeIndentMarker LineNr")
-vim.cmd(string.format("highlight NvimTreeEmptyFolderName guifg=%s gui=bold", colors.blue))
-vim.cmd(string.format("highlight NvimTreeOpenedFolderName guifg=%s gui=bold", colors.blue))
-vim.cmd(string.format("highlight NvimTreeFolderIcon guifg=%s gui=bold", colors.blue))
 vim.cmd(string.format("highlight NvimTreeStatusLine guibg=%s guifg=%s gui=bold", colors.bg, colors.red))
 vim.cmd(string.format("highlight NvimTreeStatusLineNC guibg=%s", colors.bg))
 vim.cmd(string.format("highlight NvimTreeNormal guibg=%s", colors.bg))
 vim.cmd(string.format("highlight NvimTreeNormalNC guibg=%s", colors.bg))
+vim.cmd(string.format("highlight NvimTreeWindowPicker guifg=%s guibg=%s gui=bold", colors.bg, colors.yellow))
 vim.cmd("highlight NvimTreeOpenedFile gui=bold")
 
 vim.g.nvim_tree_indent_markers = 1

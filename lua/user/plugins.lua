@@ -29,13 +29,13 @@ if not status_ok then
 	return
 end
 
--- Have packer use a popup window
 packer.init({
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
-		end,
-	},
+	-- Have packer use a popup window
+	-- display = {
+	-- 	open_fn = function()
+	-- 		return require("packer.util").float({ border = "rounded" })
+	-- 	end,
+	-- },
 })
 
 -- Install your plugins here
@@ -117,13 +117,17 @@ return packer.startup(function(use)
 		"moll/vim-bbye",
 	})
 
-  use({ -- terminal
-    "https://github.com/akinsho/toggleterm.nvim"
-  })
+	use({ -- terminal
+		"https://github.com/akinsho/toggleterm.nvim",
+	})
 
-  use({
-    "norcalli/nvim-colorizer.lua"
-  })
+	use({ -- colorizer
+		"norcalli/nvim-colorizer.lua",
+	})
+
+	use({ -- startup greater
+		"goolord/alpha-nvim",
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
