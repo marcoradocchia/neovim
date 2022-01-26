@@ -6,7 +6,7 @@ end
 local colors = COLORS
 
 vim.cmd(string.format("highlight IndentBlanklineContextStart guisp=%s gui=bold", colors.red))
-vim.cmd(string.format("highlight IndentBlanklineContextChar guifg=%s guisp=%s gui=bold", colors.red, colors.red ))
+vim.cmd(string.format("highlight IndentBlanklineContextChar guifg=%s guisp=%s gui=bold", colors.red, colors.red))
 
 indentblankline.setup({
 	-- use_treesitter = true, -- WARNING: causing variety of issues
@@ -14,13 +14,13 @@ indentblankline.setup({
 	show_current_context_start = true,
 	context_patterns = {
 		"class",
-    "return",
+		"return",
 		"function",
 		"method",
 		"^if",
 		"^for",
 		"^while",
-    "^object",
+		"^object",
 		"array",
 		"list",
 		"^table",
@@ -29,17 +29,17 @@ indentblankline.setup({
 		"try",
 		"case",
 		"dictionary",
-    "block",
-    "arguments",
-    "if_statement",
-    "else_clause",
-    "try_statement",
-    "catch_clause",
-    "import_statement",
-    "operation_type",
-    "jsx_self_closing_element",
-    "jsx_element",
-    "constructor",
+		"block",
+		"arguments",
+		"if_statement",
+		"else_clause",
+		"try_statement",
+		"catch_clause",
+		"import_statement",
+		"operation_type",
+		"jsx_self_closing_element",
+		"jsx_element",
+		"constructor",
 	},
 	filetype_exclude = {
 		"help",
@@ -47,10 +47,11 @@ indentblankline.setup({
 		"txt",
 		"packer",
 		"NvimTree",
-		"lspinfo",
 		"null-ls-info",
 		"dashboard",
-    "alpha"
+		"alpha",
+		"lspinfo",
+		"lsp-installer",
 	},
 	buftype_exclude = { "terminal" },
 })
