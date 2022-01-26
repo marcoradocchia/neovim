@@ -2,13 +2,13 @@ local M = {}
 
 -- TODO: backfill this to template
 M.setup = function()
-  local colors = COLORS
+	local colors = COLORS
 
-  -- setup diagnostics highlight
-  vim.cmd(string.format("highlight DiagnosticError guifg=%s", colors.red))
-  vim.cmd(string.format("highlight DiagnosticWarn guifg=%s", colors.yellow))
-  vim.cmd(string.format("highlight DiagnosticHint guifg=%s", colors.cyan))
-  vim.cmd(string.format("highlight DiagnosticInfo guifg=%s", colors.blue))
+	-- setup diagnostics highlight
+	vim.cmd(string.format("highlight DiagnosticError guifg=%s", colors.red))
+	vim.cmd(string.format("highlight DiagnosticWarn guifg=%s", colors.yellow))
+	vim.cmd(string.format("highlight DiagnosticHint guifg=%s", colors.cyan))
+	vim.cmd(string.format("highlight DiagnosticInfo guifg=%s", colors.blue))
 
 	local signs = {
 		{ name = "DiagnosticSignError", text = "" },
@@ -88,8 +88,19 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
+  local function has_key(table, key)
+    return table[key] == nil
+  end
+
+  local disabled_formatters = {
+    "tsserver",
+    "jdtls",
+    "clangd",
+    "rust_analyzer"
+  }
+
 	-- disabling formatters from language servers, because using null-ls
-	if client.name == "tsserver" or client.name == "jdtls" or client.name == "clangd" then
+	if has_key(disabled_formatters, client.name) then
 		client.resolved_capabilities.document_formatting = false
 	end
 	lsp_keymaps(bufnr)

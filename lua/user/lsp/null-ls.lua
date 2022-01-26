@@ -31,6 +31,7 @@ null_ls.setup({
 				"--style=Mozilla",
 			},
 		}),
+    formatting.rustfmt,
 		diagnostics.flake8.with({
       extra_args = {
         "--ignore=E402"
