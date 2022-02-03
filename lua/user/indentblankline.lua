@@ -9,7 +9,7 @@ vim.cmd(string.format("highlight IndentBlanklineContextStart guisp=%s gui=bold",
 vim.cmd(string.format("highlight IndentBlanklineContextChar guifg=%s guisp=%s gui=bold", colors.red, colors.red))
 
 indentblankline.setup({
-	-- use_treesitter = true, -- WARNING: causing variety of issues
+	use_treesitter = true, -- WARNING: causing variety of issues
 	show_current_context = true,
 	show_current_context_start = true,
 	context_patterns = {

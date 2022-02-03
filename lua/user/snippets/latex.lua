@@ -195,6 +195,18 @@ return function(luasnip)
 				t({ "", "\\end{theorem}", "" }),
 				i(0),
 			}),
+			-- corollary
+			s({
+				trig = "cor",
+				name = "corollary",
+			}, {
+				t("\\begin{corollary}["),
+				i(1),
+				t({ "]", "\t" }),
+				i(2),
+				t({ "", "\\end{corollary}", "" }),
+				i(0),
+			}),
 			-- proof
 			s({
 				trig = "prf",

@@ -64,6 +64,8 @@ return packer.startup(function(use)
 		"hrsh7th/cmp-cmdline", -- cmdline completions
 		"hrsh7th/cmp-nvim-lsp", -- lsp completions
 		"hrsh7th/cmp-nvim-lua",
+		"hrsh7th/cmp-calc", -- nvim-cmp source for math calculation
+		"kdheepak/cmp-latex-symbols", -- nvim-cmp source for latex symbols
 		"saadparwaiz1/cmp_luasnip", -- snippet completions
 	})
 
