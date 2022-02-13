@@ -1,6 +1,6 @@
 -- :help options
 local options = {
-	title = true,                -- sets window title
+	-- title = true,                -- sets window title
 	backup = false, -- creates a backup file
 	clipboard = "unnamedplus", -- access the system clipboard
 	cmdheight = 1, -- controls the space in the command line
@@ -48,3 +48,6 @@ end
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
+
+-- set tex files to be open with tex filetype instead of plaintex
+vim.g["tex_flavor"] = "latex"
