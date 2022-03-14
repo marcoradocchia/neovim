@@ -345,12 +345,12 @@ luasnip.autosnippets = {
     -- quotation marks
     s(
       { trig = "quot", name = "quotation marks" },
-      fmt("``{}''", { i(1), i(0) })
+      fmt("``{}''{}", { i(1), i(0) })
     ),
     -- inline math
     s(
       { trig = "mk", name = "inline math" },
-      fmt("${}$", { i(1), i(0) })
+      fmt("${}${}", { i(1), i(0) })
     ),
     -- math block
     s(
@@ -370,12 +370,12 @@ luasnip.autosnippets = {
     -- superscript
     s(
       { trig = "^", name = "superscript" },
-      fmt("^{{{}}}{}", { i(0), i(1) })
+      fmt("^{{{}}}{}", { i(1), i(0) })
     ),
     -- subscript
     s(
       { trig = "_", name = "subscript" },
-      fmt("_{{{}}}{}", { i(0), i(1) })
+      fmt("_{{{}}}{}", { i(1), i(0) })
     ),
     -- grater equal
     s(
