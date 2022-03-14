@@ -75,9 +75,6 @@ kmap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files()<CR>", o
 kmap("n", "g/", "<cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find()<CR>", opts)
 kmap("n", "<leader>t", "<cmd>lua require'telescope.builtin'.live_grep()<CR>", opts)
 
--- GitSigns --
--- TODO
-
 -- NvimTree --
 kmap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 kmap("n", "<leader>n", ":NvimTreeFocus<CR>", opts)
@@ -86,8 +83,13 @@ kmap("n", "<leader>n", ":NvimTreeFocus<CR>", opts)
 kmap("n", "<C-c>", ":Bdelete<CR>", opts)
 
 -- null-ls --
-kmap("n", "<leader>F", "<cmd> lua vim.lsp.buf.formatting_sync()<CR>", opts) -- formatting
+-- formatting
+kmap("n", "<leader>F", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
 
 -- TODO: make this mapping filetype dependent
 -- Compile latex in tex buffer --
-kmap("n", "<leader>c", ":!lualatex --output-dir pdf main.tex<CR>", opts)
+kmap("n", "<leader>c", "<cmd>!lualatex --output-dir pdf main.tex && [ $(pgrep zathura | wc -l) -eq 0 ] && setsid -f zathura pdf/main.pdf<CR>", opts)
+
+-- LuaSnip --
+-- reload luasnip snippets
+kmap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/luasnip.lua<CR>", opts)
