@@ -232,7 +232,12 @@ luasnip.snippets = {
     -- bra-ket
     s(
       { trig = "<>", name = "bra-ket" },
-      fmt("\\braket{{{}\vert{}}}{}", { i(1), i(2), i(3) })
+      fmt("\\braket{{{} \\vert {}}}{}", { i(1), i(2), i(3) })
+    ),
+    -- matrix element
+    s(
+      { trig = "<x>", name = "matrix element" },
+      fmt("\\braket{{{} \\vert {} \\vert {}}}{}", { i(1), i(2), i(3), i(0) })
     ),
     -- partial
     s(
@@ -355,7 +360,7 @@ luasnip.autosnippets = {
     -- math block
     s(
       { trig = "dm", name = "math block" },
-      fmt("\\[\n\t{}\\]{}", { i(1), i(0) })
+      fmt("\\[\n\t{}\n\\]{}", { i(1), i(0) })
     ),
     -- fraction
     s(
@@ -410,7 +415,7 @@ luasnip.autosnippets = {
     -- xrightarrow
     s(
       { trig = "x->", name = "xrightarrow" },
-      t("\\xrightarrow ")
+      fmt("\\xrightarrow{{{}}} ", { i(1) })
     ),
     -- Rightarrow
     s(
@@ -454,5 +459,6 @@ luasnip.autosnippets = {
     s("`~", t("\\tilde")),
     s("darr", t("\\downarrow")),
     s("uarr", t("\\uparrow")),
+    s("~=", t("\\simeq"))
   },
 }
