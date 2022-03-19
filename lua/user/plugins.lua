@@ -72,7 +72,6 @@ return packer.startup(function(use)
 
 	use({ -- snippets
 		"L3MON4D3/LuaSnip", -- snippet engine
-		"rafamadriz/friendly-snippets", -- a bunch of snippets to use
 	})
 
 	use({ -- LSP
@@ -87,6 +86,7 @@ return packer.startup(function(use)
 
 	use({ -- treesitter
 		{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+    "nvim-treesitter/playground",
 		"p00f/nvim-ts-rainbow",
 	})
 

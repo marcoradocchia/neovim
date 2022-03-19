@@ -49,5 +49,5 @@ end
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 
--- set tex files to be open with tex filetype instead of plaintex
+-- set tex files to be latex
 vim.g["tex_flavor"] = "latex"

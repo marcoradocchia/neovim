@@ -13,8 +13,6 @@ luasnip.config.set_config({
 	enable_autosnippets = true,
 })
 
--- require plugin snippets collection
-require("luasnip.loaders.from_vscode").lazy_load()
 -- require personal snippets
 local s = luasnip.snippet
 local t = luasnip.text_node
@@ -45,6 +43,15 @@ local function date()
 end
 
 luasnip.snippets = {
+  sh = {
+    s(
+      { trig = "#!", name = "shebang" },
+      fmt(
+        "#!{}\n{}",
+        {c(1, {t("/usr/bin/env sh", "/bin/sh", "/bin/bash")}), i(0)}
+      )
+    )
+  },
   tex = {
     -- begin/end
     s(
@@ -110,7 +117,7 @@ luasnip.snippets = {
     s(
       { trig = "item", name = "itemize" },
       fmt(
-        "\\begin{{itemize}}\n\t\\item {}\n\\item {}\\end{{itemize}}",
+        "\\begin{{itemize}}\n\t\\item {}\n\t\\item {}\n\\end{{itemize}}",
         { i(1), d(2, rec_ls, {}) }
       )
     ),
@@ -118,7 +125,7 @@ luasnip.snippets = {
     s(
       { trig = "enum", name = "enumerate" },
       fmt(
-        "\\begin{{enumerate}}\n\t\\item {}\n\\item {}\\end{{enumerate}}",
+        "\\begin{{enumerate}}\n\t\\item {}\n\t\\item {}\n\\end{{enumerate}}",
         { i(1), d(2, rec_ls, {}) }
       )
     ),
@@ -288,7 +295,7 @@ luasnip.snippets = {
     -- differential
     s(
       { trig = "md", name = "differential" },
-      fmt("\\md{{{}}}{{{}}}{}", {i(1), i(2), i(0) })
+      fmt("\\md{{{}}}{}", {i(1), i(0) })
     ),
     -- derivative
     s(
@@ -325,7 +332,7 @@ luasnip.autosnippets = {
     -- square brackets
     s(
       { trig = "[[", name = "square brackets" },
-      fmt("\\mrb{{{}}}{}", { i(1), i(0) })
+      fmt("\\msb{{{}}}{}", { i(1), i(0) })
     ),
     -- curly brackets
     s(

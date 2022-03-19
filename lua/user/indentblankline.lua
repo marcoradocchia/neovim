@@ -9,6 +9,8 @@ vim.cmd(string.format("highlight IndentBlanklineContextStart guisp=%s gui=bold",
 vim.cmd(string.format("highlight IndentBlanklineContextChar guifg=%s guisp=%s gui=bold", colors.red, colors.red))
 
 indentblankline.setup({
+  show_trailing_blankline_indent = false,
+  show_end_of_line = true,
 	use_treesitter = true, -- WARNING: causing variety of issues
 	show_current_context = true,
 	show_current_context_start = true,
@@ -18,6 +20,7 @@ indentblankline.setup({
 		"return",
 		"method",
 		"if",
+		"else",
 		"for",
 		"while",
 		"object",
@@ -30,8 +33,15 @@ indentblankline.setup({
 		"dictionary",
 		"arguments",
 		"import",
+    -- c
+    "compound_statement", -- if/else
+    -- python
+    "expression_statement",
     -- latex
-    -- "equation",
+    "equation",
+    "environment",
+    "curly_group",
+    "enum_item",
 	},
 	filetype_exclude = {
 		"help",
@@ -44,6 +54,7 @@ indentblankline.setup({
 		"alpha",
 		"lspinfo",
 		"lsp-installer",
+    "checkhealth",
 	},
 	buftype_exclude = { "terminal" },
 })

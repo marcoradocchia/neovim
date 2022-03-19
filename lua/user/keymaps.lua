@@ -74,6 +74,7 @@ kmap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 kmap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files()<CR>", opts)
 kmap("n", "g/", "<cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find()<CR>", opts)
 kmap("n", "<leader>t", "<cmd>lua require'telescope.builtin'.live_grep()<CR>", opts)
+kmap("n", "<leader>m", "<cmd>lua require'telescope.builtin'.man_pages()<CR>", opts)
 
 -- NvimTree --
 kmap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
