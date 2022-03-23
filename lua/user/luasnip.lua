@@ -17,7 +17,7 @@ luasnip.config.set_config({
 local s = luasnip.snippet
 local t = luasnip.text_node
 local i = luasnip.insert_node
-local f = luasnip.function_node
+-- local f = luasnip.function_node
 local d = luasnip.dynamic_node
 local c = luasnip.choice_node
 local sn = luasnip.snippet_node
@@ -98,10 +98,20 @@ luasnip.snippets = {
       { trig = "eq", name = "equation", },
       fmt("\\begin{{equation}}\n\t{}\n\\end{{equation}}", { i(1) })
     ),
+    -- unnumbered equation
+    s(
+      { trig = "eq*", name = "equation*", },
+      fmt("\\begin{{equation*}}\n\t{}\n\\end{{equation*}}", { i(1) })
+    ),
     -- align block
     s(
       { trig = "al", name = "align" },
       fmt("\\begin{{align}}\n\t{}\n\\end{{align}}", { i(1) })
+    ),
+    -- unnumbered align block
+    s(
+      { trig = "al*", name = "align*" },
+      fmt("\\begin{{align*}}\n\t{}\n\\end{{align*}}", { i(1) })
     ),
     -- dcases block
     s(
@@ -238,13 +248,18 @@ luasnip.snippets = {
     ),
     -- bra-ket
     s(
-      { trig = "<>", name = "bra-ket" },
+      { trig = "<.>", name = "bra-ket" },
       fmt("\\braket{{{} \\vert {}}}{}", { i(1), i(2), i(3) })
     ),
     -- matrix element
     s(
       { trig = "<x>", name = "matrix element" },
       fmt("\\braket{{{} \\vert {} \\vert {}}}{}", { i(1), i(2), i(3), i(0) })
+    ),
+    -- mean value
+    s(
+      { trig = "<M>", name = "mean value" },
+      fmt("\\braket{{{}}}{}", { i(1), i(2) })
     ),
     -- partial
     s(
@@ -280,7 +295,17 @@ luasnip.snippets = {
     -- integral
     s(
       { trig = "mint", name = "integral" },
-      fmt("\\mint{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(0) })
+      fmt("\\mint{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(5) })
+    ),
+    -- double integral
+    s(
+      { trig = "dint", name = "double integral" },
+      fmt("\\dint{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(5), i(6), i(7), i(8) })
+    ),
+    -- triple integral
+    s(
+      { trig = "tint", name = "triple integral" },
+      fmt("\\tint{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(5), i(6), i(7), i(8), i(9), i(10), i(11) })
     ),
     -- inf integral
     s(
@@ -292,25 +317,45 @@ luasnip.snippets = {
       { trig = "moint", name = "o integral" },
       fmt("\\moint{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(0) })
     ),
+    -- indefinite integral
+    s(
+      { trig = "iint", name = "indefinite integral" },
+      fmt("\\iint{{{}}}{{{}}}{}", { i(1), i(2), i(3) })
+    ),
+    -- indefinite double integral
+    s(
+      { trig = "midint", name = "indefinite integral" },
+      fmt("\\midint{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4) })
+    ),
+    -- indefinite triple integral
+    s(
+      { trig = "mitint", name = "indefinite integral" },
+      fmt("\\mitint{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(5) })
+    ),
     -- differential
     s(
       { trig = "md", name = "differential" },
-      fmt("\\md{{{}}}{}", {i(1), i(0) })
+      fmt("\\md{{{}}}{}", {i(1), i(3) })
     ),
     -- derivative
     s(
       { trig = "mdv", name = "derivative" },
-      fmt("\\mdv{{{}}}{{{}}}{}", { i(1), i(2), i(0) })
+      fmt("\\mdv{{{}}}{{{}}}{}", { i(1), i(2), i(3) })
     ),
     -- partial derivative
     s(
       { trig = "mpdv", name = "partial derivative" },
-      fmt("\\mpdv{{{}}}{{{}}}{}", { i(1), i(2), i(0) })
+      fmt("\\mpdv{{{}}}{{{}}}{}", { i(1), i(2), i(3) })
     ),
     -- sum
     s(
-      { trig = "sum", name = "sum" },
-      fmt("\\sum_{{{}}}^{{{}}}{}", { i(1), i(2), i(0) })
+      { trig = "++", name = "sum" },
+      fmt("\\msum{{{}}}{{{}}}{}", { i(1), i(2), i(3) })
+    ),
+    -- prod
+    s(
+      { trig = "**", name = "prod" },
+      fmt("\\mprod{{{}}}{{{}}}{}", { i(1), i(2), i(3) })
     ),
     s(
       { trig = "incode", name = "lstinputlisting" },
@@ -319,6 +364,10 @@ luasnip.snippets = {
         { i(1), i(2), i(3), i(0) }
       )
     ),
+    s(
+      { trig = "exp", name = "exponential" },
+      fmt("e^{{{}}}{}", { i(1), i(2) })
+    )
   },
 }
 
@@ -428,6 +477,26 @@ luasnip.autosnippets = {
     s(
       { trig = "=>", name = "Rightarrow" },
       t("\\Rightarrow ")
+    ),
+    -- dots
+    s(
+      { trig = "...", name = "dots" },
+      t("\\dots")
+    ),
+    -- vdots
+    s(
+      { trig = "..v", name = "vertical dots" },
+      t("\\vdots")
+    ),
+    -- ddots
+    s(
+      { trig = "..d", name = "diagonal dots" },
+      t("\\ddots")
+    ),
+    -- cdots
+    s(
+      { trig = "..c", name = "certered dots" },
+      t("\\cdots")
     ),
     -- greek and math symbols
     s("`'", t("\\mprime")),
