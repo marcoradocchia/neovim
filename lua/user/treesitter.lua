@@ -25,7 +25,7 @@ configs.setup({
 		-- disable = { 'jsx', 'cpp' }, list of languages you want to
 		-- disable the plugin for max_file_lines = nil, Do not enable for
 		-- files with more than n lines, int
-		extended_mode = true, -- Also highlight non-bracket delimiters
+		extended_mode = true, -- also highlight non-bracket delimiters
 		colors = {
 			"#ea6962",
 			"#a9b665",

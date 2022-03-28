@@ -357,6 +357,7 @@ luasnip.snippets = {
       { trig = "**", name = "prod" },
       fmt("\\mprod{{{}}}{{{}}}{}", { i(1), i(2), i(3) })
     ),
+    -- input listing
     s(
       { trig = "incode", name = "lstinputlisting" },
       fmt(
@@ -364,10 +365,35 @@ luasnip.snippets = {
         { i(1), i(2), i(3), i(0) }
       )
     ),
+    -- exponential
     s(
       { trig = "exp", name = "exponential" },
       fmt("e^{{{}}}{}", { i(1), i(2) })
-    )
+    ),
+    -- intenrational sistem unit
+    s(
+      { trig = "SI", name = "intenrational sistem" },
+      fmt("\\SI{{{}}}{{{}}}{}", { i(1), i(2), i(3) })
+    ),
+    -- pgfplot
+    s(
+      { trig = "pgfplot", name = "pgfplot" },
+      fmt([[
+        \begin{{figure}}
+          \centering
+          \begin{{tikzpicture}}
+            \begin{{axis}}[
+              title={},
+              xlabel={},
+              ylabel={},
+            ]
+            \end{{axis}}
+          \end{{tikzpicture}}
+          \caption{{{}}}
+          \label{{{}}}
+        \end{{figure}}
+      ]], { i(1), i(2), i(3), i(4), i(5) })
+    ),
   },
 }
 
