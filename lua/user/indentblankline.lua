@@ -11,7 +11,7 @@ vim.cmd(string.format("highlight IndentBlanklineContextChar guifg=%s guisp=%s gu
 indentblankline.setup({
   show_trailing_blankline_indent = false,
   show_end_of_line = true,
-	use_treesitter = true, -- WARNING: causing variety of issues
+	use_treesitter = false, -- WARNING: causing issues if set to true
 	show_current_context = true,
 	show_current_context_start = true,
 	context_patterns = {
