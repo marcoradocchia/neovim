@@ -34,4 +34,4 @@ luasnip.config.set_config({
   }
 })
 
-require("luasnip.loaders.from_lua").load()
+require("luasnip.loaders.from_lua").lazy_load()

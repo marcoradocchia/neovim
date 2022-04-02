@@ -210,7 +210,13 @@ return { -- triggered
       { i(1), i(2), i(3), i(4), i(5) }
     )
   ),
+  -- dot product
+  s({ trig = "dpr", name = "dot product" }, fmt("\\dpr{{{}}}{{{}}}", { i(1), i(2) })),
+  -- wedge product
+  s({ trig = "wpr", name = "wedge product" }, fmt("\\wpr{{{}}}{{{}}}", { i(1), i(2) }))
 }, { -- autotriggered
+  -- todo comment
+  s({ trig = "todo", name = "todo comment" }, fmt("% TODO: {}", { i(1) })),
   -- round brackets
   s({ trig = "((", name = "round brackets" }, fmt("\\mrb{{{}}}{}", { i(1), i(0) })),
   -- square brackets
@@ -239,8 +245,12 @@ return { -- triggered
   s({ trig = "_", name = "subscript" }, fmt("_{{{}}}{}", { i(1), i(0) })),
   -- grater equal
   s({ trig = ">=", name = "grater equal" }, t("\\geq ")),
+  -- way grater then
+  s({ trig = ">>", name = "way grater than" }, t("\\gg ")),
   -- less equal
   s({ trig = "<=", name = "less equal" }, t("\\leq ")),
+  -- way less then
+  s({ trig = "<<", name = "way less than" }, t("\\ll ")),
   -- not equal
   s({ trig = "!=", name = "not equal" }, t("\\neq ")),
   -- equivalent
