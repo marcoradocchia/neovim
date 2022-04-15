@@ -9,10 +9,9 @@ vim.cmd(string.format("highlight NvimTreeNormalNC guibg=%s", colors.bg))
 vim.cmd(string.format("highlight NvimTreeWindowPicker guifg=%s guibg=%s gui=bold", colors.bg, colors.yellow))
 vim.cmd("highlight NvimTreeOpenedFile gui=bold")
 
-vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_add_trailing = 1
 vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_symlink_arrow = " -> "
+vim.g.nvim_tree_symlink_arrow = " "
 
 vim.g.nvim_tree_icons = {
 	default = "",
@@ -107,6 +106,16 @@ nvim_tree.setup({
 		},
 		number = false,
 		relativenumber = false,
+	},
+	renderer = {
+		indent_markers = {
+			enable = true,
+			-- icons = {
+			-- 	corner = "└ ",
+			-- 	edge = "│ ",
+			-- 	none = "  ",
+			-- },
+		},
 	},
 	trash = {
 		cmd = "trash",

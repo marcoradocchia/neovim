@@ -31,11 +31,11 @@ end
 
 packer.init({
 	-- Have packer use a popup window
-	-- display = {
-	-- 	open_fn = function()
-	-- 		return require("packer.util").float({ border = "rounded" })
-	-- 	end,
-	-- },
+	display = {
+		open_fn = function()
+			return require("packer.util").float({ border = "rounded" })
+		end,
+	},
 })
 
 -- Install your plugins here
@@ -92,6 +92,8 @@ return packer.startup(function(use)
 
 	use({ -- status and buffer lines
 		"nvim-lualine/lualine.nvim",
+		"akinsho/bufferline.nvim",
+		"moll/vim-bbye",
 	})
 
 	use({ -- indentation
@@ -113,11 +115,6 @@ return packer.startup(function(use)
 
 	use({ -- file tree
 		"kyazdani42/nvim-tree.lua", -- actual file tree
-	})
-
-	use({ -- bufferline
-		"akinsho/bufferline.nvim",
-		"moll/vim-bbye",
 	})
 
 	use({ -- terminal

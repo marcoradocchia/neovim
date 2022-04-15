@@ -4,12 +4,38 @@ if not status_ok then
 end
 
 configs.setup({
-	ensure_installed = "maintained",
+	ensure_installed = {
+		"c",
+		"javascript",
+		"java",
+		"python",
+		"rust",
+		"html",
+		"css",
+		"lua",
+		"fortran",
+		"bash",
+		"bibtex",
+		"cmake",
+		"comment",
+		"dockerfile",
+		"http",
+    "latex",
+    "make",
+    "markdown",
+    "regex",
+    "rst",
+    "scss",
+    "typescript",
+    "toml",
+    "vim",
+    "yaml"
+	},
 	sync_install = false, -- install synchronously (only with ensure_installed)
 	ignore_install = { "" }, -- List of parsers to ignore installing
 	highlight = {
 		enable = true, -- false will disable the whole extension
-		disable = { "" }, -- list of language that will be disabled
+		-- disable = { "" }, -- list of language that will be disabled
 		additional_vim_regex_highlighting = true,
 	},
 	indent = {
@@ -32,8 +58,8 @@ configs.setup({
 			"#d8a657",
 			"#7daea3",
 			"#d3869b",
-      "#89b482",
-      "#e78a4e",
+			"#89b482",
+			"#e78a4e",
 		},
 	},
 	autopairs = {

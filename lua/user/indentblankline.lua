@@ -37,6 +37,10 @@ indentblankline.setup({
     "compound_statement", -- if/else
     -- python
     "expression_statement",
+    -- rust
+    "let_declaration",
+    "match_arm",
+    "match_expression",
     -- latex
     "equation",
     "environment",
@@ -56,5 +60,5 @@ indentblankline.setup({
 		"lsp-installer",
     "checkhealth",
 	},
-	buftype_exclude = { "terminal" },
+	buftype_exclude = { "terminal", "telescope" },
 })
