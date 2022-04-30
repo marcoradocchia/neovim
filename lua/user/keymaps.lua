@@ -71,10 +71,13 @@ kmap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 kmap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 
 -- Telescope --
-kmap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files()<CR>", opts)
-kmap("n", "g/", "<cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find()<CR>", opts)
-kmap("n", "<leader>t", "<cmd>lua require'telescope.builtin'.live_grep()<CR>", opts)
-kmap("n", "<leader>m", "<cmd>lua require'telescope.builtin'.man_pages()<CR>", opts)
+kmap("n", "g/", "<cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find()<CR>", opts)  -- fuzzy find in current buffer
+kmap("n", "<leader>gs", "<cmd>lua require'telescope.builtin'.grep_string(require'telescope.themes'.get_cursor())<CR>", opts)  -- grep word under cursor in current buffer
+kmap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files()<CR>", opts)  -- find files
+kmap("n", "<leader>t", "<cmd>lua require'telescope.builtin'.live_grep()<CR>", opts)  -- live grep
+kmap("n", "<leader>m", "<cmd>lua require'telescope.builtin'.man_pages()<CR>", opts)  -- man pages
+kmap("n", "<leader>a", "<cmd>lua require'telescope.builtin'.lsp_code_actions(require'telescope.themes'.get_cursor())<CR>", opts)  -- code actions for word under corsor
+kmap("n", "<leader>B", "<cmd>lua require'telescope.builtin'.buffers()<CR>", opts)  -- open buffers
 
 -- NvimTree --
 kmap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
@@ -91,6 +94,7 @@ kmap("n", "<leader>F", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
 -- Compile latex in tex buffer --
 kmap("n", "<leader>c", "<cmd>!lualatex --output-dir pdf main.tex && [ $(pgrep zathura | wc -l) -eq 0 ] && setsid -f zathura pdf/main.pdf<CR>", opts)
 
--- LuaSnip --
--- reload luasnip snippets
+-- reloadsnippets
 kmap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/luasnip.lua<CR>", opts)
+-- reload keymaps
+kmap("n", "<leader><leader>k", "<cmd>source ~/.config/nvim/lua/user/keymaps.lua<CR>", opts)

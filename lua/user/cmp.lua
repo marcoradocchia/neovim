@@ -9,6 +9,7 @@ if not snip_status_ok then
 end
 
 --   פּ ﯟ   some other good icons
+-- find more here: https://www.nerdfonts.com/cheat-sheet
 local kind_icons = {
 	Text = "",
 	Method = "",
@@ -36,7 +37,6 @@ local kind_icons = {
 	Operator = "",
 	TypeParameter = "",
 }
--- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup({
 	snippet = {
@@ -45,10 +45,11 @@ cmp.setup({
 			luasnip.lsp_expand(args.body)
 		end,
 	},
+
 	mapping = {
     -- use the default mappings to scroll through the completion list:
-    -- <C-n> for next item
-    -- <C-p> for previous item
+    ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+    ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -73,6 +74,7 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 	},
+
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
@@ -90,6 +92,7 @@ cmp.setup({
 			return vim_item
 		end,
 	},
+
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
@@ -98,30 +101,34 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "calc" },
 	},
+
 	confirm_opts = {
+    select = true,
 		behavior = cmp.ConfirmBehavior.Replace,
-		select = false,
 	},
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+
+	window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
 	},
+
 	experimental = {
 		ghost_text = true,
 		native_menu = false,
 	},
 })
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+
+-- command line configurations
 cmp.setup.cmdline("/", {
 	sources = {
 		{ name = "buffer" },
 	},
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
 	sources = cmp.config.sources({
-		{ name = "path" },
-	}, {
 		{ name = "cmdline" },
+    { name = "path" },
+    { name = "buffer" },
 	}),
 })

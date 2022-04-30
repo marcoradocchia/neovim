@@ -12,6 +12,12 @@ vim.cmd("highlight NvimTreeOpenedFile gui=bold")
 vim.g.nvim_tree_add_trailing = 1
 vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_symlink_arrow = " "
+vim.g.nvim_tree_special_files = {
+	Makefile = true,
+  ["Cargo.toml"] = true,
+	["README.md"] = true,
+	["readme.md"] = true,
+}
 
 vim.g.nvim_tree_icons = {
 	default = "",
@@ -50,17 +56,14 @@ nvim_tree.setup({
 	disable_netrw = true,
 	hijack_netrw = true,
 	open_on_setup = false,
+	open_on_setup_file = false,
+	open_on_tab = false,
+	hijack_cursor = false,
+	update_cwd = true,
 	ignore_ft_on_setup = {
 		"startify",
 		"dashboard",
 		"alpha",
-	},
-	open_on_tab = false,
-	hijack_cursor = false,
-	update_cwd = true,
-	update_to_buf_dir = {
-		enable = true,
-		auto_open = true,
 	},
 	diagnostics = {
 		enable = true,
@@ -94,7 +97,10 @@ nvim_tree.setup({
 		height = 30,
 		hide_root_folder = false,
 		side = "left",
-		auto_resize = true,
+		preserve_window_proportions = true,
+		number = false,
+		relativenumber = false,
+		signcolumn = "yes",
 		mappings = {
 			custom_only = false,
 			list = {
@@ -104,12 +110,11 @@ nvim_tree.setup({
 				{ key = "x", cb = tree_cb("hsplit") },
 			},
 		},
-		number = false,
-		relativenumber = false,
 	},
 	renderer = {
 		indent_markers = {
 			enable = true,
+			-- in order to customize the indent markers icons
 			-- icons = {
 			-- 	corner = "└ ",
 			-- 	edge = "│ ",
@@ -121,15 +126,24 @@ nvim_tree.setup({
 		cmd = "trash",
 		require_confirm = true,
 	},
-	quit_on_open = 0,
-	git_hl = 1,
-	disable_window_picker = 0,
-	root_folder_modifier = ":t",
-	show_icons = {
-		git = 1,
-		folders = 1,
-		files = 1,
-		folder_arrows = 1,
-		tree_width = 30,
+	actions = {
+		use_system_clipboard = true,
+		change_dir = {
+			enable = true,
+			global = false,
+			restrict_above_cwd = false,
+		},
+		open_file = {
+			quit_on_open = false,
+			resize_window = false,
+			window_picker = {
+				enable = true,
+				chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+				exclude = {
+					filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+					buftype = { "nofile", "terminal", "help" },
+				},
+			},
+		},
 	},
 })

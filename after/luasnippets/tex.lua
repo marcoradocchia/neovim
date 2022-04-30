@@ -164,6 +164,8 @@ return { -- triggered
 	s({ trig = "md", name = "differential" }, fmt("\\md{{{}}}{}", { i(1), i(3) })),
 	-- derivative
 	s({ trig = "mdv", name = "derivative" }, fmt("\\mdv{{{}}}{{{}}}{}", { i(1), i(2), i(3) })),
+	-- total derivative
+	s({ trig = "mDv", name = "derivative" }, fmt("\\mDv{{{}}}{{{}}}{}", { i(1), i(2), i(3) })),
 	-- partial derivative
 	s({ trig = "mpdv", name = "partial derivative" }, fmt("\\mpdv{{{}}}{{{}}}{}", { i(1), i(2), i(3) })),
 	-- sum
@@ -236,13 +238,24 @@ return { -- triggered
 			[[
       \begin{{table}}[{}]
         \centering
+        \label{{{}}}
         \caption{{{}}}
         \begin{{tabular}}{{{}}}
           {}
         \end{{tabular}}
       \end{{table}}
     ]],
-			{ i(1), i(2), i(3), i(4) }
+			{ i(1), i(2), i(3), i(4), i(0) }
+		)
+	),
+	-- cancelto
+	s(
+		{ trig = "cancelto", name = "cancel to value" },
+		fmt(
+			[[
+    \cancelto{{{}}}{{{}}}{}
+    ]],
+			{ i(1), i(2), i(0) }
 		)
 	),
 },
@@ -250,31 +263,31 @@ return { -- triggered
 		-- todo comment
 		s({ trig = "todo", name = "todo comment" }, fmt("% TODO: {}", { i(1) })),
 		-- round brackets
-		s({ trig = "((", name = "round brackets" }, fmt("\\mrb{{{}}}{}", { i(1), i(2) })),
+		s({ trig = "((", name = "round brackets" }, fmt("\\mrb{{{}}}{}", { i(1), i(0) })),
 		-- square brackets
-		s({ trig = "[[", name = "square brackets" }, fmt("\\msb{{{}}}{}", { i(1), i(2) })),
+		s({ trig = "[[", name = "square brackets" }, fmt("\\msb{{{}}}{}", { i(1), i(0) })),
 		-- curly brackets
-		s({ trig = "{{", name = "curly brackets" }, fmt("\\mcb{{{}}}{}", { i(1), i(2) })),
+		s({ trig = "{{", name = "curly brackets" }, fmt("\\mcb{{{}}}{}", { i(1), i(0) })),
 		-- bold text
-		s({ trig = "btt", name = "bold text" }, fmt("\\textbf{{{}}}{}", { i(1), i(2) })),
+		s({ trig = "btt", name = "bold text" }, fmt("\\textbf{{{}}}{}", { i(1), i(0) })),
 		-- italics text
-		s({ trig = "itt", name = "italics text" }, fmt("\\textit{{{}}}{}", { i(1), i(2) })),
+		s({ trig = "itt", name = "italics text" }, fmt("\\textit{{{}}}{}", { i(1), i(0) })),
 		-- sc text
-		s({ trig = "sct", name = "sc text" }, fmt("\\textsc{{{}}}{}", { i(1), i(2) })),
+		s({ trig = "sct", name = "sc text" }, fmt("\\textsc{{{}}}{}", { i(1), i(0) })),
 		-- quotation marks
-		s({ trig = "quot", name = "quotation marks" }, fmt("``{}''{}", { i(1), i(2) })),
+		s({ trig = "quot", name = "quotation marks" }, fmt("``{}''{}", { i(1), i(0) })),
 		-- inline math
-		s({ trig = "mk", name = "inline math" }, fmt("${}${}", { i(1), i(2) })),
+		s({ trig = "mk", name = "inline math" }, fmt("${}${}", { i(1), i(0) })),
 		-- math block
-		s({ trig = "dm", name = "math block" }, fmt("\\[\n\t{}\n\\]{}", { i(1), i(2) })),
+		s({ trig = "dm", name = "math block" }, fmt("\\[\n\t{}\n\\]{}", { i(1), i(0) })),
 		-- fraction
-		s({ trig = "//", name = "fraction" }, fmt("\\frac{{{}}}{{{}}}{}", { i(1), i(2), i(3) })),
+		s({ trig = "//", name = "fraction" }, fmt("\\frac{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
 		-- abs
-		s({ trig = "||", name = "absolute value" }, fmt("\\abs{{{}}}{}", { i(1), i(2) })),
+		s({ trig = "||", name = "absolute value" }, fmt("\\abs{{{}}}{}", { i(1), i(0) })),
 		-- superscript
-		s({ trig = "^", name = "superscript" }, fmt("^{{{}}}{}", { i(1), i(2) })),
+		s({ trig = "^", name = "superscript" }, fmt("^{{{}}}{}", { i(1), i(0) })),
 		-- subscript
-		s({ trig = "_", name = "subscript" }, fmt("_{{{}}}{}", { i(1), i(2) })),
+		s({ trig = "_", name = "subscript" }, fmt("_{{{}}}{}", { i(1), i(0) })),
 		-- grater equal
 		s({ trig = ">=", name = "grater equal" }, t("\\geq ")),
 		-- way grater then
@@ -341,4 +354,7 @@ return { -- triggered
 		s("darr", t("\\downarrow")),
 		s("uarr", t("\\uparrow")),
 		s("~=", t("\\simeq")),
+		s("const", t("\\text{const}")),
+    s("ast", t("\\ast")),
+    s("mthen", t("\\mthen")),
 	}
