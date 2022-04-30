@@ -72,12 +72,12 @@ kmap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 
 -- Telescope --
 kmap("n", "g/", "<cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find()<CR>", opts)  -- fuzzy find in current buffer
-kmap("n", "<leader>gs", "<cmd>lua require'telescope.builtin'.grep_string(require'telescope.themes'.get_cursor())<CR>", opts)  -- grep word under cursor in current buffer
+kmap("n", "<leader>s", "<cmd>lua require'telescope.builtin'.grep_string(require'telescope.themes'.get_cursor())<CR>", opts)  -- grep word under cursor in current buffer
 kmap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files()<CR>", opts)  -- find files
 kmap("n", "<leader>t", "<cmd>lua require'telescope.builtin'.live_grep()<CR>", opts)  -- live grep
 kmap("n", "<leader>m", "<cmd>lua require'telescope.builtin'.man_pages()<CR>", opts)  -- man pages
-kmap("n", "<leader>a", "<cmd>lua require'telescope.builtin'.lsp_code_actions(require'telescope.themes'.get_cursor())<CR>", opts)  -- code actions for word under corsor
 kmap("n", "<leader>B", "<cmd>lua require'telescope.builtin'.buffers()<CR>", opts)  -- open buffers
+-- kmap("n", "<leader>a", "<cmd>lua require'telescope.builtin'.lsp_code_actions(require'telescope.themes'.get_cursor())<CR>", opts)  -- code actions for word under corsor
 
 -- NvimTree --
 kmap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)

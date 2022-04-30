@@ -56,8 +56,8 @@ return packer.startup(function(use)
 
 	-- colorschemes
 	use({
-    "sainnhe/gruvbox-material"
-  })
+		"sainnhe/gruvbox-material",
+	})
 
 	use({ -- cmp plugins
 		"hrsh7th/nvim-cmp", -- the completion plugin
@@ -82,11 +82,13 @@ return packer.startup(function(use)
 
 	use({ -- telescope
 		"nvim-telescope/telescope.nvim",
+    -- neovim core stuff can fill the telescope picker
+		"nvim-telescope/telescope-ui-select.nvim",
 	})
 
 	use({ -- treesitter
 		{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
-    "nvim-treesitter/playground",
+		"nvim-treesitter/playground",
 		"p00f/nvim-ts-rainbow",
 	})
 

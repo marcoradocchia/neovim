@@ -83,10 +83,8 @@ local function lsp_keymaps(bufnr)
 	bufkmap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
 	bufkmap(bufnr, "n", "gl", '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>', opts)
 	bufkmap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+  bufkmap(bufnr, 'n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts) -- code actions
 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
-
-  -- Delegated to Telescope plugin
-  -- bufkmap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end
 
 M.on_attach = function(client, bufnr)
