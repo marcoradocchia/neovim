@@ -96,7 +96,7 @@ M.on_attach = function(client, bufnr)
     "tsserver",
     "jdtls",
     "clangd",
-    "rust_analyzer"
+    -- "rust_analyzer"
   }
 
 	-- disabling formatters from language servers, because using null-ls

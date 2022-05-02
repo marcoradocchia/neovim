@@ -46,6 +46,8 @@ indentblankline.setup({
     "environment",
     "curly_group",
     "enum_item",
+    -- html
+    "element"
 	},
 	filetype_exclude = {
 		"help",

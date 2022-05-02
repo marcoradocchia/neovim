@@ -34,7 +34,7 @@ null_ls.setup({
     formatting.rustfmt,
 		diagnostics.flake8.with({
       extra_args = {
-        "--ignore=E402,E203"
+        "--ignore=E402,E203,W503"
       }
     }),
 	},
