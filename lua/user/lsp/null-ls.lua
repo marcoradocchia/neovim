@@ -31,7 +31,7 @@ null_ls.setup({
 				"--style=Mozilla",
 			},
 		}),
-    formatting.rustfmt,
+    formatting.rustfmt.with({ extra_args = { "--edition", "2021" } }),
 		diagnostics.flake8.with({
       extra_args = {
         "--ignore=E402,E203,W503"

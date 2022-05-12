@@ -10,11 +10,12 @@ M.setup = function()
 	vim.cmd(string.format("highlight DiagnosticHint guifg=%s", colors.cyan))
 	vim.cmd(string.format("highlight DiagnosticInfo guifg=%s", colors.blue))
 
+  -- setup diagnostics symbols
 	local signs = {
-		{ name = "DiagnosticSignError", text = "" },
-		{ name = "DiagnosticSignWarn", text = "" },
-		{ name = "DiagnosticSignHint", text = "ﯦ" },
-		{ name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignError", text = ""},
+    { name = "DiagnosticSignWarn", text = ""},
+    { name = "DiagnosticSignHint", text = "ﯦ"},
+    { name = "DiagnosticSignInfo", text = ""},
 	}
 
 	for _, sign in ipairs(signs) do
@@ -25,34 +26,43 @@ M.setup = function()
 		})
 	end
 
-	local config = {
-		-- disable virtual text
-		virtual_text = false,
-		-- show signs
-		signs = {
-			active = signs,
-		},
-		update_in_insert = true,
-		underline = true,
-		severity_sort = true,
-		float = {
-			focusable = false,
-			style = "minimal",
-			border = "rounded",
-			source = "always",
-			header = "",
-			prefix = "",
-		},
-	}
-	vim.diagnostic.config(config)
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-		border = "rounded",
-	})
-	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-		border = "rounded",
-	})
+  -- configuration
+	vim.diagnostic.config({
+    -- disable virtual text
+    virtual_text = false,
+    -- show signs
+    signs = {
+      active = signs,
+    },
+    update_in_insert = true,
+    underline = true,
+    severity_sort = true,
+    float = {
+      focusable = false,
+      style = "minimal",
+      border = "rounded",
+      source = "always",
+      header = "",
+      prefix = "",
+    },
+  })
+
+  -- TODO: improve this
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+      border = "rounded",
+    }
+  )
+
+  -- TODO: improve this
+	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help, {
+      border = "rounded",
+    }
+  )
 end
 
+-- document highlight
 local function lsp_highlight_document(client)
 	-- Set autocommands conditional on server_capabilities
 	if client.resolved_capabilities.document_highlight then
@@ -69,6 +79,7 @@ local function lsp_highlight_document(client)
 	end
 end
 
+-- keymaps
 local function lsp_keymaps(bufnr)
 	local bufkmap = vim.api.nvim_buf_set_keymap
 	local opts = { noremap = true, silent = true }
@@ -88,30 +99,32 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  local function has_key(table, key)
-    return table[key] == nil
-  end
-
+  -- listing disabled ls formatters
   local disabled_formatters = {
-    "tsserver",
-    "jdtls",
-    "clangd",
-    -- "rust_analyzer"
+    clangd = true,
+    jdtls = true,
+    rust_analyzer = true,
+    tsserver = true,
   }
 
 	-- disabling formatters from language servers, because using null-ls
-	if has_key(disabled_formatters, client.name) then
+	if disabled_formatters[client.name] == true then
 		client.resolved_capabilities.document_formatting = false
 	end
-	lsp_keymaps(bufnr)
+
+  -- setup document highlight
 	lsp_highlight_document(client)
+
+  -- setup buffer keymaps
+	lsp_keymaps(bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+-- make protected call to cmp_nvim_lsp to avoid destructive errors
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
-	return
+	return M
 end
 
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)

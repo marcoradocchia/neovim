@@ -14,110 +14,385 @@ local function date()
 	return os.date("%Y-%m-%d")
 end
 
+local function cur_buf_name()
+  local buf_name = vim.api.nvim_buf_get_name(0)
+  return string.gsub(buf_name, ".*/(.*).tex", "%1/")
+end
+
 return { -- triggered
 	-- begin/end
-	s({ trig = "beg", name = "begin/end" }, fmt("\\begin{{{}}}\n\t{}\n\\end{{{}}}", { i(1), i(2), rep(1) })),
+	s(
+		{ trig = "beg", name = "begin/end" },
+		fmt(
+			[[
+        \begin{{{}}}
+          {}
+        \end{{{}}}
+      ]],
+			{ i(1), i(0), rep(1) }
+		)
+	),
 	-- chapter
-	s({ trig = "chap", name = "capter" }, fmt("\\chapter{{{}}}\n{}", { date(), i(1) })),
+	s(
+		{ trig = "chap", name = "capter" },
+		fmt(
+			[[
+        \chapter{{{}}}
+        {}
+      ]],
+			{ date(), i(0) }
+		)
+	),
 	-- section
-	s({ trig = "sec", name = "section" }, fmt("\\section{{{}}}\n{}", { i(1), i(0) })),
+	s(
+		{ trig = "sec", name = "section" },
+		fmt(
+			[[
+        \section{{{}}}
+        {}
+      ]],
+			{ i(1), i(0) }
+		)
+	),
 	-- subsection
-	s({ trig = "ssec", name = "subsection" }, fmt("\\subsection{{{}}}\n{}", { i(1), i(0) })),
+	s(
+		{ trig = "ssec", name = "subsection" },
+		fmt(
+			[[
+        \subsection{{{}}}
+        {}
+      ]],
+			{ i(1), i(0) }
+		)
+	),
 	-- subsubsection
-	s({ trig = "sssec", name = "subsubsection" }, fmt("\\subsubsection{{{}}}\n{}", { i(1), i(0) })),
+	s(
+		{ trig = "sssec", name = "subsubsection" },
+		fmt(
+			[[
+        \subsubsection{{{}}}
+        {}
+      ]],
+			{ i(1), i(0) }
+		)
+	),
 	-- paragraph
-	s({ trig = "par", name = "paragraph" }, fmt("\\paragraph{{{}}}\n{}", { i(1), i(0) })),
+	s(
+		{ trig = "par", name = "paragraph" },
+		fmt(
+			[[
+        \paragraph{{{}}}
+        {}
+      ]],
+			{ i(1), i(0) }
+		)
+	),
 	-- footnote
-	s({ trig = "foot", name = "footnote" }, fmt("\\footnote{{\n\t{}\n}}{}", { i(1), i(0) })),
+	s(
+		{ trig = "foot", name = "footnote" },
+		fmt(
+			[[
+        \footnote{{
+          {}
+        }}{}
+      ]],
+			{ i(1), i(0) }
+		)
+	),
 	-- boxed
-	s({ trig = "box", name = "boxed" }, fmt("\\boxed{{\n\t{}\n}}", { i(1) })),
+	s(
+		{ trig = "box", name = "boxed" },
+		fmt(
+			[[
+        \boxed{{
+          {}
+        }}
+      ]],
+			{ i(0) }
+		)
+	),
 	-- equation
-	s({ trig = "eq", name = "equation" }, fmt("\\begin{{equation}}\n\t{}\n\\end{{equation}}", { i(1) })),
+	s(
+		{ trig = "eq", name = "equation" },
+		fmt(
+			[[
+        \begin{{equation}}
+          {}
+        \end{{equation}}
+      ]],
+			{ i(0) }
+		)
+	),
 	-- unnumbered equation
-	s({ trig = "eq*", name = "equation*" }, fmt("\\begin{{equation*}}\n\t{}\n\\end{{equation*}}", { i(1) })),
+	s(
+		{ trig = "eq*", name = "equation*" },
+		fmt(
+			[[
+        \begin{{equation*}}
+          {}
+        \end{{equation*}}
+      ]],
+			{ i(0) }
+		)
+	),
 	-- align block
-	s({ trig = "al", name = "align" }, fmt("\\begin{{align}}\n\t{}\n\\end{{align}}", { i(1) })),
+	s(
+		{ trig = "al", name = "align" },
+		fmt(
+			[[
+        \begin{{align}}
+          {}
+        \end{{align}}
+      ]],
+			{ i(0) }
+		)
+	),
 	-- unnumbered align block
-	s({ trig = "al*", name = "align*" }, fmt("\\begin{{align*}}\n\t{}\n\\end{{align*}}", { i(1) })),
+	s(
+		{ trig = "al*", name = "align*" },
+		fmt(
+			[[
+        \begin{{align*}}
+          {}
+        \end{{align*}}
+      ]],
+			{ i(0) }
+		)
+	),
 	-- dcases block
-	s({ trig = "cases", name = "dcases" }, fmt("\\begin{{dcases}}\n\t{}\n\\end{{dcases}}", { i(1) })),
+	s(
+		{ trig = "cases", name = "dcases" },
+		fmt(
+			[[
+        \begin{{dcases}}
+          {}
+        \end{{dcases}}
+      ]],
+			{ i(0) }
+		)
+	),
 	-- gathered block
-	s({ trig = "gath", name = "gathered" }, fmt("\\begin{{gathered}}\n\t{}\n\\end{{gathered}}", { i(1) })),
+	s(
+		{ trig = "gath", name = "gathered" },
+		fmt(
+			[[
+        \begin{{gathered}}
+          {}
+        \end{{gathered}}
+      ]],
+			{ i(0) }
+		)
+	),
 	-- itemize
 	s(
 		{ trig = "item", name = "itemize" },
-		fmt("\\begin{{itemize}}\n\t\\item {}\n\t\\item {}\n\\end{{itemize}}", { i(1), d(2, rec_ls, {}) })
+		fmt(
+			[[
+        \begin{{itemize}}
+          \item {}
+          \item {}
+        \end{{itemize}}
+      ]],
+			{ i(1), d(2, rec_ls, {}) }
+		)
 	),
 	-- enumerate
 	s(
 		{ trig = "enum", name = "enumerate" },
-		fmt("\\begin{{enumerate}}\n\t\\item {}\n\t\\item {}\n\\end{{enumerate}}", { i(1), d(2, rec_ls, {}) })
+		fmt(
+			[[
+        \begin{{enumerate}}
+          \item {}
+          \item {}
+        \end{{enumerate}}
+      ]],
+			{ i(1), d(2, rec_ls, {}) }
+		)
 	),
 	-- pmatrix
-	s({ trig = "pmat", name = "pmatrix" }, fmt("\\begin{{pmatrix}}\n\t{}\n\\end{{pmatrix}}", { i(1) })),
+	s(
+		{ trig = "pmat", name = "pmatrix" },
+		fmt(
+			[[
+        \begin{{pmatrix}}
+          {}
+        \end{{pmatrix}}
+      ]],
+			{ i(0) }
+		)
+	),
 	-- bmatrix
-	s({ trig = "bmat", name = "bmatrix" }, fmt("\\begin{{bmatrix}}\n\t{}\n\\end{{bmatrix}}", { i(1) })),
+	s(
+		{ trig = "bmat", name = "bmatrix" },
+		fmt(
+			[[
+        \begin{{bmatrix}}
+          {}
+        \end{{bmatrix}}
+      ]],
+			{ i(0) }
+		)
+	),
 	-- cmatrix
-	s({ trig = "cmat", name = "cmatrix" }, fmt("\\begin{{cmatrix}}\n\t{}\n\\end{{cmatrix}}", { i(1) })),
+	s(
+		{ trig = "cmat", name = "cmatrix" },
+		fmt(
+			[[
+        \begin{{cmatrix}}
+          {}
+        \end{{cmatrix}}
+      ]],
+			{ i(0) }
+		)
+	),
 	-- theorem
-	s({ trig = "thm", name = "theorem" }, fmt("\\begin{{theorem}}[{}]\n\t{}\n\\end{{theorem}}", { i(1), i(2) })),
+	s(
+		{ trig = "thm", name = "theorem" },
+		fmt(
+			[[
+        \begin{{theorem}}[{}]
+          {}
+        \end{{theorem}}
+      ]],
+			{ i(1), i(0) }
+		)
+	),
 	-- corollary
-	s({ trig = "cor", name = "corollary" }, fmt("\\begin{{corollary}}[{}]\n\t{}\n\\end{{corollary}}", { i(1), i(2) })),
+	s(
+		{ trig = "cor", name = "corollary" },
+		fmt(
+			[[
+        \begin{{corollary}}[{}]
+          {}
+        \end{{corollary}}
+      ]],
+			{ i(1), i(0) }
+		)
+	),
 	-- proof
-	s({ trig = "prf", name = "proof" }, fmt("\\begin{{proof}}\n\t{}\n\\end{{proof}}", { i(1) })),
+	s(
+		{ trig = "prf", name = "proof" },
+		fmt(
+			[[
+        \begin{{proof}}
+          {}
+        \end{{proof}}
+      ]],
+			{ i(0) }
+		)
+	),
 	-- definition
 	s(
 		{ trig = "def", name = "definition" },
-		fmt("\\begin{{definition}}[{}]\n\t{}\n\\end{{definition}}", { i(1), i(2) })
+		fmt(
+			[[
+        \begin{{definition}}[{}]
+          {}
+        \end{{definition}}
+      ]],
+			{ i(1), i(0) }
+		)
 	),
 	-- lemma
-	s({ trig = "lem", name = "lemma" }, fmt("\\begin{{lemma}}[{}]\n\t{}\n\\end{{lemma}}", { i(1), i(2) })),
+	s(
+		{ trig = "lem", name = "lemma" },
+		fmt(
+			[[
+        \begin{{lemma}}[{}]
+          {}
+        \end{{lemma}}
+      ]],
+			{ i(1), i(0) }
+		)
+	),
 	-- note
-	s({ trig = "note", name = "note" }, fmt("\\begin{{note}}[{}]\n\t{}\n\\end{{note}}", { i(1), i(2) })),
+	s(
+		{ trig = "note", name = "note" },
+		fmt(
+			[[
+        \begin{{note}}[{}]
+          {}
+        \end{{note}}
+      ]],
+			{ i(1), i(0) }
+		)
+	),
 	-- example
-	s({ trig = "examp", name = "example" }, fmt("\\begin{{example}}[{}]\n\t{}\n\\end{{example}}", { i(1), i(2) })),
+	s(
+		{ trig = "examp", name = "example" },
+		fmt(
+			[[
+        \begin{{example}}[{}]
+          {}
+        \end{{example}}
+      ]],
+			{ i(1), i(0) }
+		)
+	),
+	-- exercise
+	s(
+		{ trig = "exer", name = "exercise" },
+		fmt(
+			[[
+        \begin{{exercise}}[{}]
+          {}
+        \end{{exercise}}
+      ]],
+			{ i(1), i(0) }
+		)
+	),
 	-- text
-	s({ trig = "tt", name = "text" }, fmt("\\text{{{}}}{}", { i(1), i(2) })),
+	s({ trig = "tt", name = "text" }, fmt("\\text{{{}}}{}", { i(1), i(0) })),
 	-- lim
-	s({ trig = "lim", name = "limit" }, fmt("\\lim_{{{}}} \\to {{{}}}{}", { i(1), i(2), i(3) })),
+	s({ trig = "lim", name = "limit" }, fmt("\\lim_{{{}\\to {}}}{}", { i(1), i(2), i(0) })),
 	-- square root
-	s({ trig = "sr", name = "square root" }, fmt("\\sqrt{{{}}}{}", { i(1), i(2) })),
+	s({ trig = "sr", name = "square root" }, fmt("\\sqrt{{{}}}{}", { i(1), i(0) })),
 	-- hat
-	s({ trig = "hat", name = "hat" }, fmt("\\hat{{{}}}{}", { i(1), i(2) })),
+	s({ trig = "hat", name = "hat" }, fmt("\\hat{{{}}}{}", { i(1), i(0) })),
 	-- sine
 	s({ trig = "sin", name = "sine" }, t("\\sin ")),
 	-- cosine
 	s({ trig = "cos", name = "cosine" }, t("\\cos ")),
 	-- complex conjugate
-	s({ trig = "cc", name = "complex conjugate" }, fmt("\\cc{{{}}}{}", { i(1), i(2) })),
+	s({ trig = "cc", name = "complex conjugate" }, fmt("\\cc{{{}}}{}", { i(1), i(0) })),
 	-- vector
-	s({ trig = "vec", name = "vector" }, fmt("\\vec{{{}}}{}", { i(1), i(2) })),
+	s({ trig = "vec", name = "vector" }, fmt("\\vec{{{}}}{}", { i(1), i(0) })),
 	-- quadrivector
-	s({ trig = "qvec", name = "quadrivector" }, fmt("\\qvec{{{}}}{}", { i(1), i(2) })),
+	s({ trig = "qvec", name = "quadrivector" }, fmt("\\qvec{{{}}}{}", { i(1), i(0) })),
 	-- bra
-	s({ trig = "<|", name = "bra" }, fmt("\\bra{{{}}}{}", { i(1), i(2) })),
+	s({ trig = "<|", name = "bra" }, fmt("\\bra{{{}}}{}", { i(1), i(0) })),
 	-- ket
-	s({ trig = "|>", name = "ket" }, fmt("\\ket{{{}}}{}", { i(1), i(2) })),
+	s({ trig = "|>", name = "ket" }, fmt("\\ket{{{}}}{}", { i(1), i(0) })),
 	-- bra-ket
-	s({ trig = "<.>", name = "bra-ket" }, fmt("\\braket{{{} \\vert {}}}{}", { i(1), i(2), i(3) })),
+	s({ trig = "<.>", name = "bra-ket" }, fmt("\\braket{{{} \\vert {}}}{}", { i(1), i(2), i(0) })),
+	-- bra-ket (same state)
+	s({ trig = "<>", name = "bra-ket (same state)" }, fmt("\\braket{{{} \\vert {}}}{}", { i(1), rep(1), i(0) })),
 	-- matrix element
 	s(
 		{ trig = "<x>", name = "matrix element" },
 		fmt("\\braket{{{} \\vert {} \\vert {}}}{}", { i(1), i(2), i(3), i(0) })
 	),
 	-- mean value
-	s({ trig = "<M>", name = "mean value" }, fmt("\\braket{{{}}}{}", { i(1), i(2) })),
+	s({ trig = "<M>", name = "mean value" }, fmt("\\braket{{{}}}{}", { i(1), i(0) })),
 	-- partial
 	s({ trig = "part", name = "partial" }, t("\\partial ")),
 	-- reference
-	s({ trig = "ref", name = "reference" }, fmt("\\ref{{{}}}{}", { i(1), i(2) })),
+	s({ trig = "ref", name = "reference" }, fmt("\\ref{{{}}}{}", { i(1), i(0) })),
 	-- inline code block
-	s({ trig = "lncode", name = "lstinline" }, fmt("\\lstinline{{{}}}{}", { i(1), i(2) })),
+	s({ trig = "lncode", name = "lstinline" }, fmt("\\lstinline{{{}}}{}", { i(1), i(0) })),
 	-- figure
 	s(
 		{ trig = "fig", name = "figure" },
 		fmt(
-			"\\begin{{figure}}[{}]\n\t\\centering\n\t\\includegraphics[width={}\\textwidth]{{./img/{}/{}.jpg}}\n\t\\caption{{{}}}\n\t\\label{{fig:{}}}\n\\end{{figure}}\n{}",
+			[[
+        \begin{{figure}}[{}]
+          \centering
+          \includegraphics[width={}\\textwidth]{{./img/{}/{}.jpg}}
+          \caption{{{}}}
+          \label{{fig:{}}}
+        \end{{figure}}
+        {}
+      ]],
 			{ i(1), i(2), i(3), i(4), i(5), i(6), i(0) }
 		)
 	),
@@ -125,23 +400,31 @@ return { -- triggered
 	s(
 		{ trig = "inkfig", name = "inkscape figure" },
 		fmt(
-			"\\begin{{figure}}[{}]\n\t\\centering\n\t\\incfig[width={}\\textwidth]{{./img/{}}}{{{}}}\n\t\\caption{{{}}}\n\t\\label{{fig:{}}}\n\\end{{figure}}\n{}",
+			[[
+        \begin{{figure}}[{}]
+          \centering
+          \incfig[{}\textwidth]{{./img/{}}}{{{}}}
+          \caption{{{}}}
+          \label{{fig:{}}}
+        \end{{figure}}
+        {}
+      ]],
 			{ i(1), i(2), i(3), i(4), i(5), i(6), i(0) }
 		)
 	),
 	-- integral
-	s({ trig = "mint", name = "integral" }, fmt("\\mint{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(5) })),
+	s({ trig = "mint", name = "integral" }, fmt("\\mint{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(0) })),
 	-- double integral
 	s(
 		{ trig = "dint", name = "double integral" },
-		fmt("\\dint{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(5), i(6), i(7), i(8) })
+		fmt("\\dint{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(5), i(6), i(7), i(0) })
 	),
 	-- triple integral
 	s(
 		{ trig = "tint", name = "triple integral" },
 		fmt(
 			"\\tint{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{}",
-			{ i(1), i(2), i(3), i(4), i(5), i(6), i(7), i(8), i(9), i(10), i(11) }
+			{ i(1), i(2), i(3), i(4), i(5), i(6), i(7), i(8), i(9), i(10), i(0) }
 		)
 	),
 	-- inf integral
@@ -149,38 +432,38 @@ return { -- triggered
 	-- o integral
 	s({ trig = "moint", name = "o integral" }, fmt("\\moint{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(0) })),
 	-- indefinite integral
-	s({ trig = "miint", name = "indefinite integral" }, fmt("\\miint{{{}}}{{{}}}{}", { i(1), i(2), i(3) })),
+	s({ trig = "miint", name = "indefinite integral" }, fmt("\\miint{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
 	-- indefinite double integral
 	s(
 		{ trig = "midint", name = "indefinite integral" },
-		fmt("\\midint{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4) })
+		fmt("\\midint{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(0) })
 	),
 	-- indefinite triple integral
 	s(
 		{ trig = "mitint", name = "indefinite integral" },
-		fmt("\\mitint{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(5) })
+		fmt("\\mitint{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(0) })
 	),
 	-- differential
-	s({ trig = "md", name = "differential" }, fmt("\\md{{{}}}{}", { i(1), i(3) })),
+	s({ trig = "md", name = "differential" }, fmt("\\md{{{}}}{}", { i(1), i(0) })),
 	-- derivative
-	s({ trig = "mdv", name = "derivative" }, fmt("\\mdv{{{}}}{{{}}}{}", { i(1), i(2), i(3) })),
+	s({ trig = "mdv", name = "derivative" }, fmt("\\mdv{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
 	-- total derivative
-	s({ trig = "mDv", name = "derivative" }, fmt("\\mDv{{{}}}{{{}}}{}", { i(1), i(2), i(3) })),
+	s({ trig = "mDv", name = "derivative" }, fmt("\\mDv{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
 	-- partial derivative
-	s({ trig = "mpdv", name = "partial derivative" }, fmt("\\mpdv{{{}}}{{{}}}{}", { i(1), i(2), i(3) })),
+	s({ trig = "mpdv", name = "partial derivative" }, fmt("\\mpdv{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
 	-- sum
-	s({ trig = "++", name = "sum" }, fmt("\\msum{{{}}}{{{}}}{}", { i(1), i(2), i(3) })),
+	s({ trig = "++", name = "sum" }, fmt("\\msum{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
 	-- prod
-	s({ trig = "**", name = "prod" }, fmt("\\mprod{{{}}}{{{}}}{}", { i(1), i(2), i(3) })),
+	s({ trig = "**", name = "prod" }, fmt("\\mprod{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
 	-- input listing
 	s(
 		{ trig = "incode", name = "lstinputlisting" },
 		fmt("\\lstinputlisting{{./src/{}/src{}.{}}}{}", { i(1), i(2), i(3), i(0) })
 	),
 	-- exponential
-	s({ trig = "exp", name = "exponential" }, fmt("e^{{{}}}{}", { i(1), i(2) })),
+	s({ trig = "exp", name = "exponential" }, fmt("e^{{{}}}{}", { i(1), i(0) })),
 	-- intenrational sistem unit
-	s({ trig = "SI", name = "intenrational sistem" }, fmt("\\SI{{{}}}{{{}}}{}", { i(1), i(2), i(3) })),
+	s({ trig = "SI", name = "intenrational sistem" }, fmt("\\SI{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
 	-- pgfplot
 	s(
 		{ trig = "pgfplot", name = "pgfplot" },
@@ -199,8 +482,9 @@ return { -- triggered
           \caption{{{}}}
           \label{{{}}}
         \end{{figure}}
+        {}
       ]],
-			{ i(1), i(2), i(3), i(4), i(5) }
+			{ i(1), i(2), i(3), i(4), i(5), i(0) }
 		)
 	),
 	-- addplot (tizkpicture)
@@ -210,9 +494,9 @@ return { -- triggered
 			[[
         \addplot[
           {}
-        ] ({});
+        ] {{{}}};
       ]],
-			{ i(1), i(2) }
+			{ i(1), i(0) }
 		)
 	),
 	-- draw (tizkpicture)
@@ -224,13 +508,13 @@ return { -- triggered
           {}
         ] ({});
       ]],
-			{ i(1), i(2) }
+			{ i(1), i(0) }
 		)
 	),
 	-- dot product
-	s({ trig = "dpr", name = "dot product" }, fmt("\\dpr{{{}}}{{{}}}", { i(1), i(2) })),
+	s({ trig = "dpr", name = "dot product" }, fmt("\\dpr{{{}}}{{{}}}", { i(1), i(0) })),
 	-- wedge product
-	s({ trig = "wpr", name = "wedge product" }, fmt("\\wpr{{{}}}{{{}}}", { i(1), i(2) })),
+	s({ trig = "wpr", name = "wedge product" }, fmt("\\wpr{{{}}}{{{}}}", { i(1), i(0) })),
 	-- table
 	s(
 		{ trig = "table", name = "table" },
@@ -241,11 +525,26 @@ return { -- triggered
         \label{{{}}}
         \caption{{{}}}
         \begin{{tabular}}{{{}}}
+          \toprule
           {}
+          \midrule
+          {}
+          \bottomrule
         \end{{tabular}}
       \end{{table}}
+      {}
     ]],
-			{ i(1), i(2), i(3), i(4), i(0) }
+			{ i(1), i(2), i(3), i(4), i(5), i(6), i(0) }
+		)
+	),
+	-- cancel
+	s(
+		{ trig = "cancelto", name = "cancel to value" },
+		fmt(
+			[[
+        \cancel{{{}}}{}
+      ]],
+			{ i(1), i(0) }
 		)
 	),
 	-- cancelto
@@ -253,8 +552,8 @@ return { -- triggered
 		{ trig = "cancelto", name = "cancel to value" },
 		fmt(
 			[[
-    \cancelto{{{}}}{{{}}}{}
-    ]],
+        \cancelto{{{}}}{{{}}}{}
+      ]],
 			{ i(1), i(2), i(0) }
 		)
 	),
@@ -355,6 +654,6 @@ return { -- triggered
 		s("uarr", t("\\uparrow")),
 		s("~=", t("\\simeq")),
 		s("const", t("\\text{const}")),
-    s("ast", t("\\ast")),
-    s("mthen", t("\\mthen")),
+		s("ast", t("\\ast")),
+		s("mthen", t("\\mthen")),
 	}

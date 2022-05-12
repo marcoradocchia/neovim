@@ -11,7 +11,7 @@ vim.cmd("highlight NvimTreeOpenedFile gui=bold")
 
 vim.g.nvim_tree_add_trailing = 1
 vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_symlink_arrow = " "
+vim.g.nvim_tree_symlink_arrow = "  "
 vim.g.nvim_tree_special_files = {
 	Makefile = true,
   ["Cargo.toml"] = true,
