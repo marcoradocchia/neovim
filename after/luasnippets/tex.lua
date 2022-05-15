@@ -574,7 +574,7 @@ return { -- triggered
 		-- sc text
 		s({ trig = "sct", name = "sc text" }, fmt("\\textsc{{{}}}{}", { i(1), i(0) })),
 		-- quotation marks
-		s({ trig = "quot", name = "quotation marks" }, fmt("``{}''{}", { i(1), i(0) })),
+		s({ trig = "quot", name = "quotation marks" }, fmt("\\quot{{{}}}{}", { i(1), i(0) })),
 		-- inline math
 		s({ trig = "mk", name = "inline math" }, fmt("${}${}", { i(1), i(0) })),
 		-- math block

@@ -13,6 +13,7 @@ local colors = COLORS
 -- completion list colors
 vim.cmd(string.format("highlight CmpItemAbbr guifg=%s", colors.comment))
 vim.cmd(string.format("highlight CmpItemAbbrMatch gui=bold guifg=%s", colors.fg))
+vim.cmd(string.format("highlight CmpItemAbbrMatchFuzzy gui=bolditalic guifg=%s", colors.fg))
 vim.cmd(string.format("highlight CmpItemMenu guifg=%s", colors.comment))
 -- scrollbar
 vim.cmd(string.format("highlight PmenuSbar guifg=%s", colors.orange))
@@ -54,7 +55,7 @@ local icons = {
 }
 
 cmp.setup({
-  -- use luasnip to expand snippets in completion list
+	-- use luasnip to expand snippets in completion list
 	snippet = {
 		expand = function(args)
 			-- For `luasnip` users.
@@ -63,18 +64,18 @@ cmp.setup({
 	},
 
 	mapping = {
-    -- scroll completion list
+		-- scroll completion list
 		["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
 		["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
 
-    -- scroll docs
+		-- scroll docs
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 
-    -- accept completion
+		-- accept completion
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 
-    -- abort completion
+		-- abort completion
 		["<C-e>"] = cmp.mapping({
 			i = cmp.mapping.abort(),
 			c = cmp.mapping.close(),
@@ -82,9 +83,9 @@ cmp.setup({
 
 		-- accept currently selected item: if none selected, `select` first item
 		-- set `select` to `false` to only confirm explicitly selected items.
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<CR>"] = cmp.mapping.confirm({ select = false }),
 
-    -- jump through snippets positions
+		-- jump through snippets positions
 		["<C-l>"] = cmp.mapping(function()
 			if luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
@@ -97,7 +98,7 @@ cmp.setup({
 		end, { "i", "s" }),
 	},
 
-  -- formatting options
+	-- formatting options
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
@@ -114,7 +115,7 @@ cmp.setup({
 		end,
 	},
 
-  -- sources list
+	-- sources list
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },

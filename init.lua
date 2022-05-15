@@ -29,5 +29,6 @@ require("user.lsp")
 
 -- TODO:
 --  * FEATURES:
---    * single status line * FIX:
+--    * single status line
+--  * FIX:
 --    * cycling quickly through cmp results selects one randomly

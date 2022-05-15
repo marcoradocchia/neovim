@@ -44,12 +44,16 @@ for _, name in ipairs(servers) do
 		on_attach = require("user.lsp.handlers").on_attach,
 		capabilities = require("user.lsp.handlers").capabilities,
 	}
-	-- TODO: merge these options with the ones in the 'settings' subdirectory
-	-- 		opts = vim.tbl_deep_extend("force", bashls_opts, opts)
-	-- TODO: for clangd add the following
-	-- 		opts.capabilities.offsetEncoding = { "utf-16" }
 
 	local available, server = lsp_installer.get_server(name)
+
+  -- if language server settings are found in ./settings, then merge them in
+  -- options before starting the language server
+  -- server_settings = string.format("user.lsp.settings.%s", name)
+  -- if then
+  --   opts = vim.tbl_deep_extend("force", require(server_settings), opts)
+  -- end
+
 	if available then
 		server:on_ready(function()
 			lspconfig[server.name].setup(opts)
