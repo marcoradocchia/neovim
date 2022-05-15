@@ -1,6 +1,6 @@
 local fn = vim.fn
 
--- Automatically install packer
+-- automatically install packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
 	PACKER_BOOTSTRAP = fn.system({
@@ -15,7 +15,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	vim.cmd([[packadd packer.nvim]])
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
+-- autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -30,7 +30,7 @@ if not status_ok then
 end
 
 packer.init({
-	-- Have packer use a popup window
+	-- have packer use a popup window
 	display = {
 		open_fn = function()
 			return require("packer.util").float({ border = "rounded" })
@@ -38,21 +38,22 @@ packer.init({
 	},
 })
 
--- Install your plugins here
+-- install your plugins here
 return packer.startup(function(use)
-	-- Plugins here
-	use("wbthomason/packer.nvim") -- Have packer manage itself
-
-	use({ -- useful plugins
-		"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
-		"nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
-	})
-	-- Lazy loading example
+	-- lazy loading example
 	-- use {
 	--   'user/repo',
 	--   ft = { 'tex', 'python' }, <- for filetypes
 	--   require { {plugin1}, {plugin2} } <- for depnedecy plugins
 	-- }
+
+  -- have packer manage itself
+	use("wbthomason/packer.nvim")
+
+	use({ -- useful plugins
+		"nvim-lua/popup.nvim", -- an implementation of the popup api from vim in neovim
+		"nvim-lua/plenary.nvim", -- useful lua functions used ny lots of plugins
+	})
 
 	-- colorschemes
 	use({
@@ -82,8 +83,7 @@ return packer.startup(function(use)
 
 	use({ -- telescope
 		"nvim-telescope/telescope.nvim",
-    -- neovim core stuff can fill the telescope picker
-		"nvim-telescope/telescope-ui-select.nvim",
+		"nvim-telescope/telescope-ui-select.nvim", -- neovim core stuff can fill the telescope picker
 	})
 
 	use({ -- treesitter

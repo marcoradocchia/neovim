@@ -5,7 +5,7 @@ end
 
 local colors = COLORS
 
-vim.cmd(string.format("highlight TabLine guibg=%s guifg=%s", colors.bg, colors.fg))
+vim.cmd(string.format("highlight TabLine guibg=%s guifg=%s", colors.bg_dark, colors.fg))
 
 bufferline.setup({
 	options = {
@@ -75,7 +75,7 @@ bufferline.setup({
 	},
 	highlights = {
 		fill = {
-			guifg = { attribute = "fg", highlight = colors.bg },
+			guifg = { attribute = "fg", highlight = colors.bg_dark },
 			guibg = { attribute = "bg", highlight = "TabLine" },
 		},
 		background = {

@@ -11,18 +11,19 @@ if not config_status then
 end
 
 local servers = {
-  "bashls",
-  "clangd",
-  "fortls",
-  "html",
-  "jdtls",
-  "jsonls",
-  "pyright",
-  "rust_analyzer",
-  "sumneko_lua",
-  "texlab",
-  "tsserver",
-  "lemminx",
+	"bashls",
+	"clangd",
+	"fortls",
+	"html",
+	"jdtls",
+	"jsonls",
+	"pyright",
+	"rust_analyzer",
+	"sumneko_lua",
+	"texlab",
+	"tsserver",
+	"lemminx",
+	"taplo",
 }
 
 lsp_installer.setup({
@@ -43,19 +44,19 @@ for _, name in ipairs(servers) do
 		on_attach = require("user.lsp.handlers").on_attach,
 		capabilities = require("user.lsp.handlers").capabilities,
 	}
-  -- TODO: merge these options with the ones in the 'settings' subdirectory
-  -- 		opts = vim.tbl_deep_extend("force", bashls_opts, opts)
-  -- TODO: for clangd add the following
-  -- 		opts.capabilities.offsetEncoding = { "utf-16" }
+	-- TODO: merge these options with the ones in the 'settings' subdirectory
+	-- 		opts = vim.tbl_deep_extend("force", bashls_opts, opts)
+	-- TODO: for clangd add the following
+	-- 		opts.capabilities.offsetEncoding = { "utf-16" }
 
-  local available, server = lsp_installer.get_server(name)
-  if available then
-    server:on_ready(function ()
-      lspconfig[server.name].setup(opts)
-    end)
-    -- Queue the server to be installed.
-    if not server:is_installed() then
-      server:install()
-    end
-  end
+	local available, server = lsp_installer.get_server(name)
+	if available then
+		server:on_ready(function()
+			lspconfig[server.name].setup(opts)
+		end)
+		-- Queue the server to be installed.
+		if not server:is_installed() then
+			server:install()
+		end
+	end
 end

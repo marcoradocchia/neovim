@@ -2,11 +2,11 @@
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 local colors = COLORS
 
-vim.cmd(string.format("highlight NvimTreeStatusLine guibg=%s guifg=%s gui=bold", colors.bg, colors.red))
-vim.cmd(string.format("highlight NvimTreeStatusLineNC guibg=%s", colors.bg))
-vim.cmd(string.format("highlight NvimTreeNormal guibg=%s", colors.bg))
-vim.cmd(string.format("highlight NvimTreeNormalNC guibg=%s", colors.bg))
-vim.cmd(string.format("highlight NvimTreeWindowPicker guifg=%s guibg=%s gui=bold", colors.bg, colors.yellow))
+vim.cmd(string.format("highlight NvimTreeStatusLine guibg=%s guifg=%s gui=bold", colors.bg_dark, colors.red))
+vim.cmd(string.format("highlight NvimTreeStatusLineNC guibg=%s", colors.bg_dark))
+vim.cmd(string.format("highlight NvimTreeNormal guibg=%s", colors.bg_dark))
+vim.cmd(string.format("highlight NvimTreeNormalNC guibg=%s", colors.bg_dark))
+vim.cmd(string.format("highlight NvimTreeWindowPicker guifg=%s guibg=%s gui=bold", colors.bg_dark, colors.yellow))
 vim.cmd("highlight NvimTreeOpenedFile gui=bold")
 
 vim.g.nvim_tree_add_trailing = 1
@@ -113,13 +113,7 @@ nvim_tree.setup({
 	},
 	renderer = {
 		indent_markers = {
-			enable = true,
-			-- in order to customize the indent markers icons
-			-- icons = {
-			-- 	corner = "└ ",
-			-- 	edge = "│ ",
-			-- 	none = "  ",
-			-- },
+			enable = false,
 		},
 	},
 	trash = {

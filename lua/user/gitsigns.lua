@@ -3,8 +3,8 @@ if not status_ok then
 	return
 end
 
+-- set gitsigns colors
 local colors = COLORS
--- redefining GitSignsChange color highlighting
 vim.cmd(string.format("highlight GitSignsChange guifg=%s", colors.orange))
 vim.cmd(string.format("highlight CursorLineNr gui=bold guifg=%s", colors.red))
 

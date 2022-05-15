@@ -1,17 +1,19 @@
-local colors = COLORS
-
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
 	return
 end
 
+local colors = COLORS
+
 local conditions = {
 	buffer_not_empty = function()
 		return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
 	end,
+
 	hide_in_width = function()
 		return vim.fn.winwidth(0) > 80
 	end,
+
 	check_git_workspace = function()
 		local filepath = vim.fn.expand("%:p:h")
 		local gitdir = vim.fn.finddir(".git", filepath .. ";")
@@ -43,11 +45,16 @@ local color_delim = function()
 		["!"] = colors.red,
 		t = colors.red,
 	}
-	vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
+
+	vim.cmd(string.format(
+    "hi! LualineMode guifg=%s guibg=%s",
+    mode_color[vim.fn.mode()],
+    colors.bg_dark
+  ))
+
 	return "█"
 end
 
--- Config
 local config = {
 	options = {
 		-- Disable sections and component separators
@@ -57,15 +64,17 @@ local config = {
 			-- We are going to use lualine_c an lualine_x as left and
 			-- right section. Both are highlighted by c theme. So we
 			-- are just setting default looks o statusline
-			normal = { c = { fg = colors.fg, bg = colors.bg } },
-			inactive = { c = { fg = colors.fg, bg = colors.bg } },
+			normal = { c = { bg = colors.bg_dark, fg = colors.fg } },
+			inactive = { c = { bg = colors.bg_dark, fg = colors.fg } },
 		},
 		disabled_filetypes = { "alpha", "dashboard", "Outline" },
 	},
+
 	extensions = {
 		"nvim-tree",
 		"toggleterm",
 	},
+
 	sections = {
 		-- these are to remove the defaults
 		lualine_a = {},
@@ -76,6 +85,7 @@ local config = {
 		lualine_c = {},
 		lualine_x = {},
 	},
+
 	inactive_sections = {
 		-- these are to remove the defaults
 		lualine_a = {},
@@ -88,19 +98,19 @@ local config = {
 	},
 }
 
--- Inserts a component in lualine_c at left section
+-- inserts a component in lualine_c at left section
 local function ins_left(component)
 	table.insert(config.sections.lualine_c, component)
 end
 
--- Inserts a component in lualine_x ot right section
+-- inserts a component in lualine_x ot right section
 local function ins_right(component)
 	table.insert(config.sections.lualine_x, component)
 end
 
 ins_left({
 	color_delim,
-	color = "LualineMode", -- Sets highlighting of component
+	color = "LualineMode", -- sets highlighting of component
 	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
@@ -154,9 +164,11 @@ ins_left({
 		local msg = "--"
 		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 		local clients = vim.lsp.get_active_clients()
+
 		if next(clients) == nil then
 			return msg
 		end
+
 		for _, client in ipairs(clients) do
 			local filetypes = client.config.filetypes
 			-- ignores null-ls
@@ -164,6 +176,7 @@ ins_left({
 				return client.name
 			end
 		end
+
 		return msg
 	end,
 	icon = "lsp:",

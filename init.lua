@@ -25,6 +25,9 @@ require("user.bufferline")
 require("user.toggleterm")
 require("user.nvimcolorizer")
 require("user.alpha")
--- The following this is a dir,
--- but contains `init.lua` which is what is sourced
 require("user.lsp")
+
+-- TODO:
+--  * FEATURES:
+--    * single status line * FIX:
+--    * cycling quickly through cmp results selects one randomly

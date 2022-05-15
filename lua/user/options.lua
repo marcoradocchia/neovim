@@ -38,6 +38,7 @@ local options = {
 	wrap = false, -- wrap lines
 	scrolloff = 5, -- min number of lines to keep above/below
 	sidescrolloff = 5, -- min number of lines to keep right/left
+  laststatus = 3, -- global statusline
 }
 
 vim.opt.shortmess:append("c")
