@@ -47,7 +47,7 @@ return packer.startup(function(use)
 	--   require { {plugin1}, {plugin2} } <- for depnedecy plugins
 	-- }
 
-  -- have packer manage itself
+	-- have packer manage itself
 	use("wbthomason/packer.nvim")
 
 	use({ -- useful plugins

@@ -512,9 +512,9 @@ return { -- triggered
 		)
 	),
 	-- dot product
-	s({ trig = "dpr", name = "dot product" }, fmt("\\dpr{{{}}}{{{}}}", { i(1), i(0) })),
+  s({ trig = "dpr", name = "dot product" }, fmt("\\dpr{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
 	-- wedge product
-	s({ trig = "wpr", name = "wedge product" }, fmt("\\wpr{{{}}}{{{}}}", { i(1), i(0) })),
+  s({ trig = "wpr", name = "wedge product" }, fmt("\\wpr{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
 	-- table
 	s(
 		{ trig = "table", name = "table" },

@@ -9,37 +9,6 @@ vim.cmd(string.format("highlight NvimTreeNormalNC guibg=%s", colors.bg_dark))
 vim.cmd(string.format("highlight NvimTreeWindowPicker guifg=%s guibg=%s gui=bold", colors.bg_dark, colors.yellow))
 vim.cmd("highlight NvimTreeOpenedFile gui=bold")
 
-vim.g.nvim_tree_add_trailing = 1
-vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_symlink_arrow = "  "
-vim.g.nvim_tree_special_files = {
-	Makefile = true,
-  ["Cargo.toml"] = true,
-	["README.md"] = true,
-	["readme.md"] = true,
-}
-
-vim.g.nvim_tree_icons = {
-	default = "",
-	symlink = "",
-	git = {
-		unstaged = "",
-		staged = "S",
-		unmerged = "",
-		renamed = "➜",
-		deleted = "✗",
-		untracked = "U",
-		ignored = "◌",
-	},
-	folder = {
-		default = "",
-		open = "",
-		empty = "",
-		empty_open = "",
-		symlink = "",
-	},
-}
-
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
 	return
@@ -53,6 +22,8 @@ end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({
+	-- add_trailing = 1,
+	-- group_empty = 1,
 	disable_netrw = true,
 	hijack_netrw = true,
 	open_on_setup = false,
@@ -112,6 +83,40 @@ nvim_tree.setup({
 		},
 	},
 	renderer = {
+		icons = {
+			symlink_arrow = "  ",
+			glyphs = {
+				default = "",
+				symlink = "",
+				git = {
+					unstaged = "",
+					staged = "S",
+					unmerged = "",
+					renamed = "➜",
+					deleted = "✗",
+					untracked = "U",
+					ignored = "◌",
+				},
+				folder = {
+					default = "",
+					open = "",
+					empty = "",
+					empty_open = "",
+					symlink = "",
+				},
+			},
+		},
+		add_trailing = true,
+		group_empty = true,
+		special_files = {
+			"Cargo.toml",
+			"Makefile",
+			"README.md",
+			"CHANGELOG.md",
+			"readme.md",
+			"changelog.md",
+			"LICENSE",
+		},
 		indent_markers = {
 			enable = false,
 		},

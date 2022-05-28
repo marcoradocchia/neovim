@@ -11,6 +11,7 @@ vim.g.gruvbox_material_diagnostic_line_highlight = 1
 vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
 vim.g.gruvbox_material_current_word = "bold"
 vim.g.gruvbox_material_better_performance = 1
+vim.gruvbox_material_foreground = "material"
 -- Set contrast.
 -- should be placed before `colorscheme gruvbox-material`.
 -- Available values: 'hard', 'medium'(default), 'soft'

@@ -83,7 +83,7 @@ cmp.setup({
 
 		-- accept currently selected item: if none selected, `select` first item
 		-- set `select` to `false` to only confirm explicitly selected items.
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
 
 		-- jump through snippets positions
 		["<C-l>"] = cmp.mapping(function()
