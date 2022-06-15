@@ -539,7 +539,7 @@ return { -- triggered
 	),
 	-- cancel
 	s(
-		{ trig = "cancelto", name = "cancel to value" },
+		{ trig = "cancel", name = "cancel" },
 		fmt(
 			[[
         \cancel{{{}}}{}
