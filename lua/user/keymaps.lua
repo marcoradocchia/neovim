@@ -88,7 +88,7 @@ kmap("n", "<C-c>", ":Bdelete<CR>", opts)
 
 -- null-ls --
 -- formatting
-kmap("n", "<leader>F", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
+kmap("n", "<leader>F", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
 
 -- TODO: make this mapping filetype dependent
 -- Compile latex in tex buffer --

@@ -65,7 +65,7 @@ end
 -- document highlight
 local function lsp_highlight_document(client)
 	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[
       augroup lsp_document_highlight
@@ -109,7 +109,7 @@ M.on_attach = function(client, bufnr)
 
 	-- disabling formatters from language servers, because using null-ls
 	if disabled_formatters[client.name] == true then
-		client.resolved_capabilities.document_formatting = false
+		client.server_capabilities.document_formatting = false
 	end
 
   -- setup document highlight
@@ -119,13 +119,13 @@ M.on_attach = function(client, bufnr)
 	lsp_keymaps(bufnr)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
 -- make protected call to cmp_nvim_lsp to avoid destructive errors
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
 	return M
 end
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
