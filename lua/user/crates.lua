@@ -11,7 +11,6 @@ crates.setup({
 	autoupdate = true,
 	loading_indicator = true,
 	date_format = "%Y-%m-%d",
-	notification_title = "Crates",
 	disable_invalid_feature_diagnostic = false,
 	text = {
 		loading = "   Loading",
@@ -30,6 +29,17 @@ crates.setup({
 		nomatch = "CratesNvimNoMatch",
 		upgrade = "CratesNvimUpgrade",
 		error = "CratesNvimError",
+	},
+	popup = {
+		autofocus = true,
+		copy_register = '"',
+		style = "minimal",
+		border = "rounded",
+		show_version_date = false,
+		show_dependency_version = true,
+		max_height = 30,
+		min_width = 20,
+		padding = 1,
 	},
 	src = {
 		insert_closing_quote = true,
