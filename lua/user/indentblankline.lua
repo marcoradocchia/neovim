@@ -9,14 +9,14 @@ vim.cmd(string.format("highlight IndentBlanklineContextStart guisp=%s gui=bold",
 vim.cmd(string.format("highlight IndentBlanklineContextChar guifg=%s guisp=%s gui=bold", colors.red, colors.red))
 
 indentblankline.setup({
-  show_trailing_blankline_indent = false,
-  show_end_of_line = true,
+	show_trailing_blankline_indent = false,
+	show_end_of_line = true,
 	use_treesitter = false, -- WARNING: causing issues if set to true
 	show_current_context = true,
 	show_current_context_start = true,
 	context_patterns = {
 		"class",
-    "function",
+		"function",
 		"return",
 		"method",
 		"if",
@@ -33,23 +33,24 @@ indentblankline.setup({
 		"dictionary",
 		"arguments",
 		"import",
-    -- c
-    "compound_statement", -- if/else
-    -- python
-    "expression_statement",
-    -- rust
-    "let_declaration",
-    "match_arm",
-    "match_expression",
-    -- latex
-    "equation",
-    "environment",
-    "curly_group",
-    "enum_item",
-    -- html
-    "element",
-    -- css
-    "block"
+		-- c
+		"compound_statement", -- if/else
+		-- python
+		"expression_statement",
+		-- rust
+		"let_declaration",
+		"match_arm",
+		"match_expression",
+		"field_expression",
+		-- latex
+		"equation",
+		"environment",
+		"curly_group",
+		"enum_item",
+		-- html
+		"element",
+		-- css
+		"block",
 	},
 	filetype_exclude = {
 		"help",
@@ -62,7 +63,7 @@ indentblankline.setup({
 		"alpha",
 		"lspinfo",
 		"lsp-installer",
-    "checkhealth",
+		"checkhealth",
 	},
 	buftype_exclude = { "terminal", "telescope" },
 })
