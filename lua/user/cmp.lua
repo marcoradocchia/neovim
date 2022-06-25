@@ -123,6 +123,7 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "path" },
 		{ name = "calc" },
+		{ name = "crates" },
 	},
 
 	confirm_opts = {

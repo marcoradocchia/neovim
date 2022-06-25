@@ -127,6 +127,12 @@ return packer.startup(function(use)
 		"norcalli/nvim-colorizer.lua",
 	})
 
+	use({ -- crates.io interface for Cargo.toml files
+		"saecki/crates.nvim",
+    tag = 'v0.2.1',
+		requires = { "nvim-lua/plenary.nvim" },
+	})
+
 	use({ -- startup greater
 		"goolord/alpha-nvim",
 	})

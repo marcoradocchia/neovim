@@ -24,8 +24,9 @@ require("user.nvimtree")
 require("user.bufferline")
 require("user.toggleterm")
 require("user.nvimcolorizer")
-require("user.alpha")
 require("user.lsp")
+require("user.crates")
+require("user.alpha")
 
 -- TODO:
 --  * FEATURES:
