@@ -39,7 +39,6 @@ crates.setup({
 		show_dependency_version = true,
 		max_height = 30,
 		min_width = 20,
-		padding = 1,
 	},
 	src = {
 		insert_closing_quote = true,
