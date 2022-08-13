@@ -16,7 +16,6 @@ require("user.telescope")
 require("user.treesitter")
 require("user.lualine")
 require("user.luasnip")
-require("user.indentblankline")
 require("user.comment")
 require("user.autopairs")
 require("user.gitsigns")
@@ -27,6 +26,9 @@ require("user.nvimcolorizer")
 require("user.lsp")
 require("user.crates")
 require("user.alpha")
+
+-- NOTE: uncomment to enable indentation guides.
+-- require("user.indentblankline")
 
 -- TODO:
 --  * FEATURES:

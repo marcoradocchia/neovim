@@ -73,7 +73,7 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 
 		-- accept completion
-		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+		-- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 
 		-- abort completion
 		["<C-e>"] = cmp.mapping({

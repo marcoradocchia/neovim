@@ -98,9 +98,10 @@ return packer.startup(function(use)
 		"moll/vim-bbye",
 	})
 
-	use({ -- indentation
-		"lukas-reineke/indent-blankline.nvim",
-	})
+  -- NOTE: uncomment to install indentation guides plugin.
+	-- use({ -- indentation
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- })
 
 	use({ -- commenting
 		"numToStr/Comment.nvim",

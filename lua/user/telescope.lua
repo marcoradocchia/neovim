@@ -26,19 +26,19 @@ telescope.setup({
 	defaults = {
 		-- aspect
 		prompt_prefix = " ",
-		selection_caret = "➜ ",
+		selection_caret = " ",
 		dynamic_preview_title = true,
 		-- border = false,
 
-    -- results path
+		-- results path
 		path_display = { "smart" },
 
-    -- preview
-    preview = {
-    	msg_bg_fillchar = "#",
-    },
+		-- preview
+		preview = {
+			msg_bg_fillchar = "#",
+		},
 
-    -- mappings
+		-- mappings
 		mappings = {
 			-- insert mode
 			i = {
