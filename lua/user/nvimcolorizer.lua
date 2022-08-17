@@ -1,4 +1,4 @@
 require("colorizer").setup({
-	"*",
-	"!packer",
+  "*",
+  "!packer",
 }, { names = false })

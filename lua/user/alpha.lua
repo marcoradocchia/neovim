@@ -1,6 +1,6 @@
 local status_ok, alpha = pcall(require, "alpha")
 if not status_ok then
-	return
+  return
 end
 
 local dashboard = require("alpha.themes.dashboard")
@@ -22,7 +22,7 @@ dashboard.section.buttons.val = {
 }
 
 
-dashboard.section.footer.val = function ()
+dashboard.section.footer.val = function()
   local date = io.popen("date +\"%D %H:%M\""):read("*a")
   return date
 end
