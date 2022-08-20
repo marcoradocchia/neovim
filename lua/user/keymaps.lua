@@ -87,12 +87,6 @@ kmap("n", "<leader>n", ":NvimTreeFocus<CR>", opts)
 -- Buffers --
 kmap("n", "<C-c>", ":Bdelete<CR>", opts)
 
--- TODO: make this mapping filetype dependent
--- Compile latex in tex buffer --
-kmap("n", "<leader>c",
-  "<cmd>!lualatex --output-dir pdf main.tex && [ $(pgrep zathura | wc -l) -eq 0 ] && setsid -f zathura pdf/main.pdf<CR>"
-  , opts)
-
 -- reloadsnippets
 kmap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/luasnip.lua<CR>", opts)
 -- reload keymaps
