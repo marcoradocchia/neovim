@@ -41,15 +41,15 @@ local options = {
   laststatus = 3, -- global statusline
 }
 
--- avoid showing extra messages when using completion
-vim.opt.shortmess:append("c")
-
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd("set iskeyword+=-")
+-- avoid showing extra messages when using completion
+vim.opt.shortmess:append("c")
+
+vim.opt.iskeyword:append("-")
+vim.opt.whichwrap:append("<,>,[,],h,l")
 
 -- set tex files to be latex
 vim.g["tex_flavor"] = "latex"
