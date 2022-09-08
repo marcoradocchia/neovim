@@ -114,9 +114,9 @@ return packer.startup(function(use)
     "JoosepAlviste/nvim-ts-context-commentstring",
   })
 
-  use({ -- parenthesis and more
-    "windwp/nvim-autopairs", -- integrates with both cmp and treesitter
-  })
+  -- use({ -- parenthesis and more
+  --   "windwp/nvim-autopairs", -- integrates with both cmp and treesitter
+  -- })
 
   use({ -- git
     "lewis6991/gitsigns.nvim",

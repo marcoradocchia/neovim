@@ -55,18 +55,6 @@ configs.setup({
     -- disable the plugin for max_file_lines = nil, Do not enable for
     -- files with more than n lines, int
     extended_mode = true, -- also highlight non-bracket delimiters
-    colors = {
-      "#ea6962",
-      "#a9b665",
-      "#d8a657",
-      "#7daea3",
-      "#d3869b",
-      "#89b482",
-      "#e78a4e",
-    },
-  },
-  autopairs = {
-    enable = true,
   },
 })
 

@@ -62,6 +62,8 @@ kmap("n", "<leader>h", ":noh<CR>", opts)
 kmap("n", "n", "nzzzv", opts)
 kmap("n", "N", "Nzzzv", opts)
 kmap("n", "J", "mzJ`z", opts)
+kmap("n", "<C-d>", "<C-d>zz", opts)
+kmap("n", "<C-u>", "<C-u>zz", opts)
 
 -- Terminal --
 -- Better terminal navigation
