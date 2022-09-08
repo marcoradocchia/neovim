@@ -31,7 +31,7 @@ Below the list of plugins used in this config:
 - [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) (indentation guides etc.)
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim) (commenter)
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
-- [nvim-autopairs](https://github.com/windwp/nvim-autopairs) (autoclosing brackets etc.)
+<!-- - [nvim-autopairs](https://github.com/windwp/nvim-autopairs) (autoclosing brackets etc.) -->
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) (git information)
 - [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) (file tree)
 - [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) (terminal buffers helper)
