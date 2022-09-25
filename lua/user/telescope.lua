@@ -6,7 +6,7 @@ end
 local actions = require("telescope.actions")
 
 -- setup colors
-local colors = COLORS
+local colors = require("user.colors.gruvbox_material")
 vim.cmd(string.format("highlight TelescopeBorder guifg=%s", colors.fg))
 -- prompt
 vim.cmd(string.format("highlight TelescopePromptTitle gui=bolditalic guifg=%s", colors.orange))

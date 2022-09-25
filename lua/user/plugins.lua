@@ -1,9 +1,7 @@
-local fn = vim.fn
-
 -- automatically install packer if not installed yet
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = vim.fn.system({
     "git",
     "clone",
     "--depth",
@@ -11,7 +9,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     "https://github.com/wbthomason/packer.nvim",
     install_path,
   })
-  print("Installing packer close and reopen Neovim...")
+  print("Installing packer! Close and reopen Neovim...")
   vim.cmd("packadd packer.nvim")
 end
 
@@ -50,8 +48,7 @@ return packer.startup(function(use)
   --   require { {plugin1}, {plugin2} } <- for depnedecy plugins
   -- }
 
-  -- have packer manage itself
-  use({
+  use({ -- have packer manage itself
     "wbthomason/packer.nvim",
   })
 
@@ -60,8 +57,7 @@ return packer.startup(function(use)
     "nvim-lua/plenary.nvim", -- useful lua functions used ny lots of plugins
   })
 
-  -- colorschemes
-  use({
+  use({ -- colorschemes
     "sainnhe/gruvbox-material",
   })
 
@@ -72,7 +68,6 @@ return packer.startup(function(use)
     "hrsh7th/cmp-cmdline", -- cmdline completions
     "hrsh7th/cmp-nvim-lsp", -- lsp completions
     "hrsh7th/cmp-nvim-lua",
-    "hrsh7th/cmp-calc", -- nvim-cmp source for math calculation
     "saadparwaiz1/cmp_luasnip", -- snippet completions
   })
 
@@ -104,26 +99,17 @@ return packer.startup(function(use)
     "moll/vim-bbye",
   })
 
-  -- NOTE: uncomment to install indentation guides plugin.
-  -- use({ -- indentation
-  -- 	"lukas-reineke/indent-blankline.nvim",
-  -- })
-
   use({ -- commenting
     "numToStr/Comment.nvim",
     "JoosepAlviste/nvim-ts-context-commentstring",
   })
-
-  -- use({ -- parenthesis and more
-  --   "windwp/nvim-autopairs", -- integrates with both cmp and treesitter
-  -- })
 
   use({ -- git
     "lewis6991/gitsigns.nvim",
   })
 
   use({ -- file tree
-    "kyazdani42/nvim-tree.lua", -- actual file tree
+    "kyazdani42/nvim-tree.lua",
   })
 
   use({ -- terminal
@@ -136,11 +122,10 @@ return packer.startup(function(use)
 
   use({ -- crates.io interface for Cargo.toml files
     "saecki/crates.nvim",
-    tag = "v0.2.1",
     requires = { "nvim-lua/plenary.nvim" },
   })
 
-  use({ -- startup greater
+  use({ -- startup greeter
     "goolord/alpha-nvim",
   })
 

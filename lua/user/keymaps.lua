@@ -18,13 +18,6 @@ vim.g.maplocalleader = " "
 --   term_mode = 't',
 --   command_mode = 'c',
 
--- Normal --
--- Better window navigation
-kmap("n", "<C-h>", "<C-w>h", opts)
-kmap("n", "<C-j>", "<C-w>j", opts)
-kmap("n", "<C-k>", "<C-w>k", opts)
-kmap("n", "<C-l>", "<C-w>l", opts)
-
 -- Resize splits
 kmap("n", "<C-A-k>", ":resize +2<CR>", opts)
 kmap("n", "<C-A-j>", ":resize -2<CR>", opts)

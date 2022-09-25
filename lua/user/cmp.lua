@@ -9,7 +9,7 @@ if not snip_status_ok then
 end
 
 -- setup colors
-local colors = COLORS
+local colors = require("user.colors.gruvbox_material")
 -- completion list colors
 vim.cmd(string.format("highlight CmpItemAbbr guifg=%s", colors.comment))
 vim.cmd(string.format("highlight CmpItemAbbrMatch gui=bold guifg=%s", colors.fg))
@@ -122,7 +122,6 @@ cmp.setup({
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
-    { name = "calc" },
     { name = "crates" },
   },
 

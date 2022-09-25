@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-local colors = COLORS
+local colors = require("user.colors.gruvbox_material")
 
 vim.cmd(string.format("highlight TabLine guibg=%s guifg=%s", colors.bg_dark, colors.fg))
 
@@ -59,7 +59,14 @@ bufferline.setup({
     --     return true
     --   end
     -- end,
-    offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = "Files",
+        text_align = "center",
+        separator = true,
+      }
+    },
     show_buffer_icons = false,
     show_buffer_close_icons = false,
     show_close_icon = false,

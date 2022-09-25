@@ -39,7 +39,6 @@ local options = {
   scrolloff = 5, -- min number of lines to keep above/below
   sidescrolloff = 5, -- min number of lines to keep right/left
   laststatus = 3, -- global statusline
-  winbar = "%=%F"
 }
 
 for k, v in pairs(options) do

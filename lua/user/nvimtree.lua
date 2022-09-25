@@ -1,6 +1,6 @@
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
-local colors = COLORS
+local colors = require("user.colors.gruvbox_material")
 
 vim.cmd(string.format("highlight NvimTreeStatusLine guibg=%s guifg=%s gui=bold", colors.bg_dark, colors.red))
 vim.cmd(string.format("highlight NvimTreeStatusLineNC guibg=%s", colors.bg_dark))
@@ -65,7 +65,6 @@ nvim_tree.setup({
   },
   view = {
     width = 30,
-    height = 30,
     hide_root_folder = false,
     side = "left",
     preserve_window_proportions = true,

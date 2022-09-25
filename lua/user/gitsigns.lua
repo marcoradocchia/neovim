@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 -- set gitsigns colors
-local colors = COLORS
+local colors = require("user.colors.gruvbox_material")
 vim.cmd(string.format("highlight GitSignsChange guifg=%s", colors.orange))
 vim.cmd(string.format("highlight CursorLineNr gui=bold guifg=%s", colors.red))
 

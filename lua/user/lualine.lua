@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-local colors = COLORS
+local colors = require("user.colors.gruvbox_material")
 
 local conditions = {
   buffer_not_empty = function()

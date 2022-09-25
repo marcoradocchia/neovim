@@ -40,12 +40,8 @@ crates.setup({
     max_height = 30,
     min_width = 20,
   },
-  null_ls = {
-    enabled = true,
-    name = "crates.nvim",
-  },
   src = {
-    insert_closing_quote = true,
+    insert_closing_quote = false,
     text = {
       prerelease = "  pre-release ",
       yanked = "  yanked ",
