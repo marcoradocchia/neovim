@@ -1,4 +1,10 @@
 require("colorizer").setup({
-  "*",
-  "!packer",
-}, { names = false })
+  filetypes = {
+    "*",
+    "!packer",
+  },
+  user_default_options = {
+    mode = "virtualtext",
+    names = false
+  },
+})

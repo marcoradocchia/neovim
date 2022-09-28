@@ -117,7 +117,7 @@ return packer.startup(function(use)
   })
 
   use({ -- colorizer
-    "norcalli/nvim-colorizer.lua",
+    "NvChad/nvim-colorizer.lua",
   })
 
   use({ -- crates.io interface for Cargo.toml files
