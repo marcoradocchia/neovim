@@ -79,6 +79,7 @@ return packer.startup(function(use)
     "neovim/nvim-lspconfig", -- enable LSP
     "williamboman/nvim-lsp-installer", -- simple to use language server installer
     "jose-elias-alvarez/null-ls.nvim", -- formatting and more
+    "j-hui/fidget.nvim", -- UI for lsp progress
   })
 
   use({ -- telescope
@@ -94,9 +95,10 @@ return packer.startup(function(use)
   })
 
   use({ -- status and buffer lines
-    "nvim-lualine/lualine.nvim",
-    "akinsho/bufferline.nvim",
-    "moll/vim-bbye",
+    -- "nvim-lualine/lualine.nvim",
+    -- "akinsho/bufferline.nvim",
+    -- "moll/vim-bbye",
+    "rebelot/heirline.nvim"
   })
 
   use({ -- commenting
