@@ -1,9 +1,5 @@
-local installer_status, lsp_installer = pcall(require, "nvim-lsp-installer")
-local config_status, lspconfig = pcall(require, "lspconfig")
-
-if not installer_status or not config_status then
-  return
-end
+local lsp_installer = require("nvim-lsp-installer")
+local lspconfig = require("lspconfig")
 
 local servers = {
   "bashls",
@@ -36,8 +32,8 @@ lsp_installer.setup({
 })
 
 local opts = {
-  on_attach = require("user.lsp.handlers").on_attach,
-  capabilities = require("user.lsp.handlers").capabilities,
+  on_attach = require("setup.lsp.handlers").on_attach,
+  capabilities = require("setup.lsp.handlers").capabilities,
 }
 
 for _, name in ipairs(servers) do
@@ -46,7 +42,7 @@ for _, name in ipairs(servers) do
   if available then
     -- if language server settings are found in ./settings, then merge them in
     -- options before starting the language server
-    local server_settings = string.format("user.lsp.settings.%s", name)
+    local server_settings = string.format("setup.lsp.settings.%s", name)
     local status, server_opts = pcall(require, server_settings)
     if status then
       opts = vim.tbl_deep_extend("force", server_opts, opts)

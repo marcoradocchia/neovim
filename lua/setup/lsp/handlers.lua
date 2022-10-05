@@ -47,7 +47,7 @@ M.setup = function()
   })
 end
 
--- document highlight
+-- Document highlight
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.document_highlight then

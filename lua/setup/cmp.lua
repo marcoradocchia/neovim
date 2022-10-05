@@ -1,28 +1,5 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
-  return
-end
-
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-  return
-end
-
--- setup colors
-local colors = require("user.colors.gruvbox_material")
--- completion list colors
-vim.cmd(string.format("highlight CmpItemAbbr guifg=%s", colors.comment))
-vim.cmd(string.format("highlight CmpItemAbbrMatch gui=bold guifg=%s", colors.fg))
-vim.cmd(string.format("highlight CmpItemAbbrMatchFuzzy gui=bolditalic guifg=%s", colors.fg))
-vim.cmd(string.format("highlight CmpItemMenu guifg=%s", colors.comment))
--- scrollbar
-vim.cmd(string.format("highlight PmenuSbar guifg=%s", colors.orange))
--- float colors
-vim.cmd(string.format("highlight FloatBorder guifg=%s guibg=%s", colors.fg, colors.bg))
-vim.cmd(string.format("highlight NormalFloat guifg=%s guibg=%s", colors.fg, colors.bg))
-vim.cmd(string.format("highlight HintFloat guifg=%s guibg=%s", colors.cyan, colors.bg))
-vim.cmd(string.format("highlight WarningFloat guifg=%s guibg=%s", colors.yellow, colors.bg))
-vim.cmd(string.format("highlight ErrorFloat guifg=%s guibg=%s", colors.red, colors.bg))
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 --   פּ ﯟ   some other good icons
 -- find more here: https://www.nerdfonts.com/cheat-sheet

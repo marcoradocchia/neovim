@@ -1,9 +1,6 @@
-local status_ok, alpha = pcall(require, "alpha")
-if not status_ok then
-  return
-end
-
+local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
+
 dashboard.section.header.val = {
   [[  ,-.    ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗        ]],
   [[  \_/    ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║   ,-.  ]],
@@ -11,7 +8,7 @@ dashboard.section.header.val = {
   [[  / \    ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║  {|||)<]],
   [[  `-'    ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║   / \  ]],
   [[         ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝   `-'  ]],
-}                                                                        
+}
 dashboard.section.buttons.val = {
   dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
   dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
@@ -23,8 +20,15 @@ dashboard.section.buttons.val = {
 
 
 dashboard.section.footer.val = function()
-  local date = io.popen("date +\"%D %H:%M\""):read("*a")
-  return date
+  local plugins = #vim.tbl_keys(packer_plugins)
+  local version = vim.version()
+  return string.format(
+    "%d plugins | v%d.%d.%d",
+    plugins,
+    version.major,
+    version.minor,
+    version.patch
+  )
 end
 
 dashboard.section.footer.opts.hl = "Type"

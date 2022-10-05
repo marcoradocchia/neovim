@@ -1,24 +1,5 @@
--- following options are the default
--- each of these are documented in `:help nvim-tree.OPTION_NAME`
-local colors = require("user.colors.gruvbox_material")
-
-vim.cmd(string.format("highlight NvimTreeStatusLine guibg=%s guifg=%s gui=bold", colors.bg_dark, colors.red))
-vim.cmd(string.format("highlight NvimTreeStatusLineNC guibg=%s", colors.bg_dark))
-vim.cmd(string.format("highlight NvimTreeNormal guibg=%s", colors.bg_dark))
-vim.cmd(string.format("highlight NvimTreeNormalNC guibg=%s", colors.bg_dark))
-vim.cmd(string.format("highlight NvimTreeWindowPicker guifg=%s guibg=%s gui=bold", colors.bg_dark, colors.yellow))
-vim.cmd("highlight NvimTreeOpenedFile gui=bold")
-
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then
-  return
-end
-
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-  return
-end
-
+local nvim_tree = require("nvim-tree")
+local nvim_tree_config = require("nvim-tree.config")
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({

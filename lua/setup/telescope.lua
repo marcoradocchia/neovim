@@ -1,26 +1,5 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-  return
-end
-
+local telescope = require("telescope")
 local actions = require("telescope.actions")
-
--- setup colors
-local colors = require("user.colors.gruvbox_material")
-vim.cmd(string.format("highlight TelescopeBorder guifg=%s", colors.fg))
--- prompt
-vim.cmd(string.format("highlight TelescopePromptTitle gui=bolditalic guifg=%s", colors.orange))
-vim.cmd(string.format("highlight TelescopePromptPrefix gui=bold guifg=%s", colors.orange))
-vim.cmd(string.format("highlight TelescopePromptCounter guifg=%s", colors.orange))
--- results
-vim.cmd(string.format("highlight TelescopeResultsTitle gui=bolditalic guifg=%s", colors.green))
-vim.cmd(string.format("highlight TelescopeSelection gui=italic guibg=%s guifg=%s", colors.gray, colors.fg))
-vim.cmd(string.format("highlight TelescopeSelectionCaret gui=bold guibg=%s guifg=%s", colors.gray, colors.green))
-vim.cmd(string.format("highlight TelescopeResultsNormal guifg=%s", colors.comment))
-vim.cmd(string.format("highlight TelescopeMatching gui=bold guifg=%s", colors.fg))
--- preview
-vim.cmd(string.format("highlight TelescopePreviewTitle gui=bolditalic guifg=%s", colors.yellow))
-vim.cmd(string.format("highlight TelescopePreviewLine gui=bold guibg=%s guifg=%s", colors.yellow, colors.bg))
 
 telescope.setup({
   defaults = {

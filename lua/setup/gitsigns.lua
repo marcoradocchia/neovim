@@ -1,12 +1,4 @@
-local status_ok, gitsigns = pcall(require, "gitsigns")
-if not status_ok then
-  return
-end
-
--- set gitsigns colors
-local colors = require("user.colors.gruvbox_material")
-vim.cmd(string.format("highlight GitSignsChange guifg=%s", colors.orange))
-vim.cmd(string.format("highlight CursorLineNr gui=bold guifg=%s", colors.red))
+local gitsigns = require("gitsigns")
 
 gitsigns.setup({
   signs = {

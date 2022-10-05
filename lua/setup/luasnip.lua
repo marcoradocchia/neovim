@@ -1,7 +1,4 @@
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-  return
-end
+local luasnip = require("luasnip")
 
 -- snippets configuration
 luasnip.config.set_config({

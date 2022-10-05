@@ -83,4 +83,4 @@ kmap("n", "<C-c>", ":Bdelete<CR>", opts)
 -- reloadsnippets
 kmap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/luasnip.lua<CR>", opts)
 -- reload keymaps
-kmap("n", "<leader><leader>k", "<cmd>source ~/.config/nvim/lua/user/keymaps.lua<CR>", opts)
+kmap("n", "<leader><leader>k", "<cmd>source ~/.config/nvim/lua/keymaps.lua<CR>", opts)
