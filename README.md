@@ -32,7 +32,6 @@ Below the list of plugins used in this config:
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) (git information)
 - [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) (file tree)
-- [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) (terminal buffers helper)
 - [nvim-colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua) (show colors as text background)
 - [crates.nvim](https://github.com/Saecki/crates.nvim) ([crates.io](https://crates.io) interface for `Cargo.toml` files)
 - [alpha-nvim](https://github.com/goolord/alpha-nvim) (dashboard)

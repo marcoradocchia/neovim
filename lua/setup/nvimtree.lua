@@ -97,6 +97,8 @@ nvim_tree.setup({
       "changelog.md",
       "LICENSE",
       "license",
+      "requirements",
+      "requirements.txt",
     },
     indent_markers = {
       enable = false,

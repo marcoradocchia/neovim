@@ -13,8 +13,8 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd("packadd packer.nvim")
 end
 
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
+local success, packer = pcall(require, "packer")
+if not success then
   return
 end
 
@@ -135,12 +135,6 @@ return packer.startup(function(use)
   use({
     "kyazdani42/nvim-tree.lua",
     config = setup("nvimtree")
-  })
-
-  -- Terminal --
-  use({
-    "https://github.com/akinsho/toggleterm.nvim",
-    config = setup("toggleterm")
   })
 
   -- Colorizer --

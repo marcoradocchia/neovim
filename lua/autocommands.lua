@@ -1,3 +1,20 @@
-vim.cmd("autocmd BufEnter *.pde :set filetype=java")
-vim.cmd("autocmd BufEnter *.tex :set textwidth=79")
-vim.cmd("autocmd BufEnter *.rs :set colorcolumn=99")
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "rust", "tex" },
+  callback = function()
+    local filetypes = {
+      tex = { 79 },
+      rust = { 99 },
+    }
+
+    vim.opt.colorcolumn = filetypes[vim.fn.expand("<amatch>")]
+  end,
+  desc = "Set colorcolumn according to filetype.",
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*.pde",
+  callback = function()
+    vim.opt.filetype = "java"
+  end,
+  desc = "Set filetype to 'java' for Processing source files (*.pde).",
+})

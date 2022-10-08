@@ -1,5 +1,4 @@
 local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
 
 local kmap = vim.api.nvim_set_keymap
 -- nvim_set_keymap({mode}, {lhs}, {rhs}, {*opts})
@@ -48,12 +47,6 @@ kmap("n", "N", "Nzzzv", opts)
 kmap("n", "J", "mzJ`z", opts)
 kmap("n", "<C-d>", "<C-d>zz", opts)
 kmap("n", "<C-u>", "<C-u>zz", opts)
-
--- Terminal --
-kmap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
-kmap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-kmap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
-kmap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 
 -- Telescope --
 kmap("n", "g/", "<cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find()<CR>", opts)
