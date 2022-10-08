@@ -3,8 +3,6 @@ local nvim_tree_config = require("nvim-tree.config")
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({
-  -- add_trailing = 1,
-  -- group_empty = 1,
   disable_netrw = true,
   hijack_netrw = true,
   open_on_setup = false,
@@ -16,6 +14,7 @@ nvim_tree.setup({
     "startify",
     "dashboard",
     "alpha",
+    "packer",
   },
   diagnostics = {
     enable = true,
@@ -66,15 +65,15 @@ nvim_tree.setup({
     icons = {
       symlink_arrow = "  ",
       glyphs = {
-        default = "",
+        default = "",
         symlink = "",
         git = {
           unstaged = "",
-          staged = "S",
+          staged = "+",
           unmerged = "",
-          renamed = "➜",
-          deleted = "",
-          untracked = "U",
+          renamed = "»",
+          deleted = "-",
+          untracked = "?",
           ignored = "◌",
         },
         folder = {
@@ -90,12 +89,14 @@ nvim_tree.setup({
     group_empty = true,
     special_files = {
       "Cargo.toml",
+      "Cargo.lock",
       "Makefile",
       "README.md",
-      "CHANGELOG.md",
       "readme.md",
+      "CHANGELOG.md",
       "changelog.md",
       "LICENSE",
+      "license",
     },
     indent_markers = {
       enable = false,
@@ -120,7 +121,7 @@ nvim_tree.setup({
         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
         exclude = {
           filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-          buftype = { "nofile", "terminal", "help" },
+          buftype = { "nofile", "terminal", "help", "alpha" },
         },
       },
     },

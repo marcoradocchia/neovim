@@ -3,31 +3,19 @@ local actions = require("telescope.actions")
 
 telescope.setup({
   defaults = {
-    -- aspect
     prompt_prefix = " ",
     selection_caret = " ",
     dynamic_preview_title = true,
-    -- border = false,
-
-    -- results path
     path_display = { "smart" },
-
-    -- preview
-    preview = {
-      msg_bg_fillchar = "#",
-    },
-
-    -- mappings
+    preview = { msg_bg_fillchar = "#" },
     mappings = {
       -- insert mode
       i = {
         -- close telescope
         ["<C-e>"] = actions.close,
-
         -- history
         ["<C-j>"] = actions.cycle_history_next,
         ["<C-k>"] = actions.cycle_history_prev,
-
         -- move selection
         ["<C-n>"] = actions.move_selection_next,
         ["<C-p>"] = actions.move_selection_previous,
@@ -36,13 +24,11 @@ telescope.setup({
         -- scroll selection
         ["<C-u>"] = actions.preview_scrolling_up,
         ["<C-d>"] = actions.preview_scrolling_down,
-
         -- open selection
         ["<CR>"] = actions.select_default,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
-
         -- multiple selection
         ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
         ["<A-Tab>"] = actions.toggle_selection + actions.move_selection_better,
@@ -51,12 +37,10 @@ telescope.setup({
         ["<C-l>"] = actions.complete_tag,
         ["<C-_>"] = actions.which_key, -- keys from pressing <C-7>
       },
-
       -- normal mode
       n = {
         -- close telescope
         ["<esc>"] = actions.close,
-
         -- move selection
         ["j"] = actions.move_selection_next,
         ["k"] = actions.move_selection_previous,
@@ -66,19 +50,16 @@ telescope.setup({
         -- scroll selection
         ["<C-u>"] = actions.preview_scrolling_up,
         ["<C-d>"] = actions.preview_scrolling_down,
-
         -- open selection
         ["<CR>"] = actions.select_default,
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
-
         -- multiple selection
         ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
         ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-
         ["?"] = actions.which_key,
       },
     },

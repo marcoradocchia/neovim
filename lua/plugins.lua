@@ -38,15 +38,11 @@ packer.init({
 })
 
 return packer.startup(function(use)
-  --, -- an implementation of the popup api from vim in neovim TODO
-
   -- Packer --
   use("wbthomason/packer.nvim")
 
   -- Colorscheme --
   use({
-    --[[ "EdenEast/nightfox.nvim", ]]
-    --[[ "rmehri01/onenord.nvim", ]]
     "folke/tokyonight.nvim",
     config = setup("colorscheme")
   })
@@ -55,6 +51,12 @@ return packer.startup(function(use)
   use({
     "goolord/alpha-nvim",
     config = setup("alpha")
+  })
+
+  -- Statusline --
+  use({
+    "nvim-lualine/lualine.nvim",
+    config = setup("lualine")
   })
 
   -- LSP --
@@ -76,13 +78,12 @@ return packer.startup(function(use)
   use({
     "hrsh7th/nvim-cmp",
     requires = {
-      { "hrsh7th/cmp-buffer" }, -- buffer completions
-      { "hrsh7th/cmp-path" }, -- path completions
-      { "hrsh7th/cmp-cmdline" }, -- cmdline completions
-      { "hrsh7th/cmp-nvim-lsp" }, -- lsp completions
-      { "hrsh7th/cmp-nvim-lua" }, -- nvim lua apis completions
-      { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
-      { "f3fora/cmp-spell" }, -- spell completion
+      "hrsh7th/cmp-buffer", -- buffer completions
+      "hrsh7th/cmp-path", -- path completions
+      "hrsh7th/cmp-cmdline", -- cmdline completions
+      "hrsh7th/cmp-nvim-lsp", -- lsp completions
+      "hrsh7th/cmp-nvim-lua", -- nvim lua apis completions
+      "saadparwaiz1/cmp_luasnip", -- snippet completions
     },
     config = setup("cmp")
   })
@@ -97,8 +98,8 @@ return packer.startup(function(use)
   use({
     "nvim-telescope/telescope.nvim",
     requires = {
-      { "nvim-telescope/telescope-ui-select.nvim" },
-      { "nvim-lua/plenary.nvim" },
+      "nvim-telescope/telescope-ui-select.nvim",
+      "nvim-lua/plenary.nvim",
     },
     config = setup("telescope")
   })
@@ -119,7 +120,7 @@ return packer.startup(function(use)
   use({
     "numToStr/Comment.nvim",
     requires = {
-      { "JoosepAlviste/nvim-ts-context-commentstring" },
+      "JoosepAlviste/nvim-ts-context-commentstring",
     },
     config = setup("comment")
   })
@@ -153,7 +154,7 @@ return packer.startup(function(use)
     "saecki/crates.nvim",
     event = { "BufRead Cargo.toml" },
     requires = {
-      { "nvim-lua/plenary.nvim" },
+      "nvim-lua/plenary.nvim",
     },
     config = setup("crates")
   })
