@@ -8,7 +8,7 @@ vim.cmd("highlight! link FidgetTitle OrangeBold")
 
 fidget.setup({
   text = {
-    spinner = "dots",
+    spinner = "grow_vertical",
     done = ""
   },
   window = {

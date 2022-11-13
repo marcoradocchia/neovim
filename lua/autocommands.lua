@@ -2,7 +2,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "rust", "tex" },
   callback = function()
     local filetypes = {
-      tex = { 79 },
+      tex = { 80 },
       rust = { 99 },
     }
 

@@ -62,7 +62,7 @@ kmap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 kmap("n", "<leader>n", ":NvimTreeFocus<CR>", opts)
 
 -- Reloadsnippets --
-kmap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/luasnip.lua<CR>", opts)
+kmap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/setup/luasnip.lua<CR>", opts)
 
 -- Reload keymaps --
 kmap("n", "<leader><leader>k", "<cmd>source ~/.config/nvim/lua/keymaps.lua<CR>", opts)

@@ -9,3 +9,4 @@ kmap("n", "<leader>c", "<cmd>!lualatex --output-dir pdf main.tex && pgrep zathur
 -- Spell checker for english and italian.
 vim.opt.spelllang = "en,it"
 vim.opt.spell = true
+vim.opt.textwidth = 79

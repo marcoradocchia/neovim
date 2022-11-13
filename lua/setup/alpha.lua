@@ -32,11 +32,6 @@ dashboard.section.footer.val = function()
   )
 end
 
--- Colors --
-dashboard.section.footer.opts.hl = "Boolean"
-dashboard.section.header.opts.hl = "@tag"
-dashboard.section.buttons.opts.hl = "Keyword"
-
 -- Options --
 dashboard.opts.opts.noautocmd = true
 

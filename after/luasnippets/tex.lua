@@ -14,12 +14,7 @@ local function date()
 	return os.date("%Y-%m-%d")
 end
 
-local function cur_buf_name()
-  local buf_name = vim.api.nvim_buf_get_name(0)
-  return string.gsub(buf_name, ".*/(.*).tex", "%1/")
-end
-
-return { -- triggered
+return { -- TRIGGERED
 	-- begin/end
 	s(
 		{ trig = "beg", name = "begin/end" },
@@ -27,9 +22,9 @@ return { -- triggered
 			[[
         \begin{{{}}}
           {}
-        \end{{{}}}
+        \end{{{}}}{}
       ]],
-			{ i(1), i(0), rep(1) }
+			{ i(1), i(2), rep(1), i(0) }
 		)
 	),
 	-- chapter
@@ -106,9 +101,23 @@ return { -- triggered
 			[[
         \boxed{{
           {}
-        }}
+        }}{}
       ]],
-			{ i(0) }
+			{ i(1), i(0) }
+		)
+	),
+	-- named & boxed
+	s(
+		{ trig = "nbox", name = "named & boxed" },
+		fmt(
+			[[
+        \textbf{{{}}}
+        \qquad
+        \boxed{{
+          {}
+        }}{}
+      ]],
+			{ i(1), i(2), i(0) }
 		)
 	),
 	-- equation
@@ -118,9 +127,9 @@ return { -- triggered
 			[[
         \begin{{equation}}
           {}
-        \end{{equation}}
+        \end{{equation}}{}
       ]],
-			{ i(0) }
+			{ i(1), i(0) }
 		)
 	),
 	-- unnumbered equation
@@ -130,9 +139,9 @@ return { -- triggered
 			[[
         \begin{{equation*}}
           {}
-        \end{{equation*}}
+        \end{{equation*}}{}
       ]],
-			{ i(0) }
+			{ i(1), i(0) }
 		)
 	),
 	-- align block
@@ -142,9 +151,9 @@ return { -- triggered
 			[[
         \begin{{align}}
           {}
-        \end{{align}}
+        \end{{align}}{}
       ]],
-			{ i(0) }
+			{ i(1), i(0) }
 		)
 	),
 	-- unnumbered align block
@@ -154,9 +163,9 @@ return { -- triggered
 			[[
         \begin{{align*}}
           {}
-        \end{{align*}}
+        \end{{align*}}{}
       ]],
-			{ i(0) }
+			{ i(1), i(0) }
 		)
 	),
 	-- dcases block
@@ -166,9 +175,9 @@ return { -- triggered
 			[[
         \begin{{dcases}}
           {}
-        \end{{dcases}}
+        \end{{dcases}}{}
       ]],
-			{ i(0) }
+			{ i(1), i(0) }
 		)
 	),
 	-- gathered block
@@ -178,9 +187,9 @@ return { -- triggered
 			[[
         \begin{{gathered}}
           {}
-        \end{{gathered}}
+        \end{{gathered}}{}
       ]],
-			{ i(0) }
+			{ i(1), i(0) }
 		)
 	),
 	-- itemize
@@ -191,9 +200,9 @@ return { -- triggered
         \begin{{itemize}}
           \item {}
           \item {}
-        \end{{itemize}}
+        \end{{itemize}}{}
       ]],
-			{ i(1), d(2, rec_ls, {}) }
+			{ i(1), d(2, rec_ls, {}), i(0) }
 		)
 	),
 	-- enumerate
@@ -204,9 +213,9 @@ return { -- triggered
         \begin{{enumerate}}
           \item {}
           \item {}
-        \end{{enumerate}}
+        \end{{enumerate}}{}
       ]],
-			{ i(1), d(2, rec_ls, {}) }
+			{ i(1), d(2, rec_ls, {}), i(0) }
 		)
 	),
 	-- pmatrix
@@ -216,9 +225,9 @@ return { -- triggered
 			[[
         \begin{{pmatrix}}
           {}
-        \end{{pmatrix}}
+        \end{{pmatrix}}{}
       ]],
-			{ i(0) }
+			{ i(1), i(0) }
 		)
 	),
 	-- bmatrix
@@ -228,9 +237,9 @@ return { -- triggered
 			[[
         \begin{{bmatrix}}
           {}
-        \end{{bmatrix}}
+        \end{{bmatrix}}{}
       ]],
-			{ i(0) }
+			{ i(1), i(0) }
 		)
 	),
 	-- cmatrix
@@ -240,9 +249,9 @@ return { -- triggered
 			[[
         \begin{{cmatrix}}
           {}
-        \end{{cmatrix}}
+        \end{{cmatrix}}{}
       ]],
-			{ i(0) }
+			{ i(1), i(0) }
 		)
 	),
 	-- theorem
@@ -252,9 +261,9 @@ return { -- triggered
 			[[
         \begin{{theorem}}[{}]
           {}
-        \end{{theorem}}
+        \end{{theorem}}{}
       ]],
-			{ i(1), i(0) }
+			{ i(1), i(2), i(0) }
 		)
 	),
 	-- corollary
@@ -264,9 +273,9 @@ return { -- triggered
 			[[
         \begin{{corollary}}[{}]
           {}
-        \end{{corollary}}
+        \end{{corollary}}{}
       ]],
-			{ i(1), i(0) }
+			{ i(1), i(2), i(0) }
 		)
 	),
 	-- proof
@@ -288,9 +297,9 @@ return { -- triggered
 			[[
         \begin{{definition}}[{}]
           {}
-        \end{{definition}}
+        \end{{definition}}{}
       ]],
-			{ i(1), i(0) }
+			{ i(1), i(2), i(0) }
 		)
 	),
 	-- lemma
@@ -300,9 +309,9 @@ return { -- triggered
 			[[
         \begin{{lemma}}[{}]
           {}
-        \end{{lemma}}
+        \end{{lemma}}{}
       ]],
-			{ i(1), i(0) }
+			{ i(1), i(2), i(0) }
 		)
 	),
 	-- note
@@ -312,9 +321,9 @@ return { -- triggered
 			[[
         \begin{{note}}[{}]
           {}
-        \end{{note}}
+        \end{{note}}{}
       ]],
-			{ i(1), i(0) }
+			{ i(1), i(2), i(0) }
 		)
 	),
 	-- example
@@ -324,9 +333,9 @@ return { -- triggered
 			[[
         \begin{{example}}[{}]
           {}
-        \end{{example}}
+        \end{{example}}{}
       ]],
-			{ i(1), i(0) }
+			{ i(1), i(2), i(0) }
 		)
 	),
 	-- exercise
@@ -336,9 +345,21 @@ return { -- triggered
 			[[
         \begin{{exercise}}[{}]
           {}
-        \end{{exercise}}
+        \end{{exercise}}{}
       ]],
-			{ i(1), i(0) }
+			{ i(1), i(2), i(0) }
+		)
+	),
+	-- question
+	s(
+		{ trig = "quest", name = "question" },
+		fmt(
+			[[
+        \begin{{question}}[{}]
+          {}
+        \end{{question}}{}
+      ]],
+			{ i(1), i(2), i(0) }
 		)
 	),
 	-- text
@@ -371,6 +392,11 @@ return { -- triggered
 	s(
 		{ trig = "<x>", name = "matrix element" },
 		fmt("\\braket{{{} \\vert {} \\vert {}}}{}", { i(1), i(2), i(3), i(0) })
+	),
+	-- mean value over a state
+	s(
+		{ trig = "<X>", name = "mean value over a state" },
+		fmt("\\braket{{{} \\vert {} \\vert {}}}{}", { i(1), i(2), rep(1), i(0) })
 	),
 	-- mean value
 	s({ trig = "<M>", name = "mean value" }, fmt("\\braket{{{}}}{}", { i(1), i(0) })),
@@ -413,11 +439,20 @@ return { -- triggered
 		)
 	),
 	-- integral
-	s({ trig = "mint", name = "integral" }, fmt("\\mint{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(0) })),
+	s(
+    { trig = "mint", name = "integral" },
+    fmt(
+      "\\mint{{{}}}{{{}}}{{{}}}{{{}}}{}",
+      { i(1), i(2), i(3), i(4), i(0) }
+    )
+  ),
 	-- double integral
 	s(
 		{ trig = "dint", name = "double integral" },
-		fmt("\\dint{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(5), i(6), i(7), i(0) })
+		fmt(
+      "\\dint{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}{}",
+      { i(1), i(2), i(3), i(4), i(5), i(6), i(7), i(0) }
+    )
 	),
 	-- triple integral
 	s(
@@ -428,42 +463,144 @@ return { -- triggered
 		)
 	),
 	-- inf integral
-	s({ trig = "infint", name = "inf integral" }, fmt("\\infint{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
+	s(
+    { trig = "infint", name = "inf integral" },
+    fmt(
+      "\\infint{{{}}}{{{}}}{}",
+      { i(1), i(2), i(0) }
+    )
+  ),
 	-- o integral
-	s({ trig = "moint", name = "o integral" }, fmt("\\moint{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(0) })),
+	s(
+    { trig = "moint", name = "o integral" },
+    fmt(
+      "\\moint{{{}}}{{{}}}{{{}}}{}",
+      { i(1), i(2), i(3), i(0) }
+    )
+  ),
 	-- indefinite integral
-	s({ trig = "miint", name = "indefinite integral" }, fmt("\\miint{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
+	s(
+    { trig = "miint", name = "indefinite integral" },
+    fmt(
+      "\\miint{{{}}}{{{}}}{}",
+      { i(1), i(2), i(0) }
+    )
+  ),
 	-- indefinite double integral
 	s(
 		{ trig = "midint", name = "indefinite integral" },
-		fmt("\\midint{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(0) })
+		fmt(
+      "\\midint{{{}}}{{{}}}{{{}}}{}",
+      { i(1), i(2), i(3), i(0) }
+    )
 	),
 	-- indefinite triple integral
 	s(
 		{ trig = "mitint", name = "indefinite integral" },
-		fmt("\\mitint{{{}}}{{{}}}{{{}}}{{{}}}{}", { i(1), i(2), i(3), i(4), i(0) })
+		fmt(
+      "\\mitint{{{}}}{{{}}}{{{}}}{{{}}}{}",
+      { i(1), i(2), i(3), i(4), i(0) }
+    )
 	),
 	-- differential
-	s({ trig = "md", name = "differential" }, fmt("\\md{{{}}}{}", { i(1), i(0) })),
+	s(
+    { trig = "md", name = "differential" },
+    fmt(
+      "\\md[{}]{{{}}}{}",
+      { i(1), i(2), i(0) }
+    )
+  ),
 	-- derivative
-	s({ trig = "mdv", name = "derivative" }, fmt("\\mdv{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
+	s(
+    { trig = "mdv", name = "derivative" },
+    fmt(
+      "\\mdv{{{}}}{{{}}}{}",
+      { i(1), i(2), i(0) }
+    )
+  ),
 	-- total derivative
-	s({ trig = "mDv", name = "derivative" }, fmt("\\mDv{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
+	s(
+    { trig = "mDv", name = "derivative" },
+    fmt(
+      "\\mDv{{{}}}{{{}}}{}",
+      { i(1), i(2), i(0) }
+    )
+  ),
 	-- partial derivative
-	s({ trig = "mpdv", name = "partial derivative" }, fmt("\\mpdv{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
+	s(
+    { trig = "mpdv", name = "partial derivative" },
+    fmt("\\mpdv[{}]{{{}}}{{{}}}{}",
+      { i(1), i(2), i(3), i(0) }
+    )
+  ),
+  -- divergence
+  s(
+    { trig = "mdiv", name = "divergence" },
+    fmt("\\mdiv{{{}}}{}",
+      { i(1), i(0) }
+    )
+  ),
+  -- gradient
+  s(
+    { trig = "mgrad", name = "divergence" },
+    fmt("\\mgrad{{{}}}{}",
+      { i(1), i(0) }
+    )
+  ),
+  -- laplacian
+  s(
+    { trig = "mlap", name = "laplacian" },
+    fmt("\\mlap{{{}}}{}",
+      { i(1), i(0) }
+    )
+  ),
+  -- rotor
+  s(
+    { trig = "mrot", name = "rotor" },
+    fmt("\\mrot{{{}}}{}",
+      { i(1), i(0) }
+    )
+  ),
 	-- sum
-	s({ trig = "++", name = "sum" }, fmt("\\msum{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
+	s(
+    { trig = "++", name = "sum" },
+    fmt(
+      "\\msum{{{}}}{{{}}}{}",
+      { i(1), i(2), i(0) }
+    )
+  ),
 	-- prod
-	s({ trig = "**", name = "prod" }, fmt("\\mprod{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
+	s(
+    { trig = "**", name = "prod" },
+    fmt(
+      "\\mprod{{{}}}{{{}}}{}",
+      { i(1), i(2), i(0) }
+    )
+  ),
 	-- input listing
 	s(
 		{ trig = "incode", name = "lstinputlisting" },
-		fmt("\\lstinputlisting{{./src/{}/src{}.{}}}{}", { i(1), i(2), i(3), i(0) })
+		fmt(
+      "\\lstinputlisting{{./src/{}/src{}.{}}}{}",
+      { i(1), i(2), i(3), i(0) }
+    )
 	),
 	-- exponential
-	s({ trig = "exp", name = "exponential" }, fmt("e^{{{}}}{}", { i(1), i(0) })),
+	s(
+    { trig = "exp", name = "exponential" },
+    fmt(
+      "e^{{{}}}{}",
+      { i(1), i(0) }
+    )
+  ),
 	-- intenrational sistem unit
-	s({ trig = "SI", name = "intenrational sistem" }, fmt("\\SI{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
+	s(
+    { trig = "SI", name = "intenrational sistem" },
+    fmt(
+      "\\SI{{{}}}{{{}}}{}",
+      { i(1), i(2), i(0) }
+    )
+  ),
 	-- pgfplot
 	s(
 		{ trig = "pgfplot", name = "pgfplot" },
@@ -512,9 +649,21 @@ return { -- triggered
 		)
 	),
 	-- dot product
-  s({ trig = "dpr", name = "dot product" }, fmt("\\dpr{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
+  s(
+    { trig = "dpr", name = "dot product" },
+    fmt(
+      "\\dpr{{{}}}{{{}}}{}",
+      { i(1), i(2), i(0) }
+    )
+  ),
 	-- wedge product
-  s({ trig = "wpr", name = "wedge product" }, fmt("\\wpr{{{}}}{{{}}}{}", { i(1), i(2), i(0) })),
+  s(
+    { trig = "wpr", name = "wedge product" },
+    fmt(
+      "\\wpr{{{}}}{{{}}}{}",
+      { i(1), i(2), i(0) }
+    )
+  ),
 	-- table
 	s(
 		{ trig = "table", name = "table" },
@@ -558,7 +707,7 @@ return { -- triggered
 		)
 	),
 },
-	{ -- autotriggered
+	{ -- AUTOTRIGGERED
 		-- todo comment
 		s({ trig = "todo", name = "todo comment" }, fmt("% TODO: {}", { i(1) })),
 		-- round brackets
@@ -599,6 +748,8 @@ return { -- triggered
 		s({ trig = "!=", name = "not equal" }, t("\\neq ")),
 		-- equivalent
 		s({ trig = "==", name = "equivalent" }, t("\\equiv ")),
+    -- dotequal
+    s({ trig = ".=", name = "dot equal" }, t("\\doteq ")),
 		-- rightarrow
 		s({ trig = "->", name = "rightarrow" }, t("\\rightarrow ")),
 		-- leftarrow
@@ -631,6 +782,7 @@ return { -- triggered
 		s("`G", t("\\Gamma")),
 		s("`h", t("\\hbar")),
 		s("`H", t("\\ham")),
+    s("`I", t("\\mathbb{I}")),
 		s("`l", t("\\lambda")),
 		s("`L", t("\\Lambda")),
 		s("`m", t("\\mu")),
@@ -654,6 +806,6 @@ return { -- triggered
 		s("uarr", t("\\uparrow")),
 		s("~=", t("\\simeq")),
 		s("const", t("\\text{const}")),
-		s("ast", t("\\ast")),
+		s("`*", t("\\ast")),
 		s("mthen", t("\\mthen")),
 	}

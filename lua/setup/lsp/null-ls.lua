@@ -8,13 +8,13 @@ null_ls.setup({
   debug = false,
   sources = {
     formatting.prettier.with({
-      extra_args = {
+      args = {
         "--single-quote",
         "--jsx-single-quote",
       },
     }),
     formatting.black.with({
-      extra_args = {
+      args = {
         "--line-length",
         "79",
         "--fast",
@@ -22,16 +22,24 @@ null_ls.setup({
     }),
     formatting.latexindent,
     formatting.clang_format.with({
-      extra_args = {
+      args = {
         "--style=Mozilla",
       },
     }),
-    formatting.rustfmt.with({ extra_args = { "--edition", "2021" } }),
+    formatting.rustfmt.with({
+      args = {
+        "--edition", "2021"
+      }
+    }),
+    formatting.shfmt.with({
+      args = {
+        "-ci", "-fn", "-i", "2"
+      }
+    }),
     diagnostics.flake8.with({
-      extra_args = {
+      args = {
         "--ignore=E402,E203,W503"
       }
     }),
-    --[[ formatting.stylua, ]]
   },
 })
