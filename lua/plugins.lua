@@ -153,6 +153,12 @@ return packer.startup(function(use)
     config = setup("crates")
   })
 
+  -- Terminal --
+  use({
+    "akinsho/toggleterm.nvim",
+    config = setup("toggleterm")
+  })
+
   -- .yuck filetype support --
   use("elkowar/yuck.vim")
 
