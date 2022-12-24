@@ -1,34 +1,22 @@
 -- Automatically install packer if not installed yet.
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local is_bootstrap = false
+
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = vim.fn.system({
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
+  vim.fn.system({
+    "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim",
+    install_path
   })
-  print("Installing packer! Close and reopen Neovim...")
+  is_bootstrap = true
   vim.cmd("packadd packer.nvim")
 end
 
-local success, packer = pcall(require, "packer")
-if not success then
-  return
-end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file.
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
-
+-- Plugin configuration.
 local function setup(name)
   return string.format('require("setup/%s")', name)
 end
+
+local packer = require("packer")
 
 packer.init({
   display = {
@@ -37,13 +25,14 @@ packer.init({
   },
 })
 
-return packer.startup(function(use)
+packer.startup(function(use)
   -- Packer --
   use("wbthomason/packer.nvim")
 
   -- Colorscheme --
   use({
-    "folke/tokyonight.nvim",
+    "catppuccin/nvim",
+    as = "catppuccin",
     config = setup("colorscheme")
   })
 
@@ -63,13 +52,20 @@ return packer.startup(function(use)
   use({
     "neovim/nvim-lspconfig",
     requires = {
-      "williamboman/nvim-lsp-installer", -- server installer
-      "jose-elias-alvarez/null-ls.nvim", -- formatting and more
-      "nvim-lua/popup.nvim",
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
       {
-        "j-hui/fidget.nvim", -- UI for lsp progress
+        "jose-elias-alvarez/null-ls.nvim",
+        config = setup("null-ls")
+      },
+      {
+        "j-hui/fidget.nvim",
         config = setup("fidget")
-      }
+      },
+      {
+        "folke/neodev.nvim",
+        config = setup("neodev")
+      },
     },
     config = setup("lsp"),
   })
@@ -111,7 +107,6 @@ return packer.startup(function(use)
     requires = {
       "nvim-treesitter/playground",
       "nvim-treesitter/nvim-treesitter-context",
-      "p00f/nvim-ts-rainbow",
     },
     config = setup("treesitter")
   })
@@ -153,18 +148,34 @@ return packer.startup(function(use)
     config = setup("crates")
   })
 
-  -- Terminal --
-  use({
-    "akinsho/toggleterm.nvim",
-    config = setup("toggleterm")
-  })
-
-  -- .yuck filetype support --
-  use("elkowar/yuck.vim")
+  -- No distraction mode --
+  use {
+    "folke/zen-mode.nvim",
+    config = setup("zen")
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
+  if is_bootstrap then
     require("packer").sync()
   end
 end)
+
+-- Automatically source and sync packer whenever you save current buffer.
+vim.cmd([[
+  augroup Packer
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
+
+-- Bootstrapping configuration.
+-- You'll need to restart nvim, and then it will work.
+if is_bootstrap then
+  print "=================================="
+  print "    Plugins are being installed"
+  print "    Wait until Packer completes,"
+  print "       then restart nvim"
+  print "=================================="
+  return
+end

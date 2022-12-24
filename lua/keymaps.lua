@@ -1,68 +1,42 @@
-local opts = { noremap = true, silent = true }
-
-local kmap = vim.api.nvim_set_keymap
--- nvim_set_keymap({mode}, {lhs}, {rhs}, {*opts})
-
 -- Map space as leader key --
-kmap("", "<Space>", "<Nop>", opts)
+vim.keymap.set("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Modes --
--- +-------------------+---+
--- | normal_mode       | n |
--- | insert_mode       | i |
--- | visual_mode       | v |
--- | visual_block_mode | x |
--- | term_mode         | t |
--- | command_mode      | c |
--- +-------------------+---+
-
 -- Resize splits --
-kmap("n", "<C-A-k>", ":resize +2<CR>", opts)
-kmap("n", "<C-A-j>", ":resize -2<CR>", opts)
-kmap("n", "<C-A-l>", ":vertical resize -2<CR>", opts)
-kmap("n", "<C-A-h>", ":vertical resize +2<CR>", opts)
+vim.keymap.set("n", "<C-A-k>", ":resize +2<CR>")
+vim.keymap.set("n", "<C-A-j>", ":resize -2<CR>")
+vim.keymap.set("n", "<C-A-l>", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<C-A-h>", ":vertical resize +2<CR>")
 
--- Visual --
 -- Stay in indent mode
-kmap("v", "<", "<gv", opts)
-kmap("v", ">", ">gv", opts)
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
 -- Move text up and down --
-kmap("v", "<A-j>", ":m .+1<CR>==", opts)
-kmap("v", "<A-k>", ":m .-2<CR>==", opts)
-kmap("v", "p", '"_dP', opts)
+vim.keymap.set("v", "<A-j>", ":m .+1<CR>==")
+vim.keymap.set("v", "<A-k>", ":m .-2<CR>==")
+
+-- Greatest remap ever by The Primeagen --
+-- Paste preserving current register --
+vim.keymap.set("x", "<leader>p", "\"_dP")
+vim.keymap.set("n", "<leader>d", "\"_d")
+vim.keymap.set("v", "<leader>d", "\"_d")
 
 -- Move text up and down (Visual Block) --
-kmap("x", "J", ":move '>+1<CR>gv=gv", opts)
-kmap("x", "K", ":move '<-2<CR>gv=gv", opts)
+vim.keymap.set("x", "J", ":move '>+1<CR>gv=gv")
+vim.keymap.set("x", "K", ":move '<-2<CR>gv=gv")
 
 -- No Highlighting --
-kmap("n", "<leader>h", ":noh<CR>", opts)
+vim.keymap.set("n", "<leader>h", ":noh<CR>")
 
 -- Keep line centered --
-kmap("n", "n", "nzzzv", opts)
-kmap("n", "N", "Nzzzv", opts)
-kmap("n", "J", "mzJ`z", opts)
-kmap("n", "<C-d>", "<C-d>zz", opts)
-kmap("n", "<C-u>", "<C-u>zz", opts)
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
--- Telescope --
-kmap("n", "g/", "<cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find()<CR>", opts)
-kmap("n", "<leader>s", "<cmd>lua require'telescope.builtin'.grep_string(require'telescope.themes'.get_cursor())<CR>",
-  opts)
-kmap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files()<CR>", opts)
-kmap("n", "<leader>t", "<cmd>lua require'telescope.builtin'.live_grep()<CR>", opts)
-kmap("n", "<leader>m", "<cmd>lua require'telescope.builtin'.man_pages()<CR>", opts)
-kmap("n", "<leader>B", "<cmd>lua require'telescope.builtin'.buffers()<CR>", opts)
-
--- NvimTree --
-kmap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
-kmap("n", "<leader>n", ":NvimTreeFocus<CR>", opts)
-
--- Reloadsnippets --
-kmap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/setup/luasnip.lua<CR>", opts)
-
--- Reload keymaps --
-kmap("n", "<leader><leader>k", "<cmd>source ~/.config/nvim/lua/keymaps.lua<CR>", opts)
+-- Reload --
+vim.keymap.set("n", "<leader><leader>s", function () vim.cmd("source"..vim.fn.expand("$XDG_CONFIG_HOME/nvim/lua/setup/luasnip.lua")) end, { desc = "Reload snippets" })
+vim.keymap.set("n", "<leader><leader>k", function() vim.cmd("source"..vim.fn.expand("$XDG_CONFIG_HOME/nvim/lua/keymaps.lua")) end, { desc = "Reload keymaps" })

@@ -1,8 +1,8 @@
-local nvim_tree = require("nvim-tree")
-local nvim_tree_config = require("nvim-tree.config")
-local tree_cb = nvim_tree_config.nvim_tree_callback
+local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
-nvim_tree.setup({
+vim.keymap.set("n", "<C-n>", require("nvim-tree.api").tree.toggle, { desc = "Toggle file tree" })
+
+require("nvim-tree").setup({
   disable_netrw = true,
   hijack_netrw = true,
   open_on_setup = false,
@@ -19,10 +19,10 @@ nvim_tree.setup({
   diagnostics = {
     enable = true,
     icons = {
-      error = "",
-      warning = "",
-      hint = "ﯦ",
-      info = "",
+      error = "",
+      warning ="",
+      hint = "ﯧ",
+      info = "",
     },
   },
   update_focused_file = {

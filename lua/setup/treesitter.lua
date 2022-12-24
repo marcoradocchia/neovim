@@ -1,6 +1,4 @@
-local configs = require("nvim-treesitter.configs")
-
-configs.setup({
+require("nvim-treesitter.configs").setup({
   ensure_installed = {
     "bash",
     "bibtex",
@@ -10,6 +8,7 @@ configs.setup({
     "css",
     "dockerfile",
     "fortran",
+    "help",
     "html",
     "http",
     "java",
@@ -31,75 +30,86 @@ configs.setup({
     "vim",
     "yaml"
   },
-  sync_install = false, -- install synchronously (only with ensure_installed)
-  ignore_install = { "" }, -- List of parsers to ignore installing
+  sync_install = false,
   highlight = {
-    enable = true, -- false will disable the whole extension
-    -- disable = { "" }, -- list of language that will be disabled
-    additional_vim_regex_highlighting = true,
+    enable = true,
+    additional_vim_regex_highlighting = false,
   },
   indent = {
     enable = true,
-    disable = { "python", "yaml", "c" },
+    disable = { "python" },
   },
-  context_commentstring = {
+  incremental_selection = {
     enable = true,
-    enable_autocmd = false,
+    keymaps = {
+      init_selection = '<c-space>',
+      node_incremental = '<c-space>',
+      scope_incremental = '<c-s>',
+      node_decremental = '<c-backspace>',
+    },
   },
-  rainbow = {
-    enable = true,
-    -- disable = { 'jsx', 'cpp' }, list of languages you want to
-    -- disable the plugin for max_file_lines = nil, Do not enable for
-    -- files with more than n lines, int
-    extended_mode = true, -- also highlight non-bracket delimiters
-  },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ['aa'] = '@parameter.outer',
+        ['ia'] = '@parameter.inner',
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true,
+      goto_next_start = {
+        [']m'] = '@function.outer',
+        [']]'] = '@class.outer',
+      },
+      goto_next_end = {
+        [']M'] = '@function.outer',
+        [']['] = '@class.outer',
+      },
+      goto_previous_start = {
+        ['[m'] = '@function.outer',
+        ['[['] = '@class.outer',
+      },
+      goto_previous_end = {
+        ['[M'] = '@function.outer',
+        ['[]'] = '@class.outer',
+      },
+    },
+    swap = {
+      enable = true,
+      swap_next = {
+        ['<leader>a'] = '@parameter.inner',
+      },
+      swap_previous = {
+        ['<leader>A'] = '@parameter.inner',
+      },
+    },
+    context_commentstring = {
+      enable = true,
+      enable_autocmd = false,
+    },
+  }
 })
 
--- see https://github.com/nvim-treesitter/nvim-treesitter-context
-local context_ok, context = pcall(require, "treesitter-context")
-if not context_ok then
-  return
-end
-
-vim.cmd("highlight TreesitterContext gui=bold")
-vim.cmd("highlight! link TreesitterContextLineNumber YellowBold")
-
-context.setup({
-  enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-  max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-  trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-  patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
-    -- For all filetypes
-    -- Note that setting an entry here replaces all other patterns for this entry.
-    -- By setting the 'default' entry below, you can control which nodes you want to
-    -- appear in the context window.
+require("treesitter-context").setup({
+  enable = true,
+  max_lines = 0,
+  trim_scope = "outer",
+  patterns = {
     default = {
-      'class',
-      'function',
-      'method',
-      -- 'for', -- These won't appear in the context
-      -- 'while',
-      -- 'if',
-      -- 'switch',
-      -- 'case',
+      "class",
+      "function",
+      "method",
     },
-    -- Example for a specific filetype.
     rust = {
-      'trait_item',
-      'impl_item',
+      "trait_item",
+      "impl_item",
     },
   },
-  exact_patterns = {
-    -- Example for a specific filetype with Lua patterns
-    -- Treat patterns.rust as a Lua pattern (i.e "^impl_item$" will
-    -- exactly match "impl_item" only)
-    -- rust = true,
-  },
-
-  -- [!] The options below are exposed but shouldn't require your attention,
-  --     you can safely ignore them.
-
-  zindex = 20, -- The Z-index of the context window
-  mode = 'cursor', -- Line used to calculate context. Choices: 'cursor', 'topline'
-  separator = nil, -- Separator between context and content. Should be a single character string, like '-'.
 })

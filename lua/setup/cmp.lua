@@ -34,35 +34,17 @@ local icons = {
 cmp.setup({
   -- use luasnip to expand snippets in completion list
   snippet = {
-    expand = function(args)
-      -- For `luasnip` users.
-      luasnip.lsp_expand(args.body)
-    end,
+    expand = function(args) luasnip.lsp_expand(args.body) end, -- luasnip
   },
 
   mapping = {
-    -- scroll completion list
+    -- ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
     ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-
-    -- scroll docs
-    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-
-    -- accept completion
-    -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-
-    -- abort completion
-    ["<C-e>"] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
-
-    -- accept currently selected item: if none selected, `select` first item
-    -- set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-
-    -- jump through snippets positions
+    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+    ["<C-e>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
     ["<C-l>"] = cmp.mapping(function()
       if luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
@@ -108,13 +90,16 @@ cmp.setup({
   },
 
   window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    completion = {
+      scrollbar = true,
+    },
+    documentation = {
+      scrollbar = true,
+    },
   },
 
   experimental = {
     ghost_text = true,
-    native_menu = false,
   },
 })
 

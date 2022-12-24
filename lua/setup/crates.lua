@@ -1,6 +1,4 @@
-local crates = require("crates")
-
-crates.setup({
+require("crates").setup({
   smart_insert = true,
   insert_closing_quote = true,
   avoid_prerelease = true,
@@ -31,7 +29,7 @@ crates.setup({
     autofocus = true,
     copy_register = '"',
     style = "minimal",
-    border = "rounded",
+    border = "none",
     show_version_date = true,
     show_dependency_version = true,
     max_height = 30,

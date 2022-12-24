@@ -7,6 +7,6 @@ local opts = { noremap = true, silent = true }
 kmap("n", "<leader>c", "<cmd>!lualatex --output-dir pdf main.tex && pgrep zathura || setsid -f zathura pdf/main.pdf<CR>", opts)
 
 -- Spell checker for english and italian.
-vim.opt.spelllang = "en,it"
-vim.opt.spell = true
+-- vim.opt.spelllang = "en,it"
+-- vim.opt.spell = true
 vim.opt.textwidth = 79
