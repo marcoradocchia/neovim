@@ -1,6 +1,7 @@
 local actions = require("telescope.actions")
+local mocha = require("catppuccin.palettes").get_palette("mocha")
 
-vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
+vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "Fuzzy find recently opened files" })
 vim.keymap.set("n", "<leader>/", require("telescope.builtin").current_buffer_fuzzy_find, { desc = "Fuzzy find current buffer" })
 vim.keymap.set("n", "<leader>b", require("telescope.builtin").buffers, { desc = "Fuzzy find Buffer" })
 vim.keymap.set("n", "<leader>f", require("telescope.builtin").find_files, { desc = "Fuzzy find files" })
@@ -8,14 +9,45 @@ vim.keymap.set("n", "<leader>g", require("telescope.builtin").live_grep, { desc 
 vim.keymap.set("n", "<leader>m", require("telescope.builtin").man_pages, { desc = "Fuzzy find man pages" })
 vim.keymap.set("n", "<leader>s", require("telescope.builtin").grep_string, { desc = "Grep string" })
 
+-- Define telescope highlights
+local telescope_highlights = {
+  TelescopeNormal = { bg = mocha.mantle },
+  TelescopeBorder = { bg = mocha.mantle, fg = mocha.mantle },
+  TelescopeSelection = { bg = mocha.base, bold = true },
+
+  TelescopePromptTitle = { fg = mocha.crust, bg = mocha.red },
+  TelescopePromptNormal = { bg = mocha.crust },
+  TelescopePromptBorder = { bg = mocha.crust, fg = mocha.crust },
+  TelescopePromptPrefix = { bg = mocha.crust, fg = mocha.red, bold = true },
+
+  TelescopeResultsTitle = { bg = mocha.mantle, fg = mocha.mantle },
+
+  TelescopePreviewTitle = { bg = mocha.peach, fg = mocha.crust },
+  TelescopePreviewNormal = { bg = mocha.crust },
+  TelescopePreviewBorder = { bg = mocha.crust, fg = mocha.crust },
+  TelescopePreviewLine = { bg = mocha.base, bold = true },
+}
+
+-- Set telescope highlights
+for hl, col in pairs(telescope_highlights) do
+  vim.api.nvim_set_hl(0, hl, col)
+end
 
 require("telescope").setup({
   defaults = {
     prompt_prefix = " ",
     selection_caret = " ",
     dynamic_preview_title = true,
-    path_display = { "smart" },
+    path_display = { "truncate" },
+    winblend = 0,
+    border = true,
+    color_devicons = true,
     preview = { msg_bg_fillchar = "#" },
+    layout_config = {
+      horizontal = {
+        prompt_position = "top"
+      }
+    },
     mappings = {
       i = {
         ["<C-e>"] = actions.close,
@@ -56,11 +88,15 @@ require("telescope").setup({
   extensions = {
     ["ui-select"] = {
       require("telescope.themes").get_dropdown(),
-      pecific_opts = {
-        codeactions = false,
-      },
     },
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
   },
 })
 
 require("telescope").load_extension("ui-select")
+require("telescope").load_extension("fzf")

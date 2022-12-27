@@ -14,7 +14,16 @@ local servers = {
   lemminx = {},
   ltex = {},
   pyright = {},
-  rust_analyzer = {},
+  rust_analyzer = {
+    cargo = {
+      buildScripts = {
+        enable = true,
+      },
+    },
+    procMacro = {
+      enable = true,
+    }
+  },
   sumneko_lua = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -70,9 +79,9 @@ local on_attach = function(_, bufnr)
 
   nmap("gd", vim.lsp.buf.definition, "Go to Definition")
   nmap("gD", vim.lsp.buf.declaration, "Goto Declaration")
-  nmap("<leader>D", vim.lsp.buf.type_definition, "Type Definition")
+  nmap("<leader>d", require("telescope.builtin").lsp_type_definitions, "Type Definition")
   nmap("gr", require("telescope.builtin").lsp_references, "Goto References")
-  nmap("gi", vim.lsp.buf.implementation, "Goto Implementation")
+  nmap("gi", require("telescope.builtin").lsp_implementations, "Goto Implementation")
   nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
   nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
 

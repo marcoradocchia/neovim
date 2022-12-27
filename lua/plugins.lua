@@ -94,6 +94,7 @@ packer.startup(function(use)
   use({
     "nvim-telescope/telescope.nvim",
     requires = {
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
       "nvim-telescope/telescope-ui-select.nvim",
       "nvim-lua/plenary.nvim",
     },
@@ -129,6 +130,10 @@ packer.startup(function(use)
   -- File tree --
   use({
     "kyazdani42/nvim-tree.lua",
+    requires = {
+      "nvim-tree/nvim-web-devicons",
+      config = setup("devicons")
+    },
     config = setup("nvimtree")
   })
 
