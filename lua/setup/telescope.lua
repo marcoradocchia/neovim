@@ -13,19 +13,19 @@ vim.keymap.set("n", "<leader>s", require("telescope.builtin").grep_string, { des
 local telescope_highlights = {
   TelescopeNormal = { bg = mocha.mantle },
   TelescopeBorder = { bg = mocha.mantle, fg = mocha.mantle },
-  TelescopeSelection = { bg = mocha.base, bold = true },
 
-  TelescopePromptTitle = { fg = mocha.crust, bg = mocha.red },
-  TelescopePromptNormal = { bg = mocha.crust },
-  TelescopePromptBorder = { bg = mocha.crust, fg = mocha.crust },
-  TelescopePromptPrefix = { bg = mocha.crust, fg = mocha.red, bold = true },
+  TelescopePromptTitle = { fg = mocha.surface0, bg = mocha.red },
+  TelescopePromptNormal = { bg = mocha.surface0 },
+  TelescopePromptBorder = { bg = mocha.surface0, fg = mocha.surface0 },
+  TelescopePromptPrefix = { bg = mocha.surface0, fg = mocha.red, bold = true },
 
   TelescopeResultsTitle = { bg = mocha.mantle, fg = mocha.mantle },
+  TelescopeResultsBorder = { bg = mocha.mantle, fg = mocha.mantle },
 
-  TelescopePreviewTitle = { bg = mocha.peach, fg = mocha.crust },
-  TelescopePreviewNormal = { bg = mocha.crust },
-  TelescopePreviewBorder = { bg = mocha.crust, fg = mocha.crust },
-  TelescopePreviewLine = { bg = mocha.base, bold = true },
+  TelescopePreviewTitle = { bg = mocha.peach, fg = mocha.mantle },
+  TelescopePreviewNormal = { bg = mocha.mantle },
+  TelescopePreviewBorder = { bg = mocha.mantle, fg = mocha.mantle },
+  TelescopePreviewLine = { bg = mocha.surface0, bold = true },
 }
 
 -- Set telescope highlights
