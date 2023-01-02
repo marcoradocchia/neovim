@@ -91,7 +91,6 @@ local on_attach = function(_, bufnr)
   nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
   nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
   nmap("<leader>wl", function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, "Workspace List Folders")
 end
 

@@ -66,6 +66,11 @@ packer.startup(function(use)
         "folke/neodev.nvim",
         config = setup("neodev")
       },
+      -- {
+      --   "simrat39/rust-tools.nvim",
+      --   after = "mason-lspconfig.nvim",
+      --   config = setup("rust-tools"),
+      -- },
     },
     config = setup("lsp"),
   })
