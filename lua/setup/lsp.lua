@@ -1,7 +1,3 @@
-require("lspconfig")
-local mason = require("mason")
-local mason_lspconfig = require("mason-lspconfig")
-
 local servers = {
   bashls = {},
   clangd = {},
@@ -12,22 +8,19 @@ local servers = {
   jdtls = {},
   jsonls = {},
   lemminx = {},
-  ltex = {},
-  pyright = {},
-  rust_analyzer = {
-    cargo = {
-      buildScripts = {
-        enable = true,
-      },
-    },
-    procMacro = {
-      enable = true,
-    }
+  ltex = {
+    ltex = { checkFrequency = "save" },
   },
+  pyright = {},
+  rust_analyzer = {},
   sumneko_lua = {
     Lua = {
+      runtime = { version = "LuaJIT" },
+      diagnostics = { globals = { "vim" } },
+      completion = { callSnippet = "Both" },
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
+      hint = { enable = true },
     },
   },
   taplo = {},
@@ -77,8 +70,8 @@ local on_attach = function(_, bufnr)
   nmap("<leader>ca", vim.lsp.buf.code_action, "Code Action")
   nmap("<leader>F", vim.lsp.buf.format, "Format buffer")
 
-  nmap("gd", vim.lsp.buf.definition, "Go to Definition")
-  nmap("gD", vim.lsp.buf.declaration, "Goto Declaration")
+  nmap("gD", vim.lsp.buf.declaration, "Go to Declaration")
+  nmap("gd", require("telescope.builtin").lsp_definitions, "Go to Definition")
   nmap("<leader>d", require("telescope.builtin").lsp_type_definitions, "Type Definition")
   nmap("gr", require("telescope.builtin").lsp_references, "Goto References")
   nmap("gi", require("telescope.builtin").lsp_implementations, "Goto Implementation")
@@ -94,7 +87,10 @@ local on_attach = function(_, bufnr)
   end, "Workspace List Folders")
 end
 
-mason.setup({
+-- Neovim lua configuration
+require("neodev").setup()
+
+require("mason").setup({
   ui = {
     icons = {
       package_installed = "✓",
@@ -104,6 +100,8 @@ mason.setup({
   }
 })
 
+local mason_lspconfig = require("mason-lspconfig")
+
 mason_lspconfig.setup({
   ensure_installed = vim.tbl_keys(servers),
   automatic_installation = false,
@@ -112,14 +110,36 @@ mason_lspconfig.setup({
 -- nvim-cmp supports additional completion capabilities,
 -- so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 mason_lspconfig.setup_handlers({
   function(server_name)
-    require('lspconfig')[server_name].setup {
+    require("lspconfig")[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = servers[server_name],
     }
   end,
+  ["rust_analyzer"] = function()
+    require("rust-tools").setup({
+      tools = {
+        inlay_hints = {
+          parameter_hints_prefix = " ",
+          other_hints_prefix = " ",
+          highlight = "CursorLineSign",
+        },
+        hover_actions = { border = "solid" },
+      },
+      server = {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = { command = "clippy" },
+            inlayHints = { locationLinks = false },
+          },
+        }
+      },
+    })
+  end
 })
