@@ -37,12 +37,14 @@ require("telescope").setup({
   defaults = {
     prompt_prefix = " ",
     selection_caret = " ",
+    sorting_strategy = "ascending",
     dynamic_preview_title = true,
     path_display = { "truncate" },
     winblend = 0,
     border = true,
     color_devicons = true,
     preview = { msg_bg_fillchar = "#" },
+    result_title = "",
     layout_config = {
       horizontal = {
         prompt_position = "top"
