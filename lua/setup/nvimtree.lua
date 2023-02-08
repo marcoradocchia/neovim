@@ -5,17 +5,9 @@ vim.keymap.set("n", "<C-n>", require("nvim-tree.api").tree.toggle, { desc = "Tog
 require("nvim-tree").setup({
   disable_netrw = true,
   hijack_netrw = true,
-  open_on_setup = false,
-  open_on_setup_file = false,
   open_on_tab = false,
   hijack_cursor = false,
   update_cwd = true,
-  ignore_ft_on_setup = {
-    "startify",
-    "dashboard",
-    "alpha",
-    "packer",
-  },
   diagnostics = {
     enable = true,
     icons = {

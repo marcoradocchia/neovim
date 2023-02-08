@@ -42,4 +42,8 @@ require("crates").setup({
       yanked = "  yanked ",
     },
   },
+  null_ls = {
+    enabled = true,
+    name = "Crates",
+  },
 })
