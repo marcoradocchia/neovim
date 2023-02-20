@@ -13,7 +13,7 @@ local servers = {
   },
   pyright = {},
   rust_analyzer = {},
-  sumneko_lua = {
+  lua_ls = {
     Lua = {
       runtime = { version = "LuaJIT" },
       diagnostics = { globals = { "vim" } },
@@ -31,9 +31,9 @@ local servers = {
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },
-  { name = "DiagnosticSignWarn", text = "" },
-  { name = "DiagnosticSignHint", text = "ﯧ" },
-  { name = "DiagnosticSignInfo", text = "" },
+  { name = "DiagnosticSignWarn",  text = "" },
+  { name = "DiagnosticSignHint",  text = "ﯧ" },
+  { name = "DiagnosticSignInfo",  text = "" },
 }
 
 for _, sign in ipairs(signs) do
@@ -88,7 +88,9 @@ local on_attach = function(_, bufnr)
 end
 
 -- Neovim lua configuration
-require("neodev").setup()
+require("neodev").setup({
+  library = { plugins = { "nvim-dap-ui" }, types = true }
+})
 
 require("mason").setup({
   ui = {
@@ -121,18 +123,39 @@ mason_lspconfig.setup_handlers({
     }
   end,
   ["rust_analyzer"] = function()
-    require("rust-tools").setup({
+    local rt = require("rust-tools")
+    rt.setup({
       tools = {
         inlay_hints = {
           parameter_hints_prefix = " ",
           other_hints_prefix = " ",
           highlight = "CursorLineSign",
         },
-        hover_actions = { border = "solid" },
+        hover_actions = {
+          title = "Hover CodeActions",
+          border = {
+            { "",  "FloatBorder" },
+            { "",  "FloatBorder" },
+            { "",  "FloatBorder" },
+            { "|", "FloatBorder" },
+            { "",  "FloatBorder" },
+            { "",  "FloatBorder" },
+            { "",  "FloatBorder" },
+            { "|", "FloatBorder" },
+          }
+        },
       },
       server = {
         capabilities = capabilities,
-        on_attach = on_attach,
+        on_attach = function(_, bufnr)
+          on_attach(_, bufnr)
+
+          -- Rust Tools specific keymaps
+          vim.keymap.set("n", "K", rt.hover_actions.hover_actions,
+            { buffer = bufnr, desc = "RustTools Hover with CodeActions" })
+          vim.keymap.set("n", "<leader>R", rt.runnables.runnables,
+            { buffer = bufnr, desc = "RustTools Runnables" })
+        end,
         settings = {
           ["rust-analyzer"] = {
             checkOnSave = { command = "clippy" },

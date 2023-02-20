@@ -51,41 +51,80 @@ packer.startup(function(use)
   -- LSP --
   use({
     "neovim/nvim-lspconfig",
-    requires = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = setup("null-ls")
-      },
-      {
-        "j-hui/fidget.nvim",
-        config = setup("fidget")
-      },
-      "folke/neodev.nvim",
-      {
-        "simrat39/rust-tools.nvim",
-        -- after = {
-        --   "nvim-lspconfig",
-        --   "mason-lspconfig.nvim",
-        -- }
-      },
-    },
     config = setup("lsp"),
+  })
+
+  use("williamboman/mason.nvim")
+
+  use({
+    "williamboman/mason-lspconfig.nvim",
+    requires = { "williamboman/mason.nvim" },
+  })
+
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    config = setup("null-ls")
+  })
+
+  use({
+    "j-hui/fidget.nvim",
+    config = setup("fidget")
+  })
+
+  use("folke/neodev.nvim")
+
+  use("simrat39/rust-tools.nvim")
+
+  -- DAP --
+  use({
+    "mfussenegger/nvim-dap",
+    config = setup("dap"),
+  })
+
+  use({
+    "rcarriga/nvim-dap-ui",
+    requires = { "mfussenegger/nvim-dap" },
+  })
+
+  use({
+    "nvim-telescope/telescope-dap.nvim",
+    requires = { "mfussenegger/nvim-dap" },
   })
 
   -- Completions --
   use({
     "hrsh7th/nvim-cmp",
-    requires = {
-      "hrsh7th/cmp-buffer", -- buffer completions
-      "hrsh7th/cmp-path", -- path completions
-      "hrsh7th/cmp-cmdline", -- cmdline completions
-      "hrsh7th/cmp-nvim-lsp", -- lsp completions
-      "hrsh7th/cmp-nvim-lua", -- nvim lua apis completions
-      "saadparwaiz1/cmp_luasnip", -- snippet completions
-    },
     config = setup("cmp")
+  })
+
+  use({
+    "hrsh7th/cmp-buffer", -- buffer completions
+    requires = { "hrsh7th/nvim-cmp" }
+  })
+
+  use({
+    "hrsh7th/cmp-path", -- path completions
+    requires = { "hrsh7th/nvim-cmp" }
+  })
+
+  use({
+    "hrsh7th/cmp-cmdline", -- cmdline completions
+    requires = { "hrsh7th/nvim-cmp" }
+  })
+
+  use({
+    "hrsh7th/cmp-nvim-lsp", -- lsp completions
+    requires = { "hrsh7th/nvim-cmp" }
+  })
+
+  use({
+    "hrsh7th/cmp-nvim-lua", -- nvim lua apis completions
+    requires = { "hrsh7th/nvim-cmp" }
+  })
+
+  use({
+    "saadparwaiz1/cmp_luasnip", -- snippet completions
+    requires = { "hrsh7th/nvim-cmp" }
   })
 
   -- Snippets --
@@ -109,11 +148,17 @@ packer.startup(function(use)
   use({
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    requires = {
-      "nvim-treesitter/playground",
-      "nvim-treesitter/nvim-treesitter-context",
-    },
     config = setup("treesitter")
+  })
+
+  use({
+    "nvim-treesitter/playground",
+    requires = { "nvim-treesitter/nvim-treesitter" },
+  })
+
+  use({
+    "nvim-treesitter/nvim-treesitter-context",
+    requires = { "nvim-treesitter/nvim-treesitter" },
   })
 
   -- Comments --
@@ -134,11 +179,13 @@ packer.startup(function(use)
   -- File tree --
   use({
     "kyazdani42/nvim-tree.lua",
-    requires = {
-      "nvim-tree/nvim-web-devicons",
-      config = setup("devicons")
-    },
     config = setup("nvimtree")
+  })
+
+  -- Icons --
+  use({
+    "nvim-tree/nvim-web-devicons",
+    config = setup("devicons")
   })
 
   -- Colorizer --
