@@ -1,4 +1,3 @@
--- :help options
 local options = {
   title = true, -- sets window title
   backup = false, -- creates a backup file
@@ -48,9 +47,5 @@ end
 
 -- avoid showing extra messages when using completion
 vim.opt.shortmess:append("c")
-
 vim.opt.iskeyword:append("-")
 vim.opt.whichwrap:append("<,>,[,],h,l")
-
--- set tex files to be latex
-vim.g["tex_flavor"] = "latex"

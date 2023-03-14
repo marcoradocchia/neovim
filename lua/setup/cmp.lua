@@ -3,7 +3,7 @@ local luasnip = require("luasnip")
 
 --   פּ ﯟ   some other good icons
 -- find more here: https://www.nerdfonts.com/cheat-sheet
-local icons = {
+local kind_symbols = {
   Text = "",
   Method = "",
   Function = "",
@@ -31,12 +31,21 @@ local icons = {
   TypeParameter = "",
 }
 
+-- Sources menu symbols
+local menu_symbols = {
+  nvim_lsp = "[LSP]",
+  nvim_lua = "[NVIM]",
+  luasnip = "[SNIP]",
+  buffer = "[BUF]",
+  path = "[PATH]",
+  neorg = "[NEORG]",
+}
+
 cmp.setup({
   -- use luasnip to expand snippets in completion list
   snippet = {
     expand = function(args) luasnip.lsp_expand(args.body) end, -- luasnip
   },
-
   mapping = {
     -- ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
@@ -56,24 +65,16 @@ cmp.setup({
       end
     end, { "i", "s" }),
   },
-
   -- formatting options
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
       -- this concatonates the icon with the name of the item kind
-      vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-      vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[nvim]",
-        luasnip = "[snip]",
-        buffer = "[buff]",
-        path = "[path]",
-      })[entry.source.name]
+      vim_item.kind = string.format("%s %s", kind_symbols[vim_item.kind], vim_item.kind)
+      vim_item.menu = menu_symbols[entry.source.name]
       return vim_item
     end,
   },
-
   -- sources list
   sources = {
     { name = "nvim_lsp" },
@@ -81,14 +82,13 @@ cmp.setup({
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
+    { name = "neorg" },
     { name = "crates" },
   },
-
   confirm_opts = {
     select = true,
     behavior = cmp.ConfirmBehavior.Replace,
   },
-
   window = {
     completion = {
       scrollbar = true,
@@ -97,7 +97,6 @@ cmp.setup({
       scrollbar = true,
     },
   },
-
   experimental = {
     ghost_text = true,
   },

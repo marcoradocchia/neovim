@@ -1,15 +1,3 @@
--- require("catppuccin").setup({
---   integrations = {
---     treesitter = true,
---     treesitter_context = true,
---     cmp = true,
---     telescope = true,
---     gitsigns = true,
---     nvimtree = true,
---     fidget = true,
---   },
--- })
-
 require("catppuccin").setup({
   flavour = "mocha", -- Can be one of: latte, frappe, macchiato, mocha
   background = { light = "latte", dark = "mocha" },
@@ -37,6 +25,7 @@ require("catppuccin").setup({
   },
   integrations = {
     treesitter = true,
+    treesitter_context = true,
     native_lsp = {
       enabled = true,
       virtual_text = {
@@ -104,7 +93,6 @@ require("catppuccin").setup({
       sky = "#89DCEB",
       teal = "#B5E8E0",
       lavender = "#C9CBFF",
-
       text = "#D9E0EE",
       subtext1 = "#BAC2DE",
       subtext0 = "#A6ADC8",
@@ -114,7 +102,6 @@ require("catppuccin").setup({
       surface2 = "#6E6C7E",
       surface1 = "#575268",
       surface0 = "#302D41",
-
       base = "#1E1E2E",
       mantle = "#1A1826",
       crust = "#161320",
@@ -127,32 +114,26 @@ require("catppuccin").setup({
         CursorLineNr = { fg = cp.green },
         Search = { bg = cp.surface1, fg = cp.pink, style = { "bold" } },
         IncSearch = { bg = cp.pink, fg = cp.surface1 },
-
         -- For native lsp configs.
         DiagnosticVirtualTextError = { bg = cp.none },
         DiagnosticVirtualTextWarn = { bg = cp.none },
         DiagnosticVirtualTextInfo = { bg = cp.none },
         DiagnosticVirtualTextHint = { fg = cp.rosewater, bg = cp.none },
-
         DiagnosticHint = { fg = cp.rosewater },
         LspDiagnosticsDefaultHint = { fg = cp.rosewater },
         LspDiagnosticsHint = { fg = cp.rosewater },
         LspDiagnosticsVirtualTextHint = { fg = cp.rosewater },
         LspDiagnosticsUnderlineHint = { sp = cp.rosewater },
-
         -- For fidget.
         FidgetTask = { bg = cp.none, fg = cp.surface2 },
         FidgetTitle = { fg = cp.blue, style = { "bold" } },
-
         -- For treesitter.
         ["@field"] = { fg = cp.rosewater },
         ["@property"] = { fg = cp.yellow },
-
         ["@include"] = { fg = cp.teal },
         ["@operator"] = { fg = cp.sky },
         ["@keyword.operator"] = { fg = cp.sky },
         ["@punctuation.special"] = { fg = cp.maroon },
-
         -- ["@float"] = { fg = cp.peach },
         -- ["@number"] = { fg = cp.peach },
         -- ["@boolean"] = { fg = cp.peach },
@@ -162,19 +143,16 @@ require("catppuccin").setup({
         -- ["@conditional"] = { fg = cp.mauve },
         -- ["@repeat"] = { fg = cp.mauve },
         ["@exception"] = { fg = cp.peach },
-
         ["@constant.builtin"] = { fg = cp.lavender },
         -- ["@function.builtin"] = { fg = cp.peach, style = { "italic" } },
         -- ["@type.builtin"] = { fg = cp.yellow, style = { "italic" } },
         ["@variable.builtin"] = { fg = cp.red, style = { "italic" } },
-
         -- ["@function"] = { fg = cp.blue },
         ["@function.macro"] = { fg = cp.red, style = {} },
         ["@parameter"] = { fg = cp.rosewater },
         ["@keyword.function"] = { fg = cp.maroon },
         ["@keyword"] = { fg = cp.red },
         ["@keyword.return"] = { fg = cp.pink, style = {} },
-
         -- ["@text.note"] = { fg = cp.base, bg = cp.blue },
         -- ["@text.warning"] = { fg = cp.base, bg = cp.yellow },
         -- ["@text.danger"] = { fg = cp.base, bg = cp.red },
@@ -183,7 +161,6 @@ require("catppuccin").setup({
         -- ["@label"] = { fg = cp.blue },
         ["@method"] = { style = { "italic" } },
         ["@namespace"] = { fg = cp.rosewater, style = {} },
-
         ["@punctuation.delimiter"] = { fg = cp.teal },
         ["@punctuation.bracket"] = { fg = cp.overlay2 },
         -- ["@string"] = { fg = cp.green },
@@ -194,7 +171,6 @@ require("catppuccin").setup({
         ["@tag"] = { fg = cp.peach },
         ["@tag.delimiter"] = { fg = cp.maroon },
         ["@text"] = { fg = cp.text },
-
         -- ["@text.uri"] = { fg = cp.rosewater, style = { "italic", "underline" } },
         -- ["@text.literal"] = { fg = cp.teal, style = { "italic" } },
         -- ["@text.reference"] = { fg = cp.lavender, style = { "bold" } },
@@ -210,12 +186,9 @@ require("catppuccin").setup({
 
         ["@function.builtin.bash"] = { fg = cp.red, style = { "italic" } },
         ["@parameter.bash"] = { fg = cp.yellow, style = { "italic" } },
-
         ["@field.lua"] = { fg = cp.lavender },
         ["@constructor.lua"] = { fg = cp.flamingo },
-
         ["@constant.java"] = { fg = cp.teal },
-
         ["@property.typescript"] = { fg = cp.lavender, style = { "italic" } },
         -- ["@constructor.typescript"] = { fg = cp.lavender },
 
@@ -224,19 +197,28 @@ require("catppuccin").setup({
 
         ["@type.css"] = { fg = cp.lavender },
         ["@property.css"] = { fg = cp.yellow, style = { "italic" } },
-
         ["@property.cpp"] = { fg = cp.text },
-
         -- ["@symbol"] = { fg = cp.flamingo },
       }
     end,
   },
+  custom_highlights = function(colors)
+    return {
+      -- Telescope
+      TelescopeNormal = { bg = colors.mantle },
+      TelescopeBorder = { bg = colors.mantle, fg = colors.mantle },
+      TelescopePromptTitle = { fg = colors.surface0, bg = colors.red },
+      TelescopePromptNormal = { bg = colors.surface0 },
+      TelescopePromptBorder = { bg = colors.surface0, fg = colors.surface0 },
+      TelescopePromptPrefix = { bg = colors.surface0, fg = colors.red, bold = true },
+      TelescopeResultsTitle = { bg = colors.mantle, fg = colors.mantle },
+      TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
+      TelescopePreviewTitle = { bg = colors.peach, fg = colors.mantle },
+      TelescopePreviewNormal = { bg = colors.mantle },
+      TelescopePreviewBorder = { bg = colors.mantle, fg = colors.mantle },
+      TelescopePreviewLine = { bg = colors.surface0, bold = true },
+    }
+  end,
 })
-
--- require("tokyonight").setup({
---   style = "moon",
---   sidebars = { "qf", "help", "packer", "terminal" },
---   lualine_bold = true
--- })
 
 vim.cmd.colorscheme("catppuccin-mocha")

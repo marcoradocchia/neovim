@@ -1,40 +1,19 @@
+local telescope = require("telescope")
 local actions = require("telescope.actions")
-local mocha = require("catppuccin.palettes").get_palette("mocha")
+local builtin = require("telescope.builtin")
 
-vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "Fuzzy find recently opened files" })
-vim.keymap.set("n", "<leader>/", require("telescope.builtin").current_buffer_fuzzy_find, { desc = "Fuzzy find current buffer" })
-vim.keymap.set("n", "<leader>b", require("telescope.builtin").buffers, { desc = "Fuzzy find Buffer" })
-vim.keymap.set("n", "<leader>f", require("telescope.builtin").find_files, { desc = "Fuzzy find files" })
-vim.keymap.set("n", "<leader>g", require("telescope.builtin").live_grep, { desc = "Live grep" })
-vim.keymap.set("n", "<leader>m", require("telescope.builtin").man_pages, { desc = "Fuzzy find man pages" })
-vim.keymap.set("n", "<leader>s", require("telescope.builtin").grep_string, { desc = "Grep string" })
+vim.keymap.set("n", "<leader>t", builtin.builtin, { desc = "Telescope builtins" })
+vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "Fuzzy find recently opened files" })
+vim.keymap.set("n", "<leader>/", builtin.current_buffer_fuzzy_find, { desc = "Fuzzy find current buffer" })
+vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Fuzzy find Buffer" })
+vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Fuzzy find files" })
+vim.keymap.set("n", "<leader>g", builtin.live_grep, { desc = "Live grep" })
+vim.keymap.set("n", "<leader>m", builtin.man_pages, { desc = "Fuzzy find man pages" })
+vim.keymap.set("n", "<leader>s", builtin.grep_string, { desc = "Grep string" })
 
--- Define telescope highlights
-local telescope_highlights = {
-  TelescopeNormal = { bg = mocha.mantle },
-  TelescopeBorder = { bg = mocha.mantle, fg = mocha.mantle },
-
-  TelescopePromptTitle = { fg = mocha.surface0, bg = mocha.red },
-  TelescopePromptNormal = { bg = mocha.surface0 },
-  TelescopePromptBorder = { bg = mocha.surface0, fg = mocha.surface0 },
-  TelescopePromptPrefix = { bg = mocha.surface0, fg = mocha.red, bold = true },
-
-  TelescopeResultsTitle = { bg = mocha.mantle, fg = mocha.mantle },
-  TelescopeResultsBorder = { bg = mocha.mantle, fg = mocha.mantle },
-
-  TelescopePreviewTitle = { bg = mocha.peach, fg = mocha.mantle },
-  TelescopePreviewNormal = { bg = mocha.mantle },
-  TelescopePreviewBorder = { bg = mocha.mantle, fg = mocha.mantle },
-  TelescopePreviewLine = { bg = mocha.surface0, bold = true },
-}
-
--- Set telescope highlights
-for hl, col in pairs(telescope_highlights) do
-  vim.api.nvim_set_hl(0, hl, col)
-end
-
-require("telescope").setup({
+telescope.setup({
   defaults = {
+    theme = "dropdown",
     prompt_prefix = " ",
     selection_caret = " ",
     sorting_strategy = "ascending",
@@ -52,43 +31,42 @@ require("telescope").setup({
     },
     mappings = {
       i = {
-        ["<C-e>"] = actions.close,
-        ["<C-j>"] = actions.cycle_history_next,
-        ["<C-k>"] = actions.cycle_history_prev,
-        ["<C-n>"] = actions.move_selection_next,
-        ["<C-p>"] = actions.move_selection_previous,
-        ["<Down>"] = actions.move_selection_next,
-        ["<Up>"] = actions.move_selection_previous,
-        ["<C-u>"] = actions.preview_scrolling_up,
-        ["<C-d>"] = actions.preview_scrolling_down,
-        ["<CR>"] = actions.select_default,
-        ["<C-x>"] = actions.select_horizontal,
-        ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
-        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+            ["<C-e>"] = actions.close,
+            ["<C-j>"] = actions.cycle_history_next,
+            ["<C-k>"] = actions.cycle_history_prev,
+            ["<C-n>"] = actions.move_selection_next,
+            ["<C-p>"] = actions.move_selection_previous,
+            ["<Down>"] = actions.move_selection_next,
+            ["<Up>"] = actions.move_selection_previous,
+            ["<C-u>"] = actions.preview_scrolling_up,
+            ["<C-d>"] = actions.preview_scrolling_down,
+            ["<CR>"] = actions.select_default,
+            ["<C-x>"] = actions.select_horizontal,
+            ["<C-v>"] = actions.select_vertical,
+            ["<C-t>"] = actions.select_tab,
+            ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+            ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
       },
       n = {
-        ["<esc>"] = actions.close,
-        ["j"] = actions.move_selection_next,
-        ["k"] = actions.move_selection_previous,
-        ["zz"] = actions.move_to_middle,
-        ["gg"] = actions.move_to_top,
-        ["G"] = actions.move_to_bottom,
-        ["<C-u>"] = actions.preview_scrolling_up,
-        ["<C-d>"] = actions.preview_scrolling_down,
-        ["<CR>"] = actions.select_default,
-        ["<C-x>"] = actions.select_horizontal,
-        ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
-        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+            ["<esc>"] = actions.close,
+            ["j"] = actions.move_selection_next,
+            ["k"] = actions.move_selection_previous,
+            ["zz"] = actions.move_to_middle,
+            ["gg"] = actions.move_to_top,
+            ["G"] = actions.move_to_bottom,
+            ["<C-u>"] = actions.preview_scrolling_up,
+            ["<C-d>"] = actions.preview_scrolling_down,
+            ["<CR>"] = actions.select_default,
+            ["<C-x>"] = actions.select_horizontal,
+            ["<C-v>"] = actions.select_vertical,
+            ["<C-t>"] = actions.select_tab,
+            ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+            ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
       },
     },
   },
-
   extensions = {
-    ["ui-select"] = {
+        ["ui-select"] = {
       require("telescope.themes").get_dropdown(),
     },
     fzf = {
@@ -96,9 +74,13 @@ require("telescope").setup({
       override_generic_sorter = true,
       override_file_sorter = true,
       case_mode = "smart_case",
-    }
+    },
+    heading = {
+      treesitter = true,
+    },
   },
 })
 
-require("telescope").load_extension("ui-select")
-require("telescope").load_extension("fzf")
+telescope.load_extension("ui-select")
+telescope.load_extension("fzf")
+telescope.load_extension("heading")

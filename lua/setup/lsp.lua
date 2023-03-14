@@ -133,16 +133,7 @@ mason_lspconfig.setup_handlers({
         },
         hover_actions = {
           title = "Hover CodeActions",
-          border = {
-            { "",  "FloatBorder" },
-            { "",  "FloatBorder" },
-            { "",  "FloatBorder" },
-            { "|", "FloatBorder" },
-            { "",  "FloatBorder" },
-            { "",  "FloatBorder" },
-            { "",  "FloatBorder" },
-            { "|", "FloatBorder" },
-          }
+          border = "solid",
         },
       },
       server = {

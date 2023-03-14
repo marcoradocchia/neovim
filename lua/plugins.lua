@@ -61,6 +61,14 @@ packer.startup(function(use)
     requires = { "williamboman/mason.nvim" },
   })
 
+  -- use({
+  --   "jay-babu/mason-null-ls.nvim",
+  --   requires = {
+  --     "williamboman/mason.nvim",
+  --     "jose-elias-alvarez/null-ls.nvim",
+  --   }
+  -- })
+
   use({
     "jose-elias-alvarez/null-ls.nvim",
     config = setup("null-ls")
@@ -144,6 +152,12 @@ packer.startup(function(use)
     config = setup("telescope")
   })
 
+  -- Telescope extensions --
+  use({
+    "crispgm/telescope-heading.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  })
+
   -- Treesitter --
   use({
     "nvim-treesitter/nvim-treesitter",
@@ -205,10 +219,26 @@ packer.startup(function(use)
   })
 
   -- No distraction mode --
-  use {
+  use({
     "folke/zen-mode.nvim",
     config = setup("zen")
-  }
+  })
+
+  -- LaTeX --
+  use({
+    "lervag/vimtex",
+    config = setup("vimtex")
+  })
+
+  -- Neorg: note taking and much more --
+  use({
+    "nvim-neorg/neorg",
+    config = setup("neorg"),
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    }
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
