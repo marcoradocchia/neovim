@@ -18,3 +18,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
   desc = "Set filetype to 'java' for Processing source files (*.pde).",
 })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*.typ",
+  callback = function()
+    vim.opt.filetype = "typst"
+  end,
+  desc = "Set filetype to 'typst' for Typst source files (*.typ).",
+})

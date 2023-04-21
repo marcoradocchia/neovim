@@ -230,6 +230,12 @@ packer.startup(function(use)
     config = setup("vimtex")
   })
 
+  -- Typst --
+  use({
+    "kaarmu/typst.vim",
+    ft = { "typst" }
+  })
+
   -- Neorg: note taking and much more --
   use({
     "nvim-neorg/neorg",

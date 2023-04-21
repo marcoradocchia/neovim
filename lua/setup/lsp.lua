@@ -127,8 +127,8 @@ mason_lspconfig.setup_handlers({
     rt.setup({
       tools = {
         inlay_hints = {
-          parameter_hints_prefix = " ",
-          other_hints_prefix = " ",
+          parameter_hints_prefix = "❯ ",
+          other_hints_prefix = "❮ ",
           highlight = "CursorLineSign",
         },
         hover_actions = {
