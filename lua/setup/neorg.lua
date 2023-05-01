@@ -10,14 +10,14 @@ require("neorg").setup({
         end,
       },
     },
-    ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
-    ["core.norg.completion"] = { -- Autocompletions
+    ["core.concealer"] = {}, -- Adds pretty icons to your documents
+    ["core.completion"] = { -- Autocompletions
       config = {
         engine = "nvim-cmp",
         name = "[neorg]",
       },
     },
-    ["core.norg.dirman"] = { -- Manage Neorg workspaces
+    ["core.dirman"] = { -- Manage Neorg workspaces
       config = {
         workspaces = {
           cs = "~/docs/notes/cs",
@@ -27,12 +27,12 @@ require("neorg").setup({
         },
       },
     },
-    ["core.norg.journal"] = {
+    ["core.journal"] = {
       config = {
         journal_folder = "~/docs/journal",
       },
     },
-    ["core.norg.esupports.metagen"] = { -- Metadata autogeneration
+    ["core.esupports.metagen"] = { -- Metadata autogeneration
       config = {
         template = {
           {
