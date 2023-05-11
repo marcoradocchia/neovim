@@ -97,9 +97,9 @@ cmp.setup({
       scrollbar = true,
     },
   },
-  experimental = {
-    ghost_text = true,
-  },
+  -- experimental = {
+  --   ghost_text = true,
+  -- },
 })
 
 -- command line configurations
